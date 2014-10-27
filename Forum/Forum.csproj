@@ -155,9 +155,24 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Business\CategorieBusiness.cs" />
+    <Compile Include="Business\Data\CategorieB.cs" />
+    <Compile Include="Business\Data\ForumB.cs" />
+    <Compile Include="Business\Data\MessageB.cs" />
+    <Compile Include="Business\Data\TopicB.cs" />
+    <Compile Include="Business\ForumBusiness.cs" />
+    <Compile Include="Business\MessageBusiness.cs" />
+    <Compile Include="Business\TopicBusiness.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="DAL\DAL.cs" />
+    <Compile Include="DAL\Data\CategorieD.cs" />
+    <Compile Include="DAL\Data\ForumD.cs" />
+    <Compile Include="DAL\Data\MessageD.cs" />
+    <Compile Include="DAL\Data\TopicD.cs" />
+    <Compile Include="DAL\ForumDAL.cs" />
+    <Compile Include="DAL\MessageDAL.cs" />
+    <Compile Include="DAL\CategorieDAL.cs" />
+    <Compile Include="DAL\TopicDAL.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

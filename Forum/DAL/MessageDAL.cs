@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Forum.DAL
 {
-    public class DAL
+    public class MessageDAL
     {
     }
 }
