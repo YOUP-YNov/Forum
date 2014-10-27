@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Forum.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -120,7 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -163,7 +163,14 @@
     <Compile Include="Business\ForumBusiness.cs" />
     <Compile Include="Business\MessageBusiness.cs" />
     <Compile Include="Business\TopicBusiness.cs" />
+    <Compile Include="Models\ListCategoryModel.cs" />
+    <Compile Include="Models\ListMessageModel.cs" />
+    <Compile Include="Models\ListTopicModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\TopicModel.cs" />
+    <Compile Include="Models\ForumModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\ListForumModel.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\Data\CategorieD.cs" />
     <Compile Include="DAL\Data\ForumD.cs" />
