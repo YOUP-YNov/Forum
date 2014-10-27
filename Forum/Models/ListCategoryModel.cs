@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Forum.Controllers
 {
+    /// <summary>
+    /// category list Model
+    /// </summary>
     public class ListCategoryModel
     {
     }

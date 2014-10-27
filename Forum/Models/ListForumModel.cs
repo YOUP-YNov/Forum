@@ -6,7 +6,7 @@ using System.Text;
 namespace Forum.Controllers
 {
     /// <summary>
-    /// List des forums
+    /// Forum list model
     /// </summary>
     public class ListForumModel
     {

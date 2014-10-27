@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Forum.Controllers
 {
+    /// <summary>
+    /// Forum Model
+    /// </summary>
     public class ForumModel
     {
     }
