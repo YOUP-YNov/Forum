@@ -7,16 +7,24 @@ using System.Web.Http;
 
 namespace Forum.Controllers
 {
+    /// <summary>
+    /// Method exposed
+    /// </summary>
     public class ValuesController : ApiController
     {
         /// <summary>
         /// Get all forum
         /// </summary>
         /// <returns></returns>
-        public ListForum GetListForum (){
+        public ListForumModel GetListForum (){
             return null;
         }
-        public Forum GetForum (){
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>ForumModel ForumModel</returns>
+        public ForumModel GetForum (){
             return null;
         }
         public void CreateForum (string Name){
@@ -27,7 +35,7 @@ namespace Forum.Controllers
         }
 
 
-        public ListCategory GetListCategory(int IDForum)
+        public ListCategoryModel GetListCategory(int IDForum)
         {
             return null;
         }
@@ -42,15 +50,15 @@ namespace Forum.Controllers
         }
 
 
-        public ListTopic GetListTopic(int IDCategory)
+        public ListTopicModel GetListTopic(int IDCategory)
         {
             return null;
         }
-        public Topic GetTopic(int IDTopic)
+        public TopicModel GetTopic(int IDTopic)
         {
             return null;
         }
-        public Topic GetTopicByEvent(int IDEvent)
+        public TopicModel GetTopicByEvent(int IDEvent)
         {
             return null;
         }
@@ -66,15 +74,15 @@ namespace Forum.Controllers
 
 
 
-        public ListMessage GetListMessage(int IDTopic)
+        public ListMessageModel GetListMessage(int IDTopic)
         {
             return null;
         }
-        public Message GetMessage(int IDMessage)
+        public MessageModel GetMessage(int IDMessage)
         {
             return null;
         }
-        public ListMessage GetListMessageByUser(int IDUser)
+        public ListMessageModel GetListMessageByUser(int IDUser)
         {
             return null;
         }
