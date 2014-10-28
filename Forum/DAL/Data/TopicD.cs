@@ -7,11 +7,12 @@ namespace Forum.DAL.Data
 {
     public class TopicD
     {
-        public int id { get; set; }
-        public String name { get; set; }
-        public String topicDescription { get; set; }
-        public int creationDate { get; set; }
-        public int category_id { get; set; }
-        public int user_id { get; set; }
+        public long Topic_id { get; set; }
+        public long Sujet_id { get; set; }
+        public string Nom { get; set; }
+        public string DescriptifTopic { get; set; }
+        public System.DateTime DateCreation { get; set; }
+        public bool Resolu { get; set; }
+        public long Utilisateur_id { get; set; }
     }
 }

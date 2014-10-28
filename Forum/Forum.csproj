@@ -167,6 +167,7 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
+    <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Models\ListCategoryModel.cs" />
     <Compile Include="Models\ListMessageModel.cs" />
     <Compile Include="Models\ListTopicModel.cs" />
