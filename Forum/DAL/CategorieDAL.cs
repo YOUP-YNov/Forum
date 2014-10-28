@@ -14,32 +14,65 @@ namespace Forum.DAL
         public CategorieDAL()
         {
             myConnection = new SqlConnection(connexionstring);
-        }
-        public void CreateCategorie(CategorieD cat)
-        {
-            try 
+            try
             {
                 myConnection.Open();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
         }
-
+        public void CreateCategorie(CategorieD cat)
+        {
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = myConnection;
+                command.CommandText = "INSERT INTO FOR_Categorie (Sujet_id, Forum_id, Nom) "
+                    + "Values (" + cat.Sujet_id + ", " + cat.Forum_id + ", '" + cat.Nom + "')";
+                command.ExecuteNonQuery();
+            }
+        }
+        
         public void EditCategorie(CategorieD cat)
         {
-
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = myConnection;
+                command.CommandText = "UPDATE FOR_Categorie SET Nom = '" + cat.Nom + "' WHERE Topic_id = " + cat.Sujet_id;
+                command.ExecuteNonQuery();
+            }
         }
 
         public void DeleteCategorie(int id)
         {
-
+            using (SqlCommand command = new SqlCommand())
+            {
+                command.Connection = myConnection;
+                command.CommandText = "DELETE FROM FOR_Categorie WHERE Sujet_id = " + id;
+                command.ExecuteNonQuery();
+            }
         }
 
-        public List<CategorieD> GetCategorie()
+        public List<CategorieD> GetListCategorie()
         {
-            return null;
+            List<CategorieD> ListC = new List<CategorieD>();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Categorie", myConnection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ListC.Add(new CategorieD
+                        {
+                            Forum_id = Convert.ToInt32(reader["Forum_id"]),
+                            Nom = reader["Nom"].ToString(),
+                            Sujet_id = Convert.ToInt32(reader["Sujet_id"])
+                        });
+                    }
+                }
+            }
+            return ListC;
         }
 
         public void Dispose()
