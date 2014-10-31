@@ -170,6 +170,7 @@
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Controllers\FakeMessageController.cs" />
+    <Compile Include="Models\ConvertModel.cs" />
     <Compile Include="Models\ListCategoryModel.cs" />
     <Compile Include="Models\ListMessageModel.cs" />
     <Compile Include="Models\ListTopicModel.cs" />
@@ -188,7 +189,6 @@
     <Compile Include="DAL\TopicDAL.cs" />
     <Compile Include="TestAutoMapper\Employee.cs" />
     <Compile Include="TestAutoMapper\Personne.cs" />
-    <Compile Include="TestAutoMapper\TestAutoMapper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
