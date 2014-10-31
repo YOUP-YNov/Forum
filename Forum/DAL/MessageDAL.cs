@@ -29,7 +29,7 @@ namespace Forum.DAL
             {
                 command.Connection = myConnection;
                 command.CommandText = "INSERT INTO FOR_Message (Message_id, Topic_id, Utilisateur_id, DatePoste, ContenuMessage) "
-                    + "Values (" + mes.Topic_id + ", " + mes.Topic_id + ", '" + mes.Utilisateur_id + "', '" + mes.DatePoste + "', '" + mes.ContenuMessage + ")";
+                    + "Values (" + mes.Message_id + ", " + mes.Topic_id + ", '" + mes.Utilisateur_id + "', '" + mes.DatePoste + "', '" + mes.ContenuMessage + "')";
                 command.ExecuteNonQuery();
             }
         }

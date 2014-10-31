@@ -26,7 +26,7 @@ namespace Forum.Business
         public static CategorieB ToBusiness(CategorieD categoy)
         {
             Mapper.CreateMap<CategorieD, CategorieB>();
-            return Mapper.Map<CategorieD, CategorieB>(categoy);
+            return Mapper.Map<CategorieD, CategorieB>(categorie);
         }
 
         public static MessageB ToBusiness(MessageD message)

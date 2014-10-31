@@ -38,7 +38,8 @@ namespace Forum.Controllers
             try
             {
                 // TODO: Add insert logic here
-
+                MessageDAL mes = new MessageDAL();
+                mes.CreateMessage(collection);
                 return RedirectToAction("Index");
             }
             catch
