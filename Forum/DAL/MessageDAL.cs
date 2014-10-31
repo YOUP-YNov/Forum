@@ -9,7 +9,7 @@ namespace Forum.DAL
 {
     public class MessageDAL
     {
-        string connexionstring = "metadata=res://*/DAL.Model1.csdl|res://*/DAL.Model1.ssdl|res://*/DAL.Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework&quot;";
+        string connexionstring = "data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework";
         SqlConnection myConnection;
         public MessageDAL()
         {
@@ -81,6 +81,29 @@ namespace Forum.DAL
         {
             List<MessageD> listM = new List<MessageD>();
             using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Message WHERE Utilisateur_id = " + idUser, myConnection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        listM.Add(new MessageD
+                        {
+                            Message_id = Convert.ToInt32(reader["Message_id"]),
+                            Topic_id = Convert.ToInt32(reader["Topic_id"]),
+                            DatePoste = Convert.ToDateTime(reader["DatePoste"]),
+                            Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]),
+                            ContenuMessage = reader["ContenuMessage"].ToString()
+                        });
+                    }
+                }
+            }
+            return listM;
+        }
+
+        public List<MessageD> GetListMessage()
+        {
+            List<MessageD> listM = new List<MessageD>();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Message", myConnection))
             {
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
