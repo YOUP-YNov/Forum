@@ -17,6 +17,21 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Message_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Topic_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Utilisateur_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatePoste)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContenuMessage)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })

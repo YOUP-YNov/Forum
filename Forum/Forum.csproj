@@ -246,6 +246,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\FakeMessage\Index.cshtml" />
     <Content Include="Views\FakeCategorie\Index.cshtml" />
+    <Content Include="Views\FakeMessage\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

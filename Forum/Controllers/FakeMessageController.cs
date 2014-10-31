@@ -15,7 +15,7 @@ namespace Forum.Controllers
         {
             List<MessageD> liste = new List<MessageD>();
             MessageDAL mes = new MessageDAL();
-            liste = mes.GetListTopicMessage(1);
+            liste = mes.GetListTopicMessage(5);
             return View(liste);
         }
 
@@ -33,7 +33,7 @@ namespace Forum.Controllers
 
         // POST: FakeMessage/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(MessageD collection)
         {
             try
             {
