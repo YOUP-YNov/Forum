@@ -156,6 +156,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Business\CategorieBusiness.cs" />
+    <Compile Include="Business\ConvertBusiness.cs" />
     <Compile Include="Business\Data\CategorieB.cs" />
     <Compile Include="Business\Data\ForumB.cs" />
     <Compile Include="Business\Data\MessageB.cs" />
