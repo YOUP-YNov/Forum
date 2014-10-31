@@ -185,7 +185,6 @@
     <Compile Include="DAL\MessageDAL.cs" />
     <Compile Include="DAL\CategorieDAL.cs" />
     <Compile Include="DAL\TopicDAL.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="TestAutoMapper\Employee.cs" />
     <Compile Include="TestAutoMapper\Personne.cs" />
     <Compile Include="TestAutoMapper\TestAutoMapper.cs" />
