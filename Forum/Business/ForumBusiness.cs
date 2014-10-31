@@ -13,10 +13,18 @@ namespace Forum.Business
     public class ForumBusiness
     {
 
-        public ForumB getForum(int id) {
-
+        public ForumB getForum(int id)
+        {
             ForumDAL forum = new ForumDAL();
-            return  ConvertBusiness.ToBusiness(forum.GetForum(id));
+            return ConvertBusiness.ToBusiness(forum.GetForum(id));
         }
+
+        public ForumB EditForum(int id)
+        {
+            ForumDAL forum = new ForumDAL();
+            return ConvertBusiness.ToBusiness(forum.GetForum(id));
+        }
+
+
     }
 }
