@@ -42,7 +42,7 @@ namespace Forum.Controllers
         /// Edit a forum by id
         /// </summary>
         /// <param name="IDForum">forum id</param>
-        public void EditForum(int IDForum)
+        public void EditForum(int IDForum, string title)
         {
         }
         /// <summary>
