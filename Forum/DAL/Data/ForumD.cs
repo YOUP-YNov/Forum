@@ -7,5 +7,8 @@ namespace Forum.DAL.Data
 {
     public class ForumD
     {
+        public long Forum_id { get; set; }
+        public string Nom { get; set; }
+        public string Url { get; set; }
     }
 }

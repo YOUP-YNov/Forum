@@ -163,6 +163,11 @@
     <Compile Include="Business\ForumBusiness.cs" />
     <Compile Include="Business\MessageBusiness.cs" />
     <Compile Include="Business\TopicBusiness.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ForumController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\TopicController.cs" />
+    <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Controllers\FakeMessageController.cs" />
     <Compile Include="Models\ListCategoryModel.cs" />
     <Compile Include="Models\ListMessageModel.cs" />
@@ -172,7 +177,6 @@
     <Compile Include="Models\ForumModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Models\ListForumModel.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DAL\Data\CategorieD.cs" />
     <Compile Include="DAL\Data\ForumD.cs" />
     <Compile Include="DAL\Data\MessageD.cs" />
@@ -181,6 +185,10 @@
     <Compile Include="DAL\MessageDAL.cs" />
     <Compile Include="DAL\CategorieDAL.cs" />
     <Compile Include="DAL\TopicDAL.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="TestAutoMapper\Employee.cs" />
+    <Compile Include="TestAutoMapper\Personne.cs" />
+    <Compile Include="TestAutoMapper\TestAutoMapper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
