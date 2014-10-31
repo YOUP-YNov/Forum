@@ -5,9 +5,6 @@ using System.Text;
 
 namespace Forum.Models
 {
-    /// <summary>
-    /// Topic Model
-    /// </summary>
     public class TopicModel
     {
         public long Topic_id { get; set; }

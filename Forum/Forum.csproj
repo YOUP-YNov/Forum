@@ -160,6 +160,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Business\CategorieBusiness.cs" />
+    <Compile Include="Business\ConvertBusiness.cs" />
     <Compile Include="Business\Data\CategorieB.cs" />
     <Compile Include="Business\Data\ForumB.cs" />
     <Compile Include="Business\Data\MessageB.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Controllers\FakeMessageController.cs" />
+    <Compile Include="Models\ConvertModel.cs" />
     <Compile Include="Models\ListCategoryModel.cs" />
     <Compile Include="Models\ListMessageModel.cs" />
     <Compile Include="Models\ListTopicModel.cs" />
@@ -192,7 +194,6 @@
     <Compile Include="DAL\TopicDAL.cs" />
     <Compile Include="TestAutoMapper\Employee.cs" />
     <Compile Include="TestAutoMapper\Personne.cs" />
-    <Compile Include="TestAutoMapper\TestAutoMapper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
