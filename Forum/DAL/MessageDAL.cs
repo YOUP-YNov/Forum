@@ -100,6 +100,29 @@ namespace Forum.DAL
             return listM;
         }
 
+        public List<MessageD> GetListMessage()
+        {
+            List<MessageD> listM = new List<MessageD>();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Message", myConnection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        listM.Add(new MessageD
+                        {
+                            Message_id = Convert.ToInt32(reader["Message_id"]),
+                            Topic_id = Convert.ToInt32(reader["Topic_id"]),
+                            DatePoste = Convert.ToDateTime(reader["DatePoste"]),
+                            Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]),
+                            ContenuMessage = reader["ContenuMessage"].ToString()
+                        });
+                    }
+                }
+            }
+            return listM;
+        }
+
         public MessageD GetMessage(int id)
         {
             MessageD Mes = new MessageD();
