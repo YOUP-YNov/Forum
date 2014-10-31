@@ -163,6 +163,7 @@
     <Compile Include="Business\ForumBusiness.cs" />
     <Compile Include="Business\MessageBusiness.cs" />
     <Compile Include="Business\TopicBusiness.cs" />
+    <Compile Include="Controllers\FakeMessageController.cs" />
     <Compile Include="Models\ListCategoryModel.cs" />
     <Compile Include="Models\ListMessageModel.cs" />
     <Compile Include="Models\ListTopicModel.cs" />
@@ -235,6 +236,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\FakeMessage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
