@@ -18,7 +18,7 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDTopic">topic id</param>
         /// <returns>Array ListMessageModel</returns>
-        public ListMessageModel GetListMessage(int IDTopic)
+        public List<MessageModel> GetListMessage(int IDTopic)
         {
             return null;
         }
@@ -27,7 +27,7 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDUser">user id</param>
         /// <returns>Array</returns>
-        public ListMessageModel GetListMessageByUser(int IDUser)
+        public List<MessageModel> GetListMessageByUser(int IDUser)
         {
             return null;
         }

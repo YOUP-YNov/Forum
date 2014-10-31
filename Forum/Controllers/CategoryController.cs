@@ -18,7 +18,7 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDForum">forum id</param>
         /// <returns>Array ListCategoryModel</returns>
-        public ListCategoryModel GetListCategory(int IDForum)
+        public List<CategorieModel> GetListCategory(int IDForum)
         {
             return null;
         }

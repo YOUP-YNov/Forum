@@ -17,7 +17,7 @@ namespace Forum.Controllers
         /// Get an array of all forum informations
         /// </summary>
         /// <returns>Array</returns>
-        public ListForumModel GetListForum()
+        public List<ForumModel> GetListForum()
         {
             return null;
         }

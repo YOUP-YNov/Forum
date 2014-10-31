@@ -7,11 +7,12 @@ using System.Web;
 
 namespace Forum.Models
 {
-    public class ConvertModel
+    public static class ConvertModel
     {
-        public static ConvertModel (topicModel){
+        public static TopicModel ToModel (TopicB topic)
+        {
             Mapper.CreateMap<TopicB, TopicModel>();
-            TopicB topicB = Mapper.Map<TopicModel, TopicB>(topicModel);
+            return Mapper.Map<TopicB, TopicModel>(topic);
         }
     }
 }
