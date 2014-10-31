@@ -15,7 +15,7 @@ namespace Forum.Controllers
         {
             List<MessageD> liste = new List<MessageD>();
             MessageDAL mes = new MessageDAL();
-            liste = mes.GetListTopicMessage(5);
+            liste = mes.GetListMessage();
             return View(liste);
         }
 
@@ -38,7 +38,8 @@ namespace Forum.Controllers
             try
             {
                 // TODO: Add insert logic here
-
+                MessageDAL mes = new MessageDAL();
+                mes.CreateMessage(collection);
                 return RedirectToAction("Index");
             }
             catch
