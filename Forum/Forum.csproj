@@ -169,6 +169,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="Models\CategorieModel.cs" />
+    <Compile Include="Controllers\FakeMessageController.cs" />
     <Compile Include="Models\ListCategoryModel.cs" />
     <Compile Include="Models\ListMessageModel.cs" />
     <Compile Include="Models\ListTopicModel.cs" />
@@ -185,6 +186,9 @@
     <Compile Include="DAL\MessageDAL.cs" />
     <Compile Include="DAL\CategorieDAL.cs" />
     <Compile Include="DAL\TopicDAL.cs" />
+    <Compile Include="TestAutoMapper\Employee.cs" />
+    <Compile Include="TestAutoMapper\Personne.cs" />
+    <Compile Include="TestAutoMapper\TestAutoMapper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,6 +244,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\FakeMessage\Index.cshtml" />
     <Content Include="Views\FakeCategorie\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
