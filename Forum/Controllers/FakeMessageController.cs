@@ -15,7 +15,7 @@ namespace Forum.Controllers
         {
             List<MessageD> liste = new List<MessageD>();
             MessageDAL mes = new MessageDAL();
-            liste = mes.GetListTopicMessage(5);
+            liste = mes.GetListMessage();
             return View(liste);
         }
 

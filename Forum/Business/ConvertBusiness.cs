@@ -23,5 +23,17 @@ namespace Forum.Business
         }
 
        
+
+        public static CategorieB ToBusiness(CategorieD categoy)
+        {
+            Mapper.CreateMap<CategorieD, CategorieB>();
+            return Mapper.Map<CategorieD, CategorieB>(categoy);
+        }
+
+        public static MessageB ToBusiness(MessageD message)
+        {
+            Mapper.CreateMap<MessageD, MessageB>();
+            return Mapper.Map<MessageD, MessageB>(message);
+        }
     }
 }
