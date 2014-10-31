@@ -15,5 +15,13 @@ namespace Forum.Business
             Mapper.CreateMap<ForumD, ForumB>();
             return Mapper.Map<ForumD, ForumB>(forum);
         }
+
+        public static TopicB ToBusiness(TopicD topic)
+        {
+            Mapper.CreateMap<TopicD,TopicB>();
+            return Mapper.Map<TopicD, TopicB>(topic);
+        }
+
+       
     }
 }
