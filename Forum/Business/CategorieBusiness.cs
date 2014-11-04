@@ -9,21 +9,21 @@ namespace Forum.Business
 {
     public class CategorieBusiness
     {
-        public CategorieB GetListCategorie(int id)
+        public List<CategorieB> GetListCategorie(int id)
         {
 
             CategorieDAL categorie = new CategorieDAL();
             return ConvertBusiness.ToBusiness(categorie.GetListCategorie(id));
         }
-        public CategorieB EditCategorie(int id)
+        public /*CategorieB*/ void EditCategorie(int id)
         {
             CategorieDAL categorie = new CategorieDAL();
-            return ConvertBusiness.ToBusiness(categorie.GetListCategorie(id));
+            //return ConvertBusiness.ToBusiness(categorie.GetListCategorie(id));
         }
-        public CategorieB DeleteCategorie(int id)
+        public /*CategorieB*/ void DeleteCategorie(int id)
         {
             CategorieDAL categorie = new CategorieDAL();
-            return ConvertBusiness.ToBusiness(categorie.GetCategorie(id));
+            //return ConvertBusiness.ToBusiness(categorie.GetCategorie(id));
         }
     }
 }

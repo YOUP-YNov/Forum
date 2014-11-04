@@ -23,10 +23,12 @@ namespace Forum.Business
             return Mapper.Map<TopicD, TopicB>(topic);
         }
 
-        public static CategorieB ToBusiness(CategorieD categoy)
+        public static List<CategorieB> ToBusiness(List<CategorieD> category)
         {
-            Mapper.CreateMap<CategorieD, CategorieB>();
-            return Mapper.Map<CategorieD, CategorieB>(categorie);
+            List<CategorieB> list = new List<CategorieB>();
+            Mapper.CreateMap<List<CategorieD>, List<CategorieB>>();
+
+            return Mapper.Map<List<CategorieD>, List<CategorieB>>(category);
         }
 
         public static MessageB ToBusiness(MessageD message)
@@ -46,13 +48,6 @@ namespace Forum.Business
             }
             return listforumb;
         }
-
-        public static TopicB ToBusiness(TopicD topic)
-        {
-            Mapper.CreateMap<TopicD, TopicB>();
-            return Mapper.Map<TopicD, TopicB>(topic);
-        }
-
 
         //TO DAL
         public static ForumD ToDAL(ForumB forum)

@@ -176,10 +176,6 @@
     <Compile Include="DAL\ConvertDAL.cs" />
     <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Controllers\FakeMessageController.cs" />
-    <Compile Include="Models\ListCategoryModel.cs" />
-    <Compile Include="Models\ListMessageModel.cs" />
-    <Compile Include="Models\ListTopicModel.cs" />
-    <Compile Include="Models\ConvertModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\TopicModel.cs" />
     <Compile Include="Models\ForumModel.cs" />
