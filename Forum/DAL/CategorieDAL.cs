@@ -9,16 +9,14 @@ using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 
 namespace Forum.DAL
-{   
+{
     public class CategorieDAL
     {
         SqlConnection myConnection;
 
-        public static bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
+        public bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
         {
             try
-            {
-            using (SqlConnection conn = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework"))
             {
                 myConnection = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework");
                 SqlCommand cmd = new SqlCommand();
@@ -31,14 +29,8 @@ namespace Forum.DAL
                 myConnection.Open();
 
                 rowsAffected = cmd.ExecuteNonQuery();
-
-            }
-            catch(Exception e)
-            {
-                throw new Exception("Connection error");
-            }
                 return true;
-        }
+            }
             catch
             {
                 return false;
@@ -72,31 +64,31 @@ namespace Forum.DAL
         public bool EditCategorie(CategorieD cat)
         {
             try
-        {
-            using (SqlCommand command = new SqlCommand())
             {
-                command.Connection = myConnection;
-                command.CommandText = "UPDATE FOR_Sujet SET Nom = '" + cat.Nom + "' WHERE Topic_id = " + cat.Sujet_id;
-                command.ExecuteNonQuery();
-            }
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "UPDATE FOR_Sujet SET Nom = '" + cat.Nom + "' WHERE Topic_id = " + cat.Sujet_id;
+                    command.ExecuteNonQuery();
+                }
                 return true;
             }
             catch
             {
                 return false;
-        }
+            }
         }
 
         public bool DeleteCategorie(int id)
         {
             try
-        {
-            using (SqlCommand command = new SqlCommand())
             {
-                command.Connection = myConnection;
-                command.CommandText = "DELETE FROM FOR_Sujet WHERE Sujet_id = " + id;
-                command.ExecuteNonQuery();
-            }
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "DELETE FROM FOR_Sujet WHERE Sujet_id = " + id;
+                    command.ExecuteNonQuery();
+                }
                 return true;
             }
             catch
@@ -177,6 +169,4 @@ namespace Forum.DAL
             return Cat;
         }
     }
-
-   
 }
