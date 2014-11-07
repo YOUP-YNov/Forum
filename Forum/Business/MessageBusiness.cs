@@ -22,10 +22,10 @@ namespace Forum.Business
         }
 
         //permet de creer un message 
-        public void CreateMessage(MessageB mes)
+        public bool CreateMessage(MessageB mes)
         {
             MessageDAL message = new MessageDAL();
-            message.CreateMessage(ConvertBusiness.ToDAL(mes));
+            return message.CreateMessage(ConvertBusiness.ToDAL(mes));
         }
 
         //récupère une liste de topic
@@ -49,10 +49,10 @@ namespace Forum.Business
             return ConvertBusiness.ToBusiness(message.GetListMessage());
         }
 
-        public void DeleteMessage(int id)
+        public bool DeleteMessage(int id)
         {
             MessageDAL message = new MessageDAL();
-            message.DeleteMessage(id);
+            return message.DeleteMessage(id);
         }
     }
 }
