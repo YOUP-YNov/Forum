@@ -1203,20 +1203,24 @@ namespace Forum.myDataSetTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Forum_id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
-        
+
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(myDataSet.ps_FOR_GetForumDataTable dataTable, global::System.Nullable<long> Forum_id) {
+        public virtual int Fill(myDataSet.ps_FOR_GetForumDataTable dataTable, global::System.Nullable<long> Forum_id)
+        {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((Forum_id.HasValue == true)) {
+            if ((Forum_id.HasValue == true))
+            {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((long)(Forum_id.Value));
             }
-            else {
+            else
+            {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((this.ClearBeforeFill == true)) {
+            if ((this.ClearBeforeFill == true))
+            {
                 dataTable.Clear();
             }
             int returnValue = this.Adapter.Fill(dataTable);
@@ -1227,7 +1231,8 @@ namespace Forum.myDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual myDataSet.ps_FOR_GetForumDataTable GetData(global::System.Nullable<long> Forum_id) {
+        public virtual myDataSet.ps_FOR_GetForumDataTable GetData(global::System.Nullable<long> Forum_id)
+        {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Forum_id.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((long)(Forum_id.Value));

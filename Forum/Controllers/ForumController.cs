@@ -2,6 +2,8 @@
 using Forum.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -29,7 +31,7 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDForum">forum id</param>
         /// <returns>ForumModel ForumModel</returns>
-        public ForumModel GetForum(int IDForum)
+        public int GetForum(int IDForum)
         {
             ForumBusiness forum = new ForumBusiness();
             return ConvertModel.ToModel(forum.getForum(IDForum));

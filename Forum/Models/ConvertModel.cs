@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Forum.Controllers;
+using AutoMapper;
 using Forum.Business.Data;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,24 @@ namespace Forum.Models
 {
     public class ConvertModel
     {
+
+        public static TopicModel ToModel(TopicController topic)
+        {
+            Mapper.CreateMap<TopicController, TopicModel>();
+            return Mapper.Map<TopicController, TopicModel>(topic);
+        }
+
+        internal static List<TopicModel> ToModel(List<Business.Data.TopicB> list)
+        {
+            List<TopicModel> listtopicM = new List<TopicModel>();
+            Mapper.CreateMap<TopicB, TopicModel>();
+            foreach (var topicb in list)
+            {
+                listtopicM.Add(Mapper.Map<TopicB, TopicModel>(topicb));
+            }
+            return listtopicM;
+        }
+
         internal static List<ForumModel> ToModel(List<Business.Data.ForumB> list)
         {
             List<ForumModel> listforumM = new List<ForumModel>();
@@ -19,6 +39,12 @@ namespace Forum.Models
                 listforumM.Add(Mapper.Map<ForumB, ForumModel>(forumb));
             }
             return listforumM;
+        }
+
+        internal static CategorieModel ToModel(CategorieB categorieb)
+        {
+            Mapper.CreateMap<CategorieB, CategorieModel>();
+            return Mapper.Map<CategorieB, CategorieModel>(categorieb);
         }
 
         internal static ForumModel ToModel(ForumB forumB)

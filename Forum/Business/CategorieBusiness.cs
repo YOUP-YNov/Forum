@@ -31,7 +31,7 @@ namespace Forum.Business
         public bool CreateCategorie(CategorieB cat)
         {
             CategorieDAL categorie = new CategorieDAL();
-            return categorie.EditCategorie(ConvertBusiness.ToDAL(cat));
+            return categorie.CreateCategorie(ConvertBusiness.ToDAL(cat));
         }
 
         public bool EditCategorie(CategorieB cat)
