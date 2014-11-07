@@ -173,7 +173,6 @@
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
-    <Compile Include="DAL\ConvertDAL.cs" />
     <Compile Include="DAL\Data\Mappeur\CategorieMappeur.cs" />
     <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Controllers\FakeMessageController.cs" />

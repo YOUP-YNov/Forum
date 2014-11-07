@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Forum.DAL.Data.Mappeur
 {
-    public class CategorieMappeur
+    public static class CategorieMappeur
     {
         public static IEnumerable<CategorieD> ToCategorieD(this CategorieTable table )
         {
