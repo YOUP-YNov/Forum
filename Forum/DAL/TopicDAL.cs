@@ -23,34 +23,58 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
-        public void CreateTopic(TopicD Top)
+        public bool CreateTopic(TopicD Top)
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = myConnection;
-                command.CommandText = "INSERT INTO FOR_Topic (Topic_id, Sujet_id, Nom, DescriptifTopic, DateCreation, Resolu, Utilisateur_id) " 
-                    + "Values (" + Top.Topic_id + ", " + Top.Sujet_id + ", '" + Top.Nom + "', '" + Top.DescriptifTopic + "', '" + Top.DateCreation + "', " + Top.Resolu + ", " + Top.Utilisateur_id + ")";
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "INSERT INTO FOR_Topic (Topic_id, Sujet_id, Nom, DescriptifTopic, DateCreation, Resolu, Utilisateur_id) "
+                        + "Values (" + Top.Topic_id + ", " + Top.Sujet_id + ", '" + Top.Nom + "', '" + Top.DescriptifTopic + "', '" + Top.DateCreation + "', " + Top.Resolu + ", " + Top.Utilisateur_id + ")";
+                    command.ExecuteNonQuery();
+                }
+                return true;
             }
-        }
-        
-        public void EditTopic(TopicD Top)
-        {
-            using (SqlCommand command = new SqlCommand())
+            catch
             {
-                command.Connection = myConnection;
-                command.CommandText = "UPDATE FOR_Topic SET Nom = '" + Top.Nom + "', DescriptifTopic = '" + Top.DescriptifTopic + "', Resolu = " + Top.Resolu + " WHERE Topic_id = " + Top.Topic_id;
-                command.ExecuteNonQuery();
+                return false;
             }
         }
 
-        public void DeleteTopic(int id)
+        public bool EditTopic(TopicD Top)
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = myConnection;
-                command.CommandText = "DELETE FROM FOR_Topic WHERE Topic_id = " + id;
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "UPDATE FOR_Topic SET Nom = '" + Top.Nom + "', DescriptifTopic = '" + Top.DescriptifTopic + "', Resolu = " + Top.Resolu + " WHERE Topic_id = " + Top.Topic_id;
+                    command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteTopic(int id)
+        {
+            try
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "DELETE FROM FOR_Topic WHERE Topic_id = " + id;
+                    command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
@@ -79,6 +103,30 @@ namespace Forum.DAL
             return null;
         }
 
+        public List<TopicD> GetListTopic(int Idcat)
+        {
+            List<TopicD> ListT = new List<TopicD>();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Topic where Sujet_id =" + Idcat, myConnection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ListT.Add(new TopicD
+                        {
+                            Topic_id = Convert.ToInt32(reader["Topic_id"]),
+                            Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]),
+                            Sujet_id = Convert.ToInt32(reader["Sujet_id"]),
+                            Nom = reader["Nom"].ToString(),
+                            DescriptifTopic = reader["DescriptifTopic"].ToString(),
+                            DateCreation = Convert.ToDateTime(reader["DateCreation"]),
+                            Resolu = Convert.ToBoolean(reader["Resolu"])
+                        });
+                    }
+                }
+            }
+            return null;
+        }
         public TopicD GetTopic(int id)
         {
             TopicD top = new TopicD();
@@ -104,7 +152,7 @@ namespace Forum.DAL
         /*public TopicD GetTopicByEvent(int idEvent)//A completer, pas moyen de Récupérer un topic en passant par un evenement avec la bdd actuelle
         {
             TopicD top = new TopicD();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Topic WHERE ", myConnection)) 
+            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Topic WHERE Evenement_id", myConnection)) 
             {
                 using (SqlDataReader reader = command.ExecuteReader())
                 {

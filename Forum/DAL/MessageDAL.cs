@@ -23,34 +23,58 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
-        public void CreateMessage(MessageD mes)
+        public bool CreateMessage(MessageD mes)
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = myConnection;
-                command.CommandText = "INSERT INTO FOR_Message (Topic_id, Utilisateur_id, DatePoste, ContenuMessage) "
-                    + "Values (" + mes.Topic_id + ", '" + mes.Utilisateur_id + "', '" + mes.DatePoste.ToString() + "', '" + mes.ContenuMessage + "')";
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "INSERT INTO FOR_Message (Topic_id, Utilisateur_id, DatePoste, ContenuMessage) "
+                        + "Values (" + mes.Topic_id + ", '" + mes.Utilisateur_id + "', '" + mes.DatePoste.ToString() + "', '" + mes.ContenuMessage + "')";
+                    command.ExecuteNonQuery();
+                }
+                return true;
             }
-        }
-        
-        public void EditMessage(MessageD mes)
-        {
-            using (SqlCommand command = new SqlCommand())
+            catch
             {
-                command.Connection = myConnection;
-                command.CommandText = "UPDATE FOR_Message SET ContenuMessage = '" + mes.ContenuMessage + "' WHERE Message_id = " + mes.Message_id;
-                command.ExecuteNonQuery();
+                return false;
             }
         }
 
-        public void DeleteMessage(int id)
+        public bool EditMessage(MessageD mes)
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = myConnection;
-                command.CommandText = "DELETE FROM FOR_Message WHERE Message_id = " + id;
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "UPDATE FOR_Message SET ContenuMessage = '" + mes.ContenuMessage + "' WHERE Message_id = " + mes.Message_id;
+                    command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteMessage(int id)
+        {
+            try
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "DELETE FROM FOR_Message WHERE Message_id = " + id;
+                    command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
@@ -131,12 +155,12 @@ namespace Forum.DAL
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
-                    {                        
+                    {
                         Mes.Message_id = Convert.ToInt32(reader["Message_id"]);
                         Mes.Topic_id = Convert.ToInt32(reader["Topic_id"]);
                         Mes.DatePoste = Convert.ToDateTime(reader["DatePoste"]);
                         Mes.Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]);
-                        Mes.ContenuMessage = reader["ContenuMessage"].ToString();                        
+                        Mes.ContenuMessage = reader["ContenuMessage"].ToString();
                     }
                 }
             }

@@ -23,34 +23,58 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
-        public void CreateForum(ForumD forum)
+        public bool CreateForum(ForumD forum)
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = myConnection;
-                command.CommandText = "INSERT INTO FOR_Forum (Forum_id, Nom, Url) "
-                    + "Values (" + forum.Forum_id + ", '" + forum.Nom + "', '" + forum.Url + "')";
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "INSERT INTO FOR_Forum (Forum_id, Nom, Url) "
+                        + "Values (" + forum.Forum_id + ", '" + forum.Nom + "', '" + forum.Url + "')";
+                    command.ExecuteNonQuery();
+                }
+                return true;
             }
-        }
-        
-        public void EditForum(ForumD forum)
-        {
-            using (SqlCommand command = new SqlCommand())
+            catch
             {
-                command.Connection = myConnection;
-                command.CommandText = "UPDATE FOR_Forum SET Nom = '" + forum.Nom + "', Url = '" + forum.Url + "' WHERE Forum_id = " + forum.Forum_id;
-                command.ExecuteNonQuery();
+                return false;
             }
         }
 
-        public void DeleteForum(int id)
+        public bool EditForum(ForumD forum)
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = myConnection;
-                command.CommandText = "DELETE FROM FOR_Forum WHERE Forum_id = " + id;
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "UPDATE FOR_Forum SET Nom = '" + forum.Nom + "', Url = '" + forum.Url + "' WHERE Forum_id = " + forum.Forum_id;
+                    command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteForum(int id)
+        {
+            try
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "DELETE FROM FOR_Forum WHERE Forum_id = " + id;
+                    command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
