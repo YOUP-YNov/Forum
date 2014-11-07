@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Forum.Models
 {
-    public static class ConvertModel
+    public static class Convert
     {
         public static TopicModel ToModel (TopicB topic)
     {
