@@ -1,4 +1,5 @@
-﻿using Forum.Models;
+﻿using Forum.Business;
+using Forum.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -21,7 +22,9 @@ namespace Forum.Controllers
         /// <returns>Array</returns>
         public List<ForumModel> GetListForum()
         {
-            return null;
+            ForumBusiness forum = new ForumBusiness();
+            List<ForumModel> lt = ConvertModel.ToModel(forum.GetListForum());
+            return lt;
         }
 
         /// <summary>
