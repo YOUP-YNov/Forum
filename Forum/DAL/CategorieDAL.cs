@@ -54,7 +54,8 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
-        public void CreateCategorie(CategorieD cat)
+        */
+        public bool CreateCategorie(CategorieD cat)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -63,8 +64,8 @@ namespace Forum.DAL
                     + "Values (" + cat.Sujet_id + ", " + cat.Forum_id + ", '" + cat.Nom + "')";
                 command.ExecuteNonQuery();
             }
+            return true;
         }
-        */
         public bool EditCategorie(CategorieD cat)
         {
             try

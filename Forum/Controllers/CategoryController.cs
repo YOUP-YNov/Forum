@@ -1,4 +1,6 @@
-﻿using Forum.Models;
+﻿using Forum.Business;
+using Forum.Business.Data;
+using Forum.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +24,26 @@ namespace Forum.Controllers
         {
             return null;
         }
+
+        public CategorieModel GetCategory(int IDCategory)
+        {
+            CategorieBusiness catbusi = new CategorieBusiness();
+            catbusi.getCategorie(IDCategory);
+            return IDCategory;
+        }
         /// <summary>
         /// Create a forum with his name and the forum id
         /// </summary>
         /// <param name="IDForum">forum id</param>
         /// <param name="Name">forum name</param>
-        public void CreateCategory(int IDForum, string Name)
+        public bool CreateCategory(int IDForum, string Name)
         {
+            CategorieB cat = new CategorieB();
+            cat.Forum_id = IDForum;
+            cat.Nom = Name;
+            CategorieBusiness catmodel = new CategorieBusiness();
+            catmodel.CreateCategorie(cat);
+            return true;
         }
         /// <summary>
         /// Edit a category by id
