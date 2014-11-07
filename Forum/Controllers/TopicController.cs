@@ -15,9 +15,11 @@ namespace Forum.Controllers
     {
         /// <summary>
         /// Get an array of all topic informations
+        TopicModel TopicC = new TopicModel(); 
         /// </summary>
         /// <param name="IDCategory">category id</param>
         /// <returns>Array ListTopicModel</returns>
+
         public List<TopicModel> GetListTopic(int IDCategory)
         {
             return null;
@@ -29,7 +31,8 @@ namespace Forum.Controllers
         /// <returns>Array TopicModel</returns>
         public TopicModel GetTopic(int IDTopic)
         {
-            return null;
+          TopicModel TopicC = new TopicModel();
+          return TopicController.EditTopic(ConvertModel.ToMODEL(IDTopic));  
         }
         /// <summary>
         /// Get a topic information by event id
