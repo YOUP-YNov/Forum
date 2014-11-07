@@ -17,21 +17,23 @@ namespace Forum.Models
             Mapper.CreateMap<TopicController, TopicModel>();
             return Mapper.Map<TopicController, TopicModel>(topic);
         }
-        internal static List<TopicModel> ToModel(List<TopicController> listtopicc)
+
+        internal static List<TopicModel> ToModel(List<Business.Data.TopicB> list)
         {
-            List<TopicModel> listtopicm = new List<TopicModel>();
-            Mapper.CreateMap<TopicController, TopicModel>();
+            List<TopicModel> listtopicM = new List<TopicModel>();
+            Mapper.CreateMap<TopicB, TopicModel>();
+            foreach (var topicb in list)
+            {
+                listtopicM.Add(Mapper.Map<TopicB, TopicModel>(topicb));
+            }
+            return listtopicM;
+        }
+
         internal static List<ForumModel> ToModel(List<Business.Data.ForumB> list)
         {
             List<ForumModel> listforumM = new List<ForumModel>();
             Mapper.CreateMap<ForumB, ForumModel>();
 
-            foreach (var topicm in listtopicc)
-            {
-                listtopicm.Add(Mapper.Map<TopicController, TopicModel>(topicm));
-            }
-            return listtopicm;
-        }
             foreach (var forumb in list)
             {
                 listforumM.Add(Mapper.Map<ForumB, ForumModel>(forumb));
