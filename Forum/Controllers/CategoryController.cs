@@ -20,16 +20,16 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDForum">forum id</param>
         /// <returns>Array ListCategoryModel</returns>
-        public List<CategorieModel> GetListCategory(int IDForum)
+        public List<CategorieModel> GetListCategory()
         {
-            return null;
+            CategorieBusiness categorie = new CategorieBusiness();
+            return ConvertModel.ToModel(categorie.GetListCategorie());
         }
 
         public CategorieModel GetCategory(int IDCategory)
         {
             CategorieBusiness catbusi = new CategorieBusiness();
-            CategorieModel mod = ConvertModel.ToModel(catbusi.getCategorie(IDCategory));
-            return mod;
+            return ConvertModel.ToModel(catbusi.getCategorie(IDCategory));;
         }
         /// <summary>
         /// Create a forum with his name and the forum id
@@ -37,7 +37,7 @@ namespace Forum.Controllers
         /// <param name="IDForum">forum id</param>
         /// <param name="Name">forum name</param>
         public bool CreateCategory(int IDForum, string Name)
-        {
+        { 
             CategorieB cat = new CategorieB();
             cat.Forum_id = IDForum;
             cat.Nom = Name;
@@ -49,15 +49,17 @@ namespace Forum.Controllers
         /// Edit a category by id
         /// </summary>
         /// <param name="IDCategory">category id</param>
-        public void EditCategory(int IDCategory)
+        public bool EditCategory(int IDCategory)
         {
+
         }
         /// <summary>
         /// Delete a category by id
         /// </summary>
         /// <param name="IDCategory">category id</param>
-        public void DeleteCategory(int IDCategory)
+        public bool DeleteCategory(int IDCategory)
         {
+
         }
     }
 }
