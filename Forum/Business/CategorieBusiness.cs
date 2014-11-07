@@ -40,14 +40,5 @@ namespace Forum.Business
             return ConvertBusiness.ToBusiness(categorie.GetCategorie(id));
         }
     }
-
-
-
-        
-
-
-
-
-
 }
 
