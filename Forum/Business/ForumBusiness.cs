@@ -34,7 +34,7 @@ namespace Forum.Business
         public bool CreateForum(ForumB forB)
         {
             ForumDAL forumD = new ForumDAL();
-            return forumD.EditForum(ConvertBusiness.ToDAL(forB));
+            return forumD.CreateForum(ConvertBusiness.ToDAL(forB));
         }
 
         public bool DeleteForum(int id)

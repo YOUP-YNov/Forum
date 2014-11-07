@@ -25,10 +25,14 @@ namespace Forum.Business
 
         public static List<CategorieB> ToBusiness(List<CategorieD> category)
         {
-            List<CategorieB> list = new List<CategorieB>();
-            Mapper.CreateMap<List<CategorieD>, List<CategorieB>>();
+            List<CategorieB> listCatb = new List<CategorieB>();
+            Mapper.CreateMap<CategorieD, CategorieB>();
 
-            return Mapper.Map<List<CategorieD>, List<CategorieB>>(category);
+            foreach (var cat in category)
+            {
+                listCatb.Add(Mapper.Map<CategorieD, CategorieB>(cat));
+            }
+            return listCatb;
         }
 
         public static MessageB ToBusiness(MessageD message)
@@ -43,7 +47,8 @@ namespace Forum.Business
             List<ForumB> listforumb = new List<ForumB>();
             Mapper.CreateMap<ForumD, ForumB>();
 
-            foreach ( var forumb in listforumd) {
+            foreach (var forumb in listforumd)
+            {
                 listforumb.Add(Mapper.Map<ForumD, ForumB>(forumb));
             }
             return listforumb;
@@ -94,9 +99,15 @@ namespace Forum.Business
 
         internal static List<MessageB> ToBusiness(List<MessageD> list)
         {
-           
-           Mapper.CreateMap<List<MessageD>, List<MessageB>>();
-            return Mapper.Map<List<MessageD>, List<MessageB>>(list);
+
+            List<MessageB> listMesb = new List<MessageB>();
+            Mapper.CreateMap<MessageD, MessageB>();
+
+            foreach (var mes in list)
+            {
+                listMesb.Add(Mapper.Map<MessageD, MessageB>(mes));
+            }
+            return listMesb;
         }
     }
 }

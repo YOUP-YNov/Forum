@@ -1,6 +1,9 @@
-﻿using Forum.Models;
+﻿using Forum.Business;
+using Forum.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,7 +22,8 @@ namespace Forum.Controllers
         /// <returns>Array</returns>
         public List<ForumModel> GetListForum()
         {
-            return null;
+            ForumBusiness forum = new ForumBusiness();
+            return ConvertModel.ToModel(forum.GetListForum());
         }
 
         /// <summary>
@@ -27,9 +31,10 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDForum">forum id</param>
         /// <returns>ForumModel ForumModel</returns>
-        public ForumModel GetForum(int IDForum)
+        public int GetForum(int IDForum)
         {
-            return null;
+            ForumBusiness forum = new ForumBusiness();
+            return ConvertModel.ToModel(forum.getForum(IDForum));
         }
         /// <summary>
         /// Create a forum with his name
@@ -37,6 +42,11 @@ namespace Forum.Controllers
         /// <param name="Name">Name of the forum</param>
         public void CreateForum(string Name)
         {
+            ForumModel NewForum = new ForumModel();
+            NewForum.Nom = Name;
+            NewForum.Url = string.Empty;
+            ForumBusiness forum = new ForumBusiness();
+            forum.CreateForum(ConvertModel.ToBusiness(NewForum));
         }
         /// <summary>
         /// Edit a forum by id

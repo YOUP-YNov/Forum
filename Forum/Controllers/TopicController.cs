@@ -1,4 +1,5 @@
-﻿using Forum.Models;
+﻿using Forum.Business;
+using Forum.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,18 +19,21 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDCategory">category id</param>
         /// <returns>Array ListTopicModel</returns>
-        public List<TopicModel> GetListTopic(int IDCategory)
+
+        public List<TopicModel> GetListTopic()
         {
-            return null;
+            TopicBusiness topic = new TopicBusiness();
+            List<TopicModel> ob = ConvertModel.ToModel(topic.GetListTopic());
+            return ob;
         }
         /// <summary>
         /// Get a topic information by id
         /// </summary>
         /// <param name="IDTopic">topic id</param>
         /// <returns>Array TopicModel</returns>
-        public TopicModel GetTopic(int IDTopic)
+        public TopicModel GetTopic()
         {
-            return null;
+
         }
         /// <summary>
         /// Get a topic information by event id

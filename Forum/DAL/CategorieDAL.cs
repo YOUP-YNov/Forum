@@ -15,6 +15,7 @@ namespace Forum.DAL
     {
         SqlConnection myConnection;
 
+        string connexionstring = "data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework";
         ps_FOR_GetCategorieTableAdapter CategorieDal;
 
         public bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
@@ -41,7 +42,6 @@ namespace Forum.DAL
             }
         }
 
-        /*
         public CategorieDAL()
         {
             myConnection = new SqlConnection(connexionstring);
@@ -54,7 +54,8 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
-        public void CreateCategorie(CategorieD cat)
+
+        public bool CreateCategorie(CategorieD cat)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -63,8 +64,8 @@ namespace Forum.DAL
                     + "Values (" + cat.Sujet_id + ", " + cat.Forum_id + ", '" + cat.Nom + "')";
                 command.ExecuteNonQuery();
             }
+            return true;
         }
-        */
         public bool EditCategorie(CategorieD cat)
         {
             try
