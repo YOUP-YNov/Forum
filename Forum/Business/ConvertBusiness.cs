@@ -35,5 +35,10 @@ namespace Forum.Business
             Mapper.CreateMap<MessageD, MessageB>();
             return Mapper.Map<MessageD, MessageB>(message);
         }
+
+        internal static MessageD ToDAL(MessageB messageb)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
