@@ -21,8 +21,7 @@ namespace Forum.Controllers
         public List<ForumModel> GetListForum()
         {
             ForumBusiness forum = new ForumBusiness();
-            List<ForumModel> lt = ConvertModel.ToModel(forum.GetListForum());
-            return lt;
+            return ConvertModel.ToModel(forum.GetListForum());
         }
 
         /// <summary>
@@ -32,7 +31,8 @@ namespace Forum.Controllers
         /// <returns>ForumModel ForumModel</returns>
         public ForumModel GetForum(int IDForum)
         {
-            return null;
+            ForumBusiness forum = new ForumBusiness();
+            return ConvertModel.ToModel(forum.getForum(IDForum));
         }
         /// <summary>
         /// Create a forum with his name
@@ -40,6 +40,11 @@ namespace Forum.Controllers
         /// <param name="Name">Name of the forum</param>
         public void CreateForum(string Name)
         {
+            ForumModel NewForum = new ForumModel();
+            NewForum.Nom = Name;
+            NewForum.Url = string.Empty;
+            ForumBusiness forum = new ForumBusiness();
+            forum.CreateForum(ConvertModel.ToBusiness(NewForum));
         }
         /// <summary>
         /// Edit a forum by id

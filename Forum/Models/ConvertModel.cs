@@ -20,5 +20,17 @@ namespace Forum.Models
             }
             return listforumM;
         }
+
+        internal static ForumModel ToModel(ForumB forumB)
+        {
+            Mapper.CreateMap<ForumB, ForumModel>();
+            return Mapper.Map<ForumB, ForumModel>(forumB);
+        }
+
+        internal static ForumB ToBusiness(ForumModel NewForum)
+        {
+            Mapper.CreateMap<ForumModel, ForumB>();
+            return Mapper.Map<ForumModel, ForumB>(NewForum);
+        }
     }
 }
