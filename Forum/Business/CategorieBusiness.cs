@@ -9,23 +9,42 @@ namespace Forum.Business
 {
     public class CategorieBusiness
     {
-        public List<CategorieB> GetListCategorie(int id)
-        {
 
-            CategorieDAL categorie = new CategorieDAL();
-            return ConvertBusiness.ToBusiness(categorie.GetListCategorie(id));
-        }
-        public /*CategorieB*/ void EditCategorie(int id)
-        {
-            CategorieDAL categoriedal = new CategorieDAL();
-            CategorieB categorieb = ConvertBusiness.ToBusiness(categoriedal.GetCategorie(id));
-            categorieb.Nom = Titre;
-            //return ConvertBusiness.ToBusiness(categorie.GetListCategorie(id));
-        }
-        public /*CategorieB*/ void DeleteCategorie(int id)
+        public CategorieB getCategorie(int id)
         {
             CategorieDAL categorie = new CategorieDAL();
-            //return ConvertBusiness.ToBusiness(categorie.GetCategorie(id));
+            return ConvertBusiness.ToBusiness(categorie.GetCategorie(id));
+        }
+
+        public List<CategorieB> GetListCategorie()
+        {
+            CategorieDAL categorie = new CategorieDAL();
+            return ConvertBusiness.ToBusiness(categorie.GetListCategorie());
+        }
+
+        public List<CategorieB> GetListCategorie(int forum_id)
+        {
+            CategorieDAL categorie = new CategorieDAL();
+            return ConvertBusiness.ToBusiness(categorie.GetListCategorie(forum_id));
+        }
+
+        public bool CreateCategorie(CategorieB cat)
+        {
+            CategorieDAL categorie = new CategorieDAL();
+            return categorie.EditCategorie(ConvertBusiness.ToDAL(cat));
+        }
+
+        public bool EditCategorie(CategorieB cat)
+        {
+            CategorieDAL categorie = new CategorieDAL();
+            return categorie.EditCategorie(ConvertBusiness.ToDAL(cat));
+        }
+
+        public bool DeleteCategorie(int id)
+        {
+            CategorieDAL categorie = new CategorieDAL();
+            return categorie.DeleteCategorie(id);
         }
     }
 }
+

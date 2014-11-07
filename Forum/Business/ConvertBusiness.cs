@@ -74,6 +74,12 @@ namespace Forum.Business
             return Mapper.Map<MessageB, MessageD>(message);
         }
 
+        internal static CategorieB ToBusiness(CategorieD categorieD)
+        {
+            Mapper.CreateMap<CategorieD, CategorieB>();
+            return Mapper.Map<CategorieD, CategorieB>(categorieD);            
+        }
+
         internal static List<TopicB> ToBusiness(List<TopicD> listtopicd)
         {
             List<TopicB> listtopicb = new List<TopicB>();

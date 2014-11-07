@@ -28,7 +28,6 @@ namespace Forum.Business
         public List<ForumB> GetListForum()
         {
             ForumDAL forum = new ForumDAL();
-
             return ConvertBusiness.ToBusiness(forum.GetListForum());
         }
 
@@ -38,17 +37,10 @@ namespace Forum.Business
             return forumD.EditForum(ConvertBusiness.ToDAL(forB));
         }
 
-       
         public bool DeleteForum(int id)
         {
             ForumDAL forumD = new ForumDAL();
             return forumD.DeleteForum(id);
         }
-        public ForumB GetForum(int id)
-        {
-            ForumDAL forum = new ForumDAL();            
-            return ConvertBusiness.ToBusiness(forum.GetForum(id));
-        }
-
     }
 }

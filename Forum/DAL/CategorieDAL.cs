@@ -21,7 +21,7 @@ namespace Forum.DAL
         {
             //CategorieDal.ps_FOR_GetCategorie();
             try
-            {                
+            {
                 myConnection = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework");
                 SqlCommand cmd = new SqlCommand();
                 Int32 rowsAffected;
@@ -38,7 +38,7 @@ namespace Forum.DAL
             catch(Exception e)
             {
                 return false;
-            }                
+            }
         }
 
         /*
@@ -154,7 +154,23 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
-    }
 
-   
+        internal CategorieD GetCategorie(int id)
+        {
+            CategorieD Cat = new CategorieD();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Sujet WHERE Forum_id = " + id, myConnection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cat.Forum_id = Convert.ToInt32(reader["Forum_id"]);
+                        Cat.Nom = reader["Nom"].ToString();
+                        Cat.Sujet_id = Convert.ToInt32(reader["Sujet_id"]);
+                    }
+                }
+            }
+            return Cat;
+        }
+    }
 }
