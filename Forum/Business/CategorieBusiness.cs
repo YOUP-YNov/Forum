@@ -46,14 +46,5 @@ namespace Forum.Business
             return categorie.DeleteCategorie(id);
         }
     }
-
-
-
-        
-
-
-
-
-
 }
 

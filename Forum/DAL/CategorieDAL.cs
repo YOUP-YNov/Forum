@@ -9,7 +9,7 @@ using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 
 namespace Forum.DAL
-{
+{   
     public class CategorieDAL
     {
         SqlConnection myConnection;
@@ -30,7 +30,7 @@ namespace Forum.DAL
 
                 rowsAffected = cmd.ExecuteNonQuery();
                 return true;
-            }
+        }
             catch
             {
                 return false;
@@ -64,31 +64,31 @@ namespace Forum.DAL
         public bool EditCategorie(CategorieD cat)
         {
             try
+        {
+            using (SqlCommand command = new SqlCommand())
             {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = myConnection;
-                    command.CommandText = "UPDATE FOR_Sujet SET Nom = '" + cat.Nom + "' WHERE Topic_id = " + cat.Sujet_id;
-                    command.ExecuteNonQuery();
-                }
+                command.Connection = myConnection;
+                command.CommandText = "UPDATE FOR_Sujet SET Nom = '" + cat.Nom + "' WHERE Topic_id = " + cat.Sujet_id;
+                command.ExecuteNonQuery();
+            }
                 return true;
             }
             catch
             {
                 return false;
-            }
+        }
         }
 
         public bool DeleteCategorie(int id)
         {
             try
+        {
+            using (SqlCommand command = new SqlCommand())
             {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = myConnection;
-                    command.CommandText = "DELETE FROM FOR_Sujet WHERE Sujet_id = " + id;
-                    command.ExecuteNonQuery();
-                }
+                command.Connection = myConnection;
+                command.CommandText = "DELETE FROM FOR_Sujet WHERE Sujet_id = " + id;
+                command.ExecuteNonQuery();
+            }
                 return true;
             }
             catch
