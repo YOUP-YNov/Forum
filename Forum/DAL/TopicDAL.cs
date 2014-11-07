@@ -23,34 +23,58 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
-        public void CreateTopic(TopicD Top)
+        public bool CreateTopic(TopicD Top)
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = myConnection;
-                command.CommandText = "INSERT INTO FOR_Topic (Topic_id, Sujet_id, Nom, DescriptifTopic, DateCreation, Resolu, Utilisateur_id) " 
-                    + "Values (" + Top.Topic_id + ", " + Top.Sujet_id + ", '" + Top.Nom + "', '" + Top.DescriptifTopic + "', '" + Top.DateCreation + "', " + Top.Resolu + ", " + Top.Utilisateur_id + ")";
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "INSERT INTO FOR_Topic (Topic_id, Sujet_id, Nom, DescriptifTopic, DateCreation, Resolu, Utilisateur_id) "
+                        + "Values (" + Top.Topic_id + ", " + Top.Sujet_id + ", '" + Top.Nom + "', '" + Top.DescriptifTopic + "', '" + Top.DateCreation + "', " + Top.Resolu + ", " + Top.Utilisateur_id + ")";
+                    command.ExecuteNonQuery();
+                }
+                return true;
             }
-        }
-        
-        public void EditTopic(TopicD Top)
-        {
-            using (SqlCommand command = new SqlCommand())
+            catch
             {
-                command.Connection = myConnection;
-                command.CommandText = "UPDATE FOR_Topic SET Nom = '" + Top.Nom + "', DescriptifTopic = '" + Top.DescriptifTopic + "', Resolu = " + Top.Resolu + " WHERE Topic_id = " + Top.Topic_id;
-                command.ExecuteNonQuery();
+                return false;
             }
         }
 
-        public void DeleteTopic(int id)
+        public bool EditTopic(TopicD Top)
         {
-            using (SqlCommand command = new SqlCommand())
+            try
             {
-                command.Connection = myConnection;
-                command.CommandText = "DELETE FROM FOR_Topic WHERE Topic_id = " + id;
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "UPDATE FOR_Topic SET Nom = '" + Top.Nom + "', DescriptifTopic = '" + Top.DescriptifTopic + "', Resolu = " + Top.Resolu + " WHERE Topic_id = " + Top.Topic_id;
+                    command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteTopic(int id)
+        {
+            try
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = myConnection;
+                    command.CommandText = "DELETE FROM FOR_Topic WHERE Topic_id = " + id;
+                    command.ExecuteNonQuery();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
