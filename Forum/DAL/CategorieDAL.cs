@@ -9,7 +9,7 @@ using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 
 namespace Forum.DAL
-{   
+{
     //public class CategorieDAL
     public partial class CategorieDAL
     {
@@ -143,7 +143,25 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
+
+        internal CategorieD GetCategorie(int id)
+        {
+            CategorieD Cat = new CategorieD();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Sujet WHERE Forum_id = " + id, myConnection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Cat.Forum_id = Convert.ToInt32(reader["Forum_id"]);
+                        Cat.Nom = reader["Nom"].ToString();
+                        Cat.Sujet_id = Convert.ToInt32(reader["Sujet_id"]);
+                    }
+                }
+            }
+            return Cat;
+        }
     }
 
-   
+
 }

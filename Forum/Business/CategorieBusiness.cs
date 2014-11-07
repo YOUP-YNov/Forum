@@ -9,21 +9,45 @@ namespace Forum.Business
 {
     public class CategorieBusiness
     {
-        public List<CategorieB> GetListCategorie(int id)
-        {
 
-            CategorieDAL categorie = new CategorieDAL();
-            return ConvertBusiness.ToBusiness(categorie.GetListCategorie(id));
-        }
-        public /*CategorieB*/ void EditCategorie(int id)
+        public CategorieB getCategorie(int id)
         {
             CategorieDAL categorie = new CategorieDAL();
-            //return ConvertBusiness.ToBusiness(categorie.GetListCategorie(id));
+            return ConvertBusiness.ToBusiness(categorie.GetCategorie(id));
         }
-        public /*CategorieB*/ void DeleteCategorie(int id)
+
+        public List<CategorieB> GetListCategorie()
         {
             CategorieDAL categorie = new CategorieDAL();
-            //return ConvertBusiness.ToBusiness(categorie.GetCategorie(id));
+            return ConvertBusiness.ToBusiness(categorie.GetListCategorie());
+        }
+
+        public bool CreateCategorie(CategorieB cat)
+        {
+            CategorieDAL categorie = new CategorieDAL();
+            return categorie.CreateCategorie(ConvertBusiness.ToDAL(cat));
+        }
+
+        public bool EditCategorie(CategorieB cat)
+        {
+            CategorieDAL categorie = new CategorieDAL();
+            return categorie.EditCategorie(ConvertBusiness.ToDAL(cat));
+        }
+
+        public bool DeleteCategorie(int id)
+        {
+            CategorieDAL categorie = new CategorieDAL();
+            return ConvertBusiness.ToBusiness(categorie.GetCategorie(id));
         }
     }
+
+
+
+        
+
+
+
+
+
 }
+
