@@ -13,22 +13,20 @@ namespace Forum.Business
         public TopicB getTopic(int id)
         {
 
-            TopicDAL topicdal = new TopicDAL();
-            return ConvertBusiness.ToBusiness(topicdal.GetTopic(id));
+            TopicDAL topicD = new TopicDAL();
+            return ConvertBusiness.ToBusiness(topicD.GetTopic(id));
         }
         public bool EditTopic(TopicB topic)
         {
-            TopicDAL topicdal = new TopicDAL();
-            TopicB topic = ConvertBusiness.ToBusiness(topicdal.GetTopic(topic));
-            topic.Nom = Titre;
-            //topicdal.EditTopic(ConvertBusiness.ToDAL(topicB));            
+            TopicDAL TopicD = new TopicDAL();
+            return TopicD.EditTopic(ConvertBusiness.ToDAL(topic));          
         }
         public List<TopicB> GetListTopic()
         {
 
-            TopicDAL topicdal = new TopicDAL();
+            TopicDAL topicD = new TopicDAL();
             // TODO
-            return ConvertBusiness.ToBusiness(topicdal.GetListTopic());
+            return ConvertBusiness.ToBusiness(topicD.GetListTopic());
         }
        /* public TopicModel GetTopicByEvent()
         {
@@ -36,15 +34,15 @@ namespace Forum.Business
             return ConvertBusiness.ToBusiness(topicdal.GetTopicByEvent());
 
         }*/
-        public bool CreateTopic(int IDcategory, string Name, string Contenu)
+        public bool CreateTopic(TopicB topB)
         {
-            TopicDAL topicdal = new TopicDAL();
-            return ConvertBusiness.ToBusiness(topicdal.ToDAL(forB));
+            TopicDAL topicD = new TopicDAL();
+            return topicD.EditTopic(ConvertBusiness.ToDAL(topB));
         }
         public bool DeleteTopic(int id)
         {
-            TopicDAL topicB = new TopicDAL();
-            return topicB.DeleteTopic(id);
+            TopicDAL topicD = new TopicDAL();
+            return topicD.DeleteTopic(id);
         }
 
 
