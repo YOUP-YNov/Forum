@@ -19,19 +19,36 @@ namespace Forum.Business
             return ConvertBusiness.ToBusiness(forum.GetForum(id));
         }
 
-        public void EditForum(int id, string title)
+        public bool EditForum(ForumB forum)
         {
-            ForumDAL forumdal = new ForumDAL();
-            ForumB forumb = ConvertBusiness.ToBusiness(forumdal.GetForum(id));
-            forumb.Nom = title;
-            forumdal.EditForum(ConvertBusiness.ToDAL(forumb));
+            ForumDAL forumD = new ForumDAL();
+            return forumD.EditForum(ConvertBusiness.ToDAL(forum));
         }
 
         public List<ForumB> GetListForum()
         {
             ForumDAL forum = new ForumDAL();
-            // TODO
-            return null;
+
+            return ConvertBusiness.ToBusiness(forum.GetListForum());
         }
+
+        public bool CreateForum(ForumB forB)
+        {
+            ForumDAL forumD = new ForumDAL();
+            return forumD.EditForum(ConvertBusiness.ToDAL(forB));
+        }
+
+       
+        public bool DeleteForum(int id)
+        {
+            ForumDAL forumD = new ForumDAL();
+            return forumD.DeleteForum(id);
+        }
+        public ForumB GetForum(int id)
+        {
+            ForumDAL forum = new ForumDAL();            
+            return ConvertBusiness.ToBusiness(forum.GetForum(id));
+        }
+
     }
 }

@@ -12,7 +12,6 @@ namespace Forum.Business
     {
         public MessageB getMessage(int id)
         {
-
             MessageDAL message = new MessageDAL();
             return ConvertBusiness.ToBusiness(message.GetMessage(id));
         }
