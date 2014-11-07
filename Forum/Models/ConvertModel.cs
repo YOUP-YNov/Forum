@@ -12,10 +12,10 @@ namespace Forum.Models
     public class ConvertModel
     {
 
-        public static TopicModel ToModel(TopicController topic)
+        public static TopicModel ToModel(TopicB topic)
         {
-            Mapper.CreateMap<TopicController, TopicModel>();
-            return Mapper.Map<TopicController, TopicModel>(topic);
+            Mapper.CreateMap<TopicB, TopicModel>();
+            return Mapper.Map<TopicB, TopicModel>(topic);
         }
 
         internal static List<TopicModel> ToModel(List<Business.Data.TopicB> list)

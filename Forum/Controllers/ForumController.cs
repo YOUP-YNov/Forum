@@ -16,6 +16,8 @@ namespace Forum.Controllers
     /// </summary>
     public class ForumController : ApiController
     {
+        [HttpGet]
+        [Route("api/Forums")]
         /// <summary>
         /// Get an array of all forum informations
         /// </summary>
@@ -26,41 +28,55 @@ namespace Forum.Controllers
             return ConvertModel.ToModel(forum.GetListForum());
         }
 
+        [HttpGet]
+        [Route("api/Forum/{IDForum}")]
         /// <summary>
         /// Get a forum information by id
         /// </summary>
         /// <param name="IDForum">forum id</param>
         /// <returns>ForumModel ForumModel</returns>
-        public int GetForum(int IDForum)
+        public ForumModel GetForum(int IDForum)
         {
             ForumBusiness forum = new ForumBusiness();
-            return ConvertModel.ToModel(forum.getForum(IDForum));
+            return ConvertModel.ToModel(forum.GetForum(IDForum));
         }
+
+        [HttpPost]
+        [Route("api/Forum")]
         /// <summary>
         /// Create a forum with his name
         /// </summary>
         /// <param name="Name">Name of the forum</param>
-        public void CreateForum(string Name)
+        public bool CreateForum(ForumModel forum)
         {
-            ForumModel NewForum = new ForumModel();
+            /*ForumModel NewForum = new ForumModel();
             NewForum.Nom = Name;
             NewForum.Url = string.Empty;
             ForumBusiness forum = new ForumBusiness();
-            forum.CreateForum(ConvertModel.ToBusiness(NewForum));
+            forum.CreateForum(ConvertModel.ToBusiness(NewForum));*/
+            return true;
         }
+
+        [HttpPost]
+        [Route("api/Forum/{id}")]
         /// <summary>
         /// Edit a forum by id
         /// </summary>
         /// <param name="IDForum">forum id</param>
-        public void EditForum(int IDForum, string title)
+        public bool EditForum(ForumModel forum)
         {
+            return true;
         }
+
+        [HttpDelete]
+        [Route("api/Forum/{IDForum}")]
         /// <summary>
         /// Delete a forum by id
         /// </summary>
         /// <param name="IDForum">forum id</param>
-        public void DeleteForum(int IDForum)
+        public bool DeleteForum(int IDForum)
         {
+            return true;
         }
     }
 }

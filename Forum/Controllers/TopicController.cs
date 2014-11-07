@@ -33,7 +33,7 @@ namespace Forum.Controllers
         /// <returns>Array TopicModel</returns>
         public TopicModel GetTopic()
         {
-
+            return null;
         }
         /// <summary>
         /// Get a topic information by event id
