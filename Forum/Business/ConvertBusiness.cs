@@ -85,5 +85,12 @@ namespace Forum.Business
             }
             return listtopicb;
         }
+
+        internal static List<MessageB> ToBusiness(List<MessageD> list)
+        {
+           
+           Mapper.CreateMap<List<MessageD>, List<MessageB>>();
+            return Mapper.Map<List<MessageD>, List<MessageB>>(list);
+        }
     }
 }
