@@ -28,8 +28,8 @@ namespace Forum.DAL
             using (SqlCommand command = new SqlCommand())
             {
                 command.Connection = myConnection;
-                command.CommandText = "INSERT INTO FOR_Message (Message_id, Topic_id, Utilisateur_id, DatePoste, ContenuMessage) "
-                    + "Values (" + mes.Topic_id + ", " + mes.Topic_id + ", '" + mes.Utilisateur_id + "', '" + mes.DatePoste + "', '" + mes.ContenuMessage + ")";
+                command.CommandText = "INSERT INTO FOR_Message (Topic_id, Utilisateur_id, DatePoste, ContenuMessage) "
+                    + "Values (" + mes.Topic_id + ", '" + mes.Utilisateur_id + "', '" + mes.DatePoste.ToString() + "', '" + mes.ContenuMessage + "')";
                 command.ExecuteNonQuery();
             }
         }

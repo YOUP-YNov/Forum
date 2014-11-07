@@ -17,7 +17,7 @@ namespace Forum.Controllers
         /// Get an array of all forum informations
         /// </summary>
         /// <returns>Array</returns>
-        public ListForumModel GetListForum()
+        public List<ForumModel> GetListForum()
         {
             return null;
         }
@@ -42,7 +42,7 @@ namespace Forum.Controllers
         /// Edit a forum by id
         /// </summary>
         /// <param name="IDForum">forum id</param>
-        public void EditForum(int IDForum)
+        public void EditForum(int IDForum, string title)
         {
         }
         /// <summary>
