@@ -10,30 +10,41 @@ namespace Forum.Business
 {
     public class TopicBusiness
     {
-        public TopicB getTopic(int id) {
-
-            TopicDAL topic = new TopicDAL();
-            return ConvertBusiness.ToBusiness(topic.GetTopic(id)); 
-        }
-
-
-        public void EditTopic(int id, string Titre)
+        public TopicB getTopic(int id)
         {
-            TopicDAL topicdal = new TopicDAL();
-            TopicB topicb = ConvertBusiness.ToBusiness(topicdal.GetTopic(id));
-            topicb.Nom = Titre;
-            //topicdal.EditTopic(ConvertBusiness.ToDAL(topicB));            
-        }
 
+            TopicDAL topicD = new TopicDAL();
+            return ConvertBusiness.ToBusiness(topicD.GetTopic(id));
+        }
+        public bool EditTopic(TopicB topic)
+        {
+            TopicDAL TopicD = new TopicDAL();
+            return TopicD.EditTopic(ConvertBusiness.ToDAL(topic));          
+        }
         public List<TopicB> GetListTopic()
         {
 
-            TopicDAL topic = new TopicDAL();
+            TopicDAL topicD = new TopicDAL();
             // TODO
-            return null;
+            return ConvertBusiness.ToBusiness(topicD.GetListTopic());
+        }
+       /* public TopicModel GetTopicByEvent()
+        {
+            TopicDAL topicdal = new TopicDAL();
+            return ConvertBusiness.ToBusiness(topicdal.GetTopicByEvent());
 
+        }*/
+        public bool CreateTopic(TopicB topB)
+        {
+            TopicDAL topicD = new TopicDAL();
+            return topicD.EditTopic(ConvertBusiness.ToDAL(topB));
+        }
+        public bool DeleteTopic(int id)
+        {
+            TopicDAL topicD = new TopicDAL();
+            return topicD.DeleteTopic(id);
         }
 
-        
+
     }
 }
