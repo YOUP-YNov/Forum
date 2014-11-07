@@ -20,5 +20,11 @@ namespace Forum.Models
             }
             return listforumM;
         }
+
+        internal static CategorieModel ToModel(CategorieB categorieb)
+        {
+            Mapper.CreateMap<CategorieB, CategorieModel>();
+            return Mapper.Map<CategorieB, CategorieModel>(categorieb);
+        }
     }
 }
