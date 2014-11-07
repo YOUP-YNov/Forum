@@ -16,24 +16,18 @@ namespace Forum.Business
             MessageDAL message = new MessageDAL();
             return ConvertBusiness.ToBusiness(message.GetMessage(id));
         }
-        public MessageB EditMessage(int id, string Utilisateur_id,)
+        public void EditMessage(int id, long Utilisateur_id)
         {
             MessageDAL messagedal = new MessageDAL();
             MessageB messageb = ConvertBusiness.ToBusiness(messagedal.GetMessage(id));
-            messageb.Utilisateur_id = utilisateur;
+            messageb.Utilisateur_id = Utilisateur_id;
             messagedal.EditMessage(ConvertBusiness.ToDAL(messageb));
         }
 
-
-
-
-
-
-
-        public MessageB DeleteMessage(int id)
+        public void DeleteMessage(int id)
         {
             MessageDAL message = new MessageDAL();
-
+            message.DeleteMessage(id);
         }
     }
 }

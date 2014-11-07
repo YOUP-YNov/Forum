@@ -22,8 +22,7 @@ namespace Forum.Business
             TopicDAL topicdal = new TopicDAL();
             TopicB topicb = ConvertBusiness.ToBusiness(topicdal.GetTopic(id));
             topicb.Nom = Titre;
-            topicdal.EditTopic(ConvertBusiness.ToDAL(topicB));
-            
+            //topicdal.EditTopic(ConvertBusiness.ToDAL(topicB));            
         }
 
         public List<TopicB> GetListTopic()

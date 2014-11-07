@@ -19,13 +19,19 @@ namespace Forum.Business
             return ConvertBusiness.ToBusiness(forum.GetForum(id));
         }
 
-        public ForumB EditForum(int id)
+        public void EditForum(int id, string title)
         {
-            ForumDAL forum = new ForumDAL();
-            return ConvertBusiness.ToBusiness(forum.GetForum(id));
+            ForumDAL forumdal = new ForumDAL();
+            ForumB forumb = ConvertBusiness.ToBusiness(forumdal.GetForum(id));
+            forumb.Nom = title;
+            forumdal.EditForum(ConvertBusiness.ToDAL(forumb));
         }
 
-
-
+        public List<ForumB> GetListForum()
+        {
+            ForumDAL forum = new ForumDAL();
+            // TODO
+            return null;
+        }
     }
 }

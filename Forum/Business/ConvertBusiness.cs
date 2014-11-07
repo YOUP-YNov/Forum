@@ -10,6 +10,7 @@ namespace Forum.Business
 {
     public static class ConvertBusiness
     {
+        //TO BUSINESS
         public static ForumB ToBusiness(ForumD forum)
         {
             Mapper.CreateMap<ForumD, ForumB>();
@@ -22,12 +23,12 @@ namespace Forum.Business
             return Mapper.Map<TopicD, TopicB>(topic);
         }
 
-       
-
-        public static CategorieB ToBusiness(CategorieD categorie)
+        public static List<CategorieB> ToBusiness(List<CategorieD> category)
         {
-            Mapper.CreateMap<CategorieD, CategorieB>();
-            return Mapper.Map<CategorieD, CategorieB>(categorie);
+            List<CategorieB> list = new List<CategorieB>();
+            Mapper.CreateMap<List<CategorieD>, List<CategorieB>>();
+
+            return Mapper.Map<List<CategorieD>, List<CategorieB>>(category);
         }
 
         public static MessageB ToBusiness(MessageD message)
@@ -36,9 +37,41 @@ namespace Forum.Business
             return Mapper.Map<MessageD, MessageB>(message);
         }
 
-        internal static MessageD ToDAL(MessageB messageb)
+        //TO BUSINESS LIST
+        public static List<ForumB> ToBusiness(List<ForumD> listforumd)
         {
-            throw new NotImplementedException();
+            List<ForumB> listforumb = new List<ForumB>();
+            Mapper.CreateMap<ForumD, ForumB>();
+
+            foreach ( var forumb in listforumd) {
+                listforumb.Add(Mapper.Map<ForumD, ForumB>(forumb));
+            }
+            return listforumb;
+        }
+
+        //TO DAL
+        public static ForumD ToDAL(ForumB forum)
+        {
+            Mapper.CreateMap<ForumB, ForumD>();
+            return Mapper.Map<ForumB, ForumD>(forum);
+        }
+
+        public static TopicD ToDAL(TopicB topic)
+        {
+            Mapper.CreateMap<TopicB, TopicD>();
+            return Mapper.Map<TopicB, TopicD>(topic);
+        }
+
+        public static CategorieD ToDAL(CategorieB categoy)
+        {
+            Mapper.CreateMap<CategorieB, CategorieD>();
+            return Mapper.Map<CategorieB, CategorieD>(categoy);
+        }
+
+        public static MessageD ToDAL(MessageB message)
+        {
+            Mapper.CreateMap<MessageB, MessageD>();
+            return Mapper.Map<MessageB, MessageD>(message);
         }
     }
 }
