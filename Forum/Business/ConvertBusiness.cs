@@ -25,7 +25,7 @@ namespace Forum.Business
 
         public static List<CategorieB> ToBusiness(List<CategorieD> category)
         {
-            List<CategorieB> list = new List<CategorieB>();
+           
             Mapper.CreateMap<List<CategorieD>, List<CategorieB>>();
 
             return Mapper.Map<List<CategorieD>, List<CategorieB>>(category);
@@ -72,6 +72,13 @@ namespace Forum.Business
         {
             Mapper.CreateMap<MessageB, MessageD>();
             return Mapper.Map<MessageB, MessageD>(message);
+        }
+
+        internal static List<MessageB> ToBusiness(List<MessageD> list)
+        {
+           
+           Mapper.CreateMap<List<MessageD>, List<MessageB>>();
+            return Mapper.Map<List<MessageD>, List<MessageB>>(list);
         }
     }
 }
