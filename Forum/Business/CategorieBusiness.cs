@@ -25,7 +25,7 @@ namespace Forum.Business
         public bool CreateCategorie(CategorieB cat)
         {
             CategorieDAL categorie = new CategorieDAL();
-            return categorie.CreateCategorie(ConvertBusiness.ToDAL(cat));
+            return categorie.EditCategorie(ConvertBusiness.ToDAL(cat));
         }
 
         public bool EditCategorie(CategorieB cat)
@@ -37,7 +37,7 @@ namespace Forum.Business
         public bool DeleteCategorie(int id)
         {
             CategorieDAL categorie = new CategorieDAL();
-            return ConvertBusiness.ToBusiness(categorie.GetCategorie(id));
+            return categorie.DeleteCategorie(id);
         }
     }
 }
