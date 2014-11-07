@@ -10,40 +10,33 @@ using Microsoft.SqlServer.Server;
 
 namespace Forum.DAL
 {   
-    //public class CategorieDAL
-    public partial class CategorieDAL
+    public class CategorieDAL
     {
-        [SqlProcedure()]
-        //string connexionstring = "data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework";
         SqlConnection myConnection;
 
-        public static void CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
+        public void CreateCategorie(CategorieD cat)
         {
-            using (SqlConnection conn = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework"))
+            try
             {
-                SqlCommand CreateCategorieCommand = new SqlCommand();
-                SqlParameter sujetIdParam = new SqlParameter("@Sujet_id", SqlDbType.BigInt);
-                SqlParameter forumIdParam = new SqlParameter("@Forum_id", SqlDbType.BigInt);
-                SqlParameter nomParam = new SqlParameter("@nom", SqlDbType.NVarChar);
+                myConnection = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework");
+                SqlCommand cmd = new SqlCommand();
+                Int32 rowsAffected;
 
-                sujetIdParam.Value = sujet_id;
-                forumIdParam.Value = forum_id;
-                nomParam.Value = nom;
+                cmd.CommandText = "ps_FOR_GetListCategorie";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Connection = myConnection;
 
-                CreateCategorieCommand.Parameters.Add(sujetIdParam);
-                CreateCategorieCommand.Parameters.Add(forumIdParam);
-                CreateCategorieCommand.Parameters.Add(nomParam);
+                myConnection.Open();
 
-                CreateCategorieCommand.CommandText =
-                    "INSERT [dbo].[FOR_Sujet] (Sujet_id, Forum_id, Nom)" +
-                    " VALUES(@Sujet_id, @Forum_id, Nom)";
+                rowsAffected = cmd.ExecuteNonQuery();
 
-                CreateCategorieCommand.Connection = conn;
-
-                conn.Open();
-                CreateCategorieCommand.ExecuteNonQuery();
-                conn.Close();
             }
+            catch(Exception e)
+            {
+                throw new Exception("Connection error");
+            }
+
+            myConnection.Close();
         }
 
         /*
