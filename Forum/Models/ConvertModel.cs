@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Forum.Controllers;
+using AutoMapper;
+using Forum.Business.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,12 +21,22 @@ namespace Forum.Models
         {
             List<TopicModel> listtopicm = new List<TopicModel>();
             Mapper.CreateMap<TopicController, TopicModel>();
+        internal static List<ForumModel> ToModel(List<Business.Data.ForumB> list)
+        {
+            List<ForumModel> listforumM = new List<ForumModel>();
+            Mapper.CreateMap<ForumB, ForumModel>();
 
             foreach (var topicm in listtopicc)
             {
                 listtopicm.Add(Mapper.Map<TopicController, TopicModel>(topicm));
             }
             return listtopicm;
+        }
+            foreach (var forumb in list)
+            {
+                listforumM.Add(Mapper.Map<ForumB, ForumModel>(forumb));
+            }
+            return listforumM;
         }
     }
 }

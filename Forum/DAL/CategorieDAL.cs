@@ -7,6 +7,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
+using Forum.myDataSetTableAdapters;
 
 namespace Forum.DAL
 {   
@@ -14,8 +15,11 @@ namespace Forum.DAL
     {
         SqlConnection myConnection;
 
+        ps_FOR_GetCategorieTableAdapter CategorieDal;
+
         public bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
         {
+            //CategorieDal.ps_FOR_GetCategorie();
             try
             {
                 myConnection = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework");
@@ -30,8 +34,8 @@ namespace Forum.DAL
 
                 rowsAffected = cmd.ExecuteNonQuery();
                 return true;
-        }
-            catch
+            }
+            catch(Exception e)
             {
                 return false;
             }
@@ -50,7 +54,8 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
-        public void CreateCategorie(CategorieD cat)
+        */
+        public bool CreateCategorie(CategorieD cat)
         {
             using (SqlCommand command = new SqlCommand())
             {
@@ -59,8 +64,8 @@ namespace Forum.DAL
                     + "Values (" + cat.Sujet_id + ", " + cat.Forum_id + ", '" + cat.Nom + "')";
                 command.ExecuteNonQuery();
             }
+            return true;
         }
-        */
         public bool EditCategorie(CategorieD cat)
         {
             try
