@@ -7,6 +7,7 @@ using System.Web;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
+using Forum.myDataSetTableAdapters;
 
 namespace Forum.DAL
 {   
@@ -14,12 +15,13 @@ namespace Forum.DAL
     {
         SqlConnection myConnection;
 
-        public static bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
+        ps_FOR_GetCategorieTableAdapter CategorieDal;
+
+        public bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
         {
+            //CategorieDal.ps_FOR_GetCategorie();
             try
-            {
-                using (SqlConnection conn = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework"))
-            {
+            {                
                 myConnection = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework");
                 SqlCommand cmd = new SqlCommand();
                 Int32 rowsAffected;
@@ -31,18 +33,12 @@ namespace Forum.DAL
                 myConnection.Open();
 
                 rowsAffected = cmd.ExecuteNonQuery();
-
+                return true;
             }
             catch(Exception e)
             {
-                throw new Exception("Connection error");
-            }
-                return true;
-        }
-            catch
-            {
                 return false;
-            }
+            }                
         }
 
         /*
