@@ -17,7 +17,9 @@ namespace Forum.Business
         }
         public /*CategorieB*/ void EditCategorie(int id)
         {
-            CategorieDAL categorie = new CategorieDAL();
+            CategorieDAL categoriedal = new CategorieDAL();
+            CategorieB categorieb = ConvertBusiness.ToBusiness(categoriedal.GetCategorie(id));
+            categorieb.Nom = Titre;
             //return ConvertBusiness.ToBusiness(categorie.GetListCategorie(id));
         }
         public /*CategorieB*/ void DeleteCategorie(int id)

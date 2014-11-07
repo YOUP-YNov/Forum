@@ -73,5 +73,17 @@ namespace Forum.Business
             Mapper.CreateMap<MessageB, MessageD>();
             return Mapper.Map<MessageB, MessageD>(message);
         }
+
+        internal static List<TopicB> ToBusiness(List<TopicD> listtopicd)
+        {
+            List<TopicB> listtopicb = new List<TopicB>();
+            Mapper.CreateMap<TopicD, TopicB>();
+
+            foreach (var topicb in listtopicd)
+            {
+                listtopicb.Add(Mapper.Map<TopicD, TopicB>(topicb));
+            }
+            return listtopicb;
+        }
     }
 }
