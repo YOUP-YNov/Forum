@@ -1,6 +1,8 @@
 ﻿using Forum.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -27,9 +29,29 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDForum">forum id</param>
         /// <returns>ForumModel ForumModel</returns>
-        public ForumModel GetForum(int IDForum)
+        public int GetForum(int IDForum)
         {
-            return null;
+            SqlConnection myConnection;
+            int rowsAffected;
+
+                myConnection = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework");
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandText = "ps_FOR_GetForum";
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlParameter iffo = new SqlParameter("@Forum_id", SqlDbType.BigInt);
+                iffo.Value = IDForum;
+                cmd.Parameters.Add(iffo);
+
+                cmd.Connection = myConnection;
+
+                myConnection.Open();
+
+                rowsAffected = cmd.ExecuteNonQuery();
+
+            myConnection.Close();
+            return rowsAffected;
         }
         /// <summary>
         /// Create a forum with his name
