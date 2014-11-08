@@ -67,10 +67,23 @@ namespace Forum.Models
             Mapper.CreateMap<MessageModel, Business.Data.MessageB>();
             return Mapper.Map<MessageModel, Business.Data.MessageB>(Message);
         }
+
         internal static CategorieModel ToModel(CategorieB categorieb)
         {
             Mapper.CreateMap<CategorieB, CategorieModel>();
             return Mapper.Map<CategorieB, CategorieModel>(categorieb);
+        }
+
+        internal static List<CategorieModel> ToModel(List<Business.Data.CategorieB> list)
+        {
+            List<CategorieModel> listCatM = new List<CategorieModel>();
+            Mapper.CreateMap<CategorieB, CategorieModel>();
+
+            foreach (var catb in list)
+            {
+                listCatM.Add(Mapper.Map<CategorieB, CategorieModel>(catb));
+            }
+            return listCatM;
         }
 
         internal static ForumModel ToModel(ForumB forumB)
