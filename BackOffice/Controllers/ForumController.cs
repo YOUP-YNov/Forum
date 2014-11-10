@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BackOffice.Models;
+using Forum.Business;
 
 namespace BackOffice.Controllers
 {
@@ -11,6 +13,8 @@ namespace BackOffice.Controllers
         // GET: Forum
         public ActionResult Index()
         {
+            ForumBusiness forumB = new ForumBusiness();
+            forumB.GetListForum();
             return View();
         }
 
