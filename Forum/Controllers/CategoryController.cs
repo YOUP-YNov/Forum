@@ -29,7 +29,7 @@ namespace Forum.Controllers
         public CategorieModel GetCategory(int IDCategory)
         {
             CategorieBusiness catbusi = new CategorieBusiness();
-            return ConvertModel.ToModel(catbusi.getCategorie(IDCategory));;
+            return ConvertModel.ToModel(catbusi.getCategorie(IDCategory));
         }
         /// <summary>
         /// Create a forum with his name and the forum id
