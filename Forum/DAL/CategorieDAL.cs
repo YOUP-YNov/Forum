@@ -129,7 +129,7 @@ namespace Forum.DAL
             return ListC;
         }
 
-        public List<CategorieD> GetListCategorie(int forum_id)
+        public List<CategorieD> GetListCategorieForum(int forum_id)
         {
             myDataSet.ps_FOR_CategorieDataTable datatable;
             if (forum_id == null)

@@ -17,16 +17,16 @@ namespace Forum.Controllers
     {
 
         /// <summary>
-        /// Get an array of all category informations
+        /// Get an array of all category informations of a forum
         /// </summary>
-        /// <param name="IDForum">Category id</param>
+        /// <param name="IDForum">Forum id</param>
         /// <returns>Array ListCategoryModel</returns>
         [HttpGet]
-        [Route("api/Category")]
-        public List<CategorieModel> GetListCategory()
+        [Route("api/CategoryForum/{IDForum}")]
+        public List<CategorieModel> GetListCategoryForum(int IDForum)
         {
             CategorieBusiness categorie = new CategorieBusiness();
-            return ConvertModel.ToModel(categorie.GetListCategorie(IDForum));
+            return ConvertModel.ToModel(categorie.GetListCategorieForum(IDForum));
         }
 
 
@@ -42,9 +42,14 @@ namespace Forum.Controllers
             return ConvertModel.ToModel(catbusi.getCategorie(IDCategory)); ;
         }
 
+
+        /// <summary>
+        /// Get an array of all category informations
+        /// </summary>
+        /// <returns>Array ListCategoryModel</returns>
         [HttpGet]
         [Route("api/Category")]
-        public List<CategorieModel> GetCategory()
+        public List<CategorieModel> GetListCategory()
         {
             CategorieBusiness categorie = new CategorieBusiness();
             return ConvertModel.ToModel(categorie.GetListCategorie());
