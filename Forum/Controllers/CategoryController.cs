@@ -26,7 +26,7 @@ namespace Forum.Controllers
         public List<CategorieModel> GetListCategory()
         {
             CategorieBusiness categorie = new CategorieBusiness();
-            return ConvertModel.ToModel(categorie.GetListCategorie());
+            return ConvertModel.ToModel(categorie.GetListCategorie(IDForum));
         }
 
 
@@ -39,7 +39,15 @@ namespace Forum.Controllers
         public CategorieModel GetCategory(int IDCategory)
         {
             CategorieBusiness catbusi = new CategorieBusiness();
-            return ConvertModel.ToModel(catbusi.getCategorie(IDCategory));;
+            return ConvertModel.ToModel(catbusi.getCategorie(IDCategory)); ;
+        }
+
+        [HttpGet]
+        [Route("api/Category")]
+        public List<CategorieModel> GetCategory()
+        {
+            CategorieBusiness categorie = new CategorieBusiness();
+            return ConvertModel.ToModel(categorie.GetListCategorie());
         }
 
         /// <summary>
