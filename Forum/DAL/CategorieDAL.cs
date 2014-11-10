@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 using Forum.myDataSetTableAdapters;
+using Forum.DAL.Data.Mappeur;
 
 namespace Forum.DAL
 {   
@@ -16,11 +17,10 @@ namespace Forum.DAL
         SqlConnection myConnection;
 
         string connexionstring = "data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework";
-        ps_FOR_GetCategorieTableAdapter CategorieDal;
+        ps_FOR_CategorieTableAdapter CategorieDal;
 
         public bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
         {
-            //CategorieDal.ps_FOR_GetCategorie();
             try
             {
                 myConnection = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework");
@@ -45,6 +45,7 @@ namespace Forum.DAL
         public CategorieDAL()
         {
             myConnection = new SqlConnection(connexionstring);
+            CategorieDal = new ps_FOR_CategorieTableAdapter();
             try
             {
                 myConnection.Open();
@@ -57,14 +58,19 @@ namespace Forum.DAL
 
         public bool CreateCategorie(CategorieD cat)
         {
-            using (SqlCommand command = new SqlCommand())
+            int nbrow = CategorieDal.ps_FOR_UpdateCategorie(cat.Sujet_id, cat.Nom);
+            //using (SqlCommand command = new SqlCommand())
+            //{
+            //    command.Connection = myConnection;
+            //    command.CommandText = "INSERT INTO FOR_Sujet (Sujet_id, Forum_id, Nom) "
+            //        + "Values (" + cat.Sujet_id + ", " + cat.Forum_id + ", '" + cat.Nom + "')";
+            //    command.ExecuteNonQuery();
+            //}
+            if (nbrow > 0)
             {
-                command.Connection = myConnection;
-                command.CommandText = "INSERT INTO FOR_Sujet (Sujet_id, Forum_id, Nom) "
-                    + "Values (" + cat.Sujet_id + ", " + cat.Forum_id + ", '" + cat.Nom + "')";
-                command.ExecuteNonQuery();
+                return true;
             }
-            return true;
+            return false;
         }
         public bool EditCategorie(CategorieD cat)
         {
@@ -125,23 +131,17 @@ namespace Forum.DAL
 
         public List<CategorieD> GetListCategorie(int forum_id)
         {
-            List<CategorieD> ListC = new List<CategorieD>();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Sujet WHERE Forum_id = " + forum_id, myConnection))
+            myDataSet.ps_FOR_CategorieDataTable datatable;
+            if (forum_id == null)
             {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        ListC.Add(new CategorieD
-                        {
-                            Forum_id = Convert.ToInt32(reader["Forum_id"]),
-                            Nom = reader["Nom"].ToString(),
-                            Sujet_id = Convert.ToInt32(reader["Sujet_id"])
-                        });
-                    }
-                }
+                datatable = CategorieDal.GetListCategory();
             }
-            return ListC;
+            else
+            {
+                datatable = CategorieDal.GetListCategoryByForum(forum_id);
+            }
+
+            return CategorieMappeur.ToCategorieD(datatable).ToList();
         }
 
         public void Dispose()
@@ -158,20 +158,8 @@ namespace Forum.DAL
 
         internal CategorieD GetCategorie(int id)
         {
-            CategorieD Cat = new CategorieD();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Sujet WHERE Forum_id = " + id, myConnection))
-            {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Cat.Forum_id = Convert.ToInt32(reader["Forum_id"]);
-                        Cat.Nom = reader["Nom"].ToString();
-                        Cat.Sujet_id = Convert.ToInt32(reader["Sujet_id"]);
-                    }
-                }
-            }
-            return Cat;
+            var lol = CategorieDal.ps_FOR_GetCategorie(id);
+            return CategorieMappeur.ToCategorieD(lol).ElementAt(0);
         }
     }
 }

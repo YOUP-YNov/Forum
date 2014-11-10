@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CategorieTable = Forum.myDataSet.ps_FOR_GetCategorieDataTable;
-using CategorieRow = Forum.myDataSet.ps_FOR_GetCategorieRow;
+using CategorieTable = Forum.myDataSet.ps_FOR_CategorieDataTable;
+using CategorieRow = Forum.myDataSet.ps_FOR_CategorieRow;
 using System.Web;
 
 namespace Forum.DAL.Data.Mappeur
@@ -23,6 +23,8 @@ namespace Forum.DAL.Data.Mappeur
         {
             CategorieD d = new CategorieD();
             d.Nom = row.Nom;
+            d.Sujet_id = row.Sujet_id;
+            d.Forum_id = row.Forum_id;
             return d;
         }
     }

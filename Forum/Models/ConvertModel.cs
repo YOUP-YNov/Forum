@@ -12,10 +12,10 @@ namespace Forum.Models
     public class ConvertModel
     {
 
-        public static TopicModel ToModel(TopicController topic)
+        public static TopicModel ToModel(TopicB topic)
         {
-            Mapper.CreateMap<TopicController, TopicModel>();
-            return Mapper.Map<TopicController, TopicModel>(topic);
+            Mapper.CreateMap<TopicB, TopicModel>();
+            return Mapper.Map<TopicB, TopicModel>(topic);
         }
 
         internal static List<TopicModel> ToModel(List<Business.Data.TopicB> list)
@@ -67,10 +67,23 @@ namespace Forum.Models
             Mapper.CreateMap<MessageModel, Business.Data.MessageB>();
             return Mapper.Map<MessageModel, Business.Data.MessageB>(Message);
         }
+
         internal static CategorieModel ToModel(CategorieB categorieb)
         {
             Mapper.CreateMap<CategorieB, CategorieModel>();
             return Mapper.Map<CategorieB, CategorieModel>(categorieb);
+        }
+
+        internal static List<CategorieModel> ToModel(List<Business.Data.CategorieB> list)
+        {
+            List<CategorieModel> listCatM = new List<CategorieModel>();
+            Mapper.CreateMap<CategorieB, CategorieModel>();
+
+            foreach (var catb in list)
+            {
+                listCatM.Add(Mapper.Map<CategorieB, CategorieModel>(catb));
+            }
+            return listCatM;
         }
 
         internal static ForumModel ToModel(ForumB forumB)
@@ -83,6 +96,24 @@ namespace Forum.Models
         {
             Mapper.CreateMap<ForumModel, ForumB>();
             return Mapper.Map<ForumModel, ForumB>(NewForum);
+        }
+
+        internal static List<CategorieModel> ToModel(List<CategorieB> list)
+        {
+            List<CategorieModel> listModel = new List<CategorieModel>();
+            Mapper.CreateMap<Business.Data.CategorieB, CategorieModel>();
+
+            foreach (var cat in list)
+            {
+                listModel.Add(Mapper.Map<Business.Data.CategorieB, CategorieModel>(cat));
+            }
+            return listModel;
+        }
+
+        internal static CategorieB ToBusiness(CategorieModel cat)
+        {
+            Mapper.CreateMap<CategorieModel, CategorieB>();
+            return Mapper.Map<CategorieModel, CategorieB>(cat);
         }
     }
 }

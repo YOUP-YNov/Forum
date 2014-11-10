@@ -15,10 +15,10 @@ namespace Forum.Business
             MessageDAL message = new MessageDAL();
             return ConvertBusiness.ToBusiness(message.GetMessage(id));
         }
-        public void EditMessage(MessageB mes)
+        public bool EditMessage(MessageB mes)
         {
             MessageDAL messagedal = new MessageDAL();
-            messagedal.EditMessage(ConvertBusiness.ToDAL(mes));
+            return messagedal.EditMessage(ConvertBusiness.ToDAL(mes));
         }
 
         //permet de creer un message 
