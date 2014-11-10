@@ -169,13 +169,11 @@
     <Compile Include="Business\MessageBusiness.cs" />
     <Compile Include="Business\TopicBusiness.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
-    <Compile Include="Controllers\FakeCategorieController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="DAL\Data\Mappeur\CategorieMappeur.cs" />
     <Compile Include="Models\CategorieModel.cs" />
-    <Compile Include="Controllers\FakeMessageController.cs" />
     <Compile Include="Models\ConvertModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\TopicModel.cs" />
@@ -262,9 +260,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\FakeMessage\Index.cshtml" />
-    <Content Include="Views\FakeCategorie\Index.cshtml" />
-    <Content Include="Views\FakeMessage\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
