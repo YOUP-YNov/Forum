@@ -84,5 +84,23 @@ namespace Forum.Models
             Mapper.CreateMap<ForumModel, ForumB>();
             return Mapper.Map<ForumModel, ForumB>(NewForum);
         }
+
+        internal static List<CategorieModel> ToModel(List<CategorieB> list)
+        {
+            List<CategorieModel> listModel = new List<CategorieModel>();
+            Mapper.CreateMap<Business.Data.CategorieB, CategorieModel>();
+
+            foreach (var cat in list)
+            {
+                listModel.Add(Mapper.Map<Business.Data.CategorieB, CategorieModel>(cat));
+            }
+            return listModel;
+        }
+
+        internal static CategorieB ToBusiness(CategorieModel cat)
+        {
+            Mapper.CreateMap<CategorieModel, CategorieB>();
+            return Mapper.Map<CategorieModel, CategorieB>(cat);
+        }
     }
 }
