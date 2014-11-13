@@ -33,7 +33,7 @@ namespace Forum.Controllers
         /// Get a forum information by id
         /// </summary>
         /// <param name="IDForum">forum id</param>
-        /// <returns>ForumModel ForumModel</returns>       
+        /// <returns>ForumModel Forum</returns>       
         [HttpGet]
         [Route("api/Forum/{IDForum}")]
          public ForumModel GetForum(int IDForum)
