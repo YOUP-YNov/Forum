@@ -27,6 +27,7 @@ namespace Forum.Controllers
         {
             ForumBusiness forum = new ForumBusiness();
             return ConvertModel.ToModel(forum.GetListForum());
+
         }
 
         /// <summary>
