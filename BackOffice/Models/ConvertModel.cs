@@ -101,5 +101,11 @@ namespace BackOffice.Models
             Mapper.CreateMap<CategorieModel, CategorieB>();
             return Mapper.Map<CategorieModel, CategorieB>(cat);
         }
+
+        internal static TopicB ToBusiness(TopicModel topic)
+        {
+            Mapper.CreateMap<TopicModel, TopicB>();
+            return Mapper.Map<TopicModel, TopicB>(topic);
+        }
     }
 }

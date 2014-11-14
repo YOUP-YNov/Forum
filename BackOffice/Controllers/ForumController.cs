@@ -21,8 +21,8 @@ namespace BackOffice.Controllers
         // GET: Forum/Details/5
         public ActionResult Details(int id)
         {
-            ForumBusiness forum = new ForumBusiness();
-            ForumModel forumM = ConvertModel.ToModel(forum.GetForum(id));
+            ForumBusiness forumB = new ForumBusiness();
+            ForumModel forumM = ConvertModel.ToModel(forumB.GetForum(id));
             return View(forumM);
         }
 
@@ -52,8 +52,8 @@ namespace BackOffice.Controllers
         // GET: Forum/Edit/5
         public ActionResult Edit(int id)
         {
-            ForumBusiness forum = new ForumBusiness();
-            return View(forum.GetForum(id));
+            ForumBusiness forumB = new ForumBusiness();
+            return View(forumB.GetForum(id));
         }
 
         // POST: Forum/Edit/5

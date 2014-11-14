@@ -29,13 +29,17 @@ namespace BackOffice.Controllers
         // GET: Category/Create
         public ActionResult Create()
         {
+            ForumBusiness forumB = new ForumBusiness();
+            List<ForumModel> list = ConvertModel.ToModel(forumB.GetListForum());
+            ViewBag.ForumChoice = new SelectList(list, "Forum_id", "Nom");
             return View();
         }
 
         // POST: Category/Create
         [HttpPost]
-        public ActionResult Create(CategorieModel cat)
+        public ActionResult Create(CategorieModel cat, int ForumChoice)
         {
+            cat.Forum_id = ForumChoice;
             try
             {
                 CategorieBusiness catB = new CategorieBusiness();
@@ -51,14 +55,18 @@ namespace BackOffice.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            CategorieBusiness cat = new CategorieBusiness();            
+            CategorieBusiness cat = new CategorieBusiness();
+            ForumBusiness forumB = new ForumBusiness();
+            List<ForumModel> list = ConvertModel.ToModel(forumB.GetListForum());
+            ViewBag.ForumChoice = new SelectList(list, "Forum_id", "Nom");
             return View(cat.getCategorie(id));
         }
 
         // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, CategorieModel cat)
+        public ActionResult Edit(int id, CategorieModel cat, int ForumChoice)
         {
+            cat.Forum_id = ForumChoice;
             try
             {
                 CategorieBusiness catB = new CategorieBusiness();
