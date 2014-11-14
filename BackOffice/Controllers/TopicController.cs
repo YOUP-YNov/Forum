@@ -27,8 +27,10 @@ namespace BackOffice.Controllers
         }
 
         // GET: Topic/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
+            CategorieBusiness categorie = new CategorieBusiness();
+            ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorieForum())
             return View();
         }
 

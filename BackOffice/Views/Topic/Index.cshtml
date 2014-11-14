@@ -62,6 +62,7 @@
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Voir les messages", "Index", "Message", new { idMessage = item.Topic_id })
         </td>
     </tr>
 }
