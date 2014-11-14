@@ -28,12 +28,12 @@ namespace Forum.Business
             // TODO
             return ConvertBusiness.ToBusiness(topicD.GetListTopic());
         }
-       /* public TopicModel GetTopicByEvent()
+        public TopicModel GetTopicByEvent()
         {
-            TopicDAL topicdal = new TopicDAL();
-            return ConvertBusiness.ToBusiness(topicdal.GetTopicByEvent());
-
-        }*/
+            //TopicDAL topicdal = new TopicDAL();
+            //return ConvertBusiness.ToBusiness(topicdal.GetTopicByEvent());
+            return null;
+        }
         public bool CreateTopic(TopicB Top)
         {
             TopicDAL topicD = new TopicDAL();
@@ -45,11 +45,10 @@ namespace Forum.Business
             return topicD.DeleteTopic(id);
         }
 
-
-
-        internal TopicB GetTopicByEvent(int IDEvent)
+        internal List<TopicB> GetTopicByCategory(int IDCategory)
         {
-            throw new NotImplementedException();
+            TopicDAL topicdal = new TopicDAL();
+            return ConvertBusiness.ToBusiness(topicdal.GetTopicByCategory(IDCategory));
         }
     }
 }

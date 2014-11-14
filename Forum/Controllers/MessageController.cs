@@ -41,6 +41,19 @@ namespace Forum.Controllers
         }
 
         /// <summary>
+        /// Get an array of all Topic's messages
+        /// </summary>
+        /// <param name="IDUser">user id</param>
+        /// <returns>Array</returns>
+        [HttpGet]
+        [Route("api/MessageUser/{IDTopic}")]
+        public List<MessageModel> GetListMessageByUser(int IDTopic)
+        {
+            MessageBusiness messageb = new MessageBusiness();
+            return ConvertModel.ToModel(messageb.GetListTopicMessage(IDTopic));
+        }
+
+        /// <summary>
         /// Get a message information by id
         /// </summary>
         ///         

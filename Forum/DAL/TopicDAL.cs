@@ -182,5 +182,10 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
+
+        internal List<TopicD> GetTopicByCategory(int IDCategory)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

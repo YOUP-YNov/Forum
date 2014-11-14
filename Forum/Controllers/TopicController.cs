@@ -53,6 +53,18 @@ namespace Forum.Controllers
             return ConvertModel.ToModel(topic.GetTopicByEvent(IDEvent));
         }
 
+        /// <summary>
+        /// Get a topic information by Category id
+        /// </summary>
+        /// <param name="IDEvent">event id</param>
+        /// <returns>Array TopicModel</returns>
+        [HttpGet]
+        [Route("api/TopicCategory/{IDCategory}")]
+        public List<TopicModel> GetTopicByEvent(int IDCategory)
+        {
+            TopicBusiness topic = new TopicBusiness();
+            return ConvertModel.ToModel(topic.GetTopicByCategory(IDCategory));
+        }
 
         /// <summary>
         /// Create a topic with category id, a name and the content
