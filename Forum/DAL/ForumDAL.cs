@@ -1,4 +1,5 @@
 ﻿using Forum.DAL.Data;
+using Forum.myDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -11,27 +12,29 @@ namespace Forum.DAL
     {
         SqlConnection myConnection;
 
-        myDataSetTableAdapters.ps_FOR_GetForumTableAdapter ForumTable;
-
-        public ForumDAL()
-        {
-            ForumTable = new myDataSetTableAdapters.ps_FOR_GetForumTableAdapter();
-        }
         public bool CreateForum(ForumD forum)
         {
-            ForumTable.ps_FOR_CreateForum(forum.Forum_id, forum.Nom, forum.Url);
-            return true;
+            try
+            {
+                using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
+                {
+                    ForumTable.ps_FOR_CreateForum(forum.Forum_id, forum.Nom, forum.Url);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool EditForum(ForumD forum)
         {
             try
             {
-                using (SqlCommand command = new SqlCommand())
+                using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
                 {
-                    command.Connection = myConnection;
-                    command.CommandText = "UPDATE FOR_Forum SET Nom = '" + forum.Nom + "', Url = '" + forum.Url + "' WHERE Forum_id = " + forum.Forum_id;
-                    command.ExecuteNonQuery();
+                    ForumTable.ps_FOR_UpdateForum(forum.Forum_id, forum.Nom);
                 }
                 return true;
             }
