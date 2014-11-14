@@ -18,7 +18,7 @@ namespace Forum.DAL
             {
                 using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
                 {
-                    ForumTable.ps_FOR_CreateForum(forum.Forum_id, forum.Nom, forum.Url);
+                    ForumTable.ps_FOR_CreateForum(forum.Nom, forum.Url);
                 }
             return true;
         }

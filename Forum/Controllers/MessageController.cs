@@ -47,7 +47,7 @@ namespace Forum.Controllers
         /// <returns>Array</returns>
         [HttpGet]
         [Route("api/MessageUser/{IDTopic}")]
-        public List<MessageModel> GetListMessageByUser(int IDTopic)
+        public List<MessageModel> GetListMessageByTopic(int IDTopic)
         {
             MessageBusiness messageb = new MessageBusiness();
             return ConvertModel.ToModel(messageb.GetListTopicMessage(IDTopic));
