@@ -17,7 +17,12 @@ namespace BackOffice.Controllers
             List<CategorieModel> list = ConvertModel.ToModel(cat.GetListCategorie());
             return View(list);
         }
-
+        public ActionResult Index(int idForum)
+        {
+            CategorieBusiness cat = new CategorieBusiness();
+            List<CategorieModel> list = ConvertModel.ToModel(cat.GetListCategorieForum(idForum));
+            return View(list);
+        }
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
