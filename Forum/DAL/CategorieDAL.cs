@@ -134,11 +134,11 @@ namespace Forum.DAL
             myDataSet.ps_FOR_CategorieDataTable datatable;
             if (forum_id == null)
             {
-                datatable = CategorieDal.GetListCategory();
+                datatable = CategorieDal.ps_FOR_GetListCategorie();
             }
             else
             {
-                datatable = CategorieDal.GetListCategoryByForum(forum_id);
+                datatable = CategorieDal.ps_FOR_GetListCategorieByForum(forum_id);
             }
 
             return CategorieMappeur.ToCategorieD(datatable).ToList();
