@@ -175,6 +175,7 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
     <Compile Include="DAL\Data\Mappeur\CategorieMappeur.cs" />
+    <Compile Include="DAL\Data\Mappeur\ForumMappeur.cs" />
     <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Models\ConvertModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
@@ -235,7 +236,6 @@
     <None Include="myDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>myDataSet.Designer.cs</LastGenOutput>
     </None>
     <Content Include="myDataSet.xss">
       <DependentUpon>myDataSet.xsd</DependentUpon>
