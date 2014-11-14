@@ -20,8 +20,8 @@ namespace Forum.DAL
                 {
                     ForumTable.ps_FOR_CreateForum(forum.Forum_id, forum.Nom, forum.Url);
                 }
-                return true;
-            }
+            return true;
+        }
             catch
             {
                 return false;

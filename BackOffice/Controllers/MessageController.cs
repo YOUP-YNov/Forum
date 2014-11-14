@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Forum.Business;
+using BackOffice.Models;
 
 namespace BackOffice.Controllers
 {
@@ -11,13 +13,17 @@ namespace BackOffice.Controllers
         // GET: Message
         public ActionResult Index()
         {
-            return View();
+            MessageBusiness messageB = new MessageBusiness();
+            List<MessageModel> list = ConvertModel.ToModel(messageB.GetListMessage());
+            return View(list);
         }
 
         // GET: Message/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            MessageBusiness messageB = new MessageBusiness();
+            MessageModel message = ConvertModel.ToModel(messageB.getMessage(id));
+            return View(message);
         }
 
         // GET: Message/Create
@@ -28,12 +34,14 @@ namespace BackOffice.Controllers
 
         // POST: Message/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(MessageModel message)
         {
             try
             {
                 // TODO: Add insert logic here
 
+                MessageBusiness messageB = new MessageBusiness();
+                messageB.CreateMessage(ConvertModel.ToBusiness(message));
                 return RedirectToAction("Index");
             }
             catch
@@ -45,17 +53,20 @@ namespace BackOffice.Controllers
         // GET: Message/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            MessageBusiness messageB = new MessageBusiness();
+            return View(messageB.getMessage(id));
         }
 
         // POST: Message/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, MessageModel message)
         {
             try
             {
                 // TODO: Add update logic here
 
+                MessageBusiness messageB = new MessageBusiness();
+                messageB.EditMessage(ConvertModel.ToBusiness(message));
                 return RedirectToAction("Index");
             }
             catch
@@ -72,12 +83,14 @@ namespace BackOffice.Controllers
 
         // POST: Message/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, MessageModel message)
         {
             try
             {
                 // TODO: Add delete logic here
 
+                MessageBusiness messageB = new MessageBusiness();
+                messageB.DeleteMessage(id);
                 return RedirectToAction("Index");
             }
             catch

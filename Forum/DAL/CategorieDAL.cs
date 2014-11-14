@@ -17,8 +17,8 @@ namespace Forum.DAL
         SqlConnection myConnection;
 
         string connexionstring = "data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework";
-        ps_FOR_CategorieTableAdapter CategorieDal;
-
+        ps_FOR_GetCategorieTableAdapter CategorieDal;
+        
         public bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
         {
 
@@ -47,22 +47,14 @@ namespace Forum.DAL
 
         public CategorieDAL()
         {
-            myConnection = new SqlConnection(connexionstring);
-            CategorieDal = new ps_FOR_CategorieTableAdapter();
-            try
-            {
-                myConnection.Open();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
+            CategorieDal = new Forum.myDataSetTableAdapters.ps_FOR_GetCategorieTableAdapter();
+
         }
 
         //à faire
         public bool CreateCategorie(CategorieD cat)
         {
-            int nbrow = CategorieDal.ps_FOR_UpdateCategorie(cat.Sujet_id, cat.Nom);
+            int nbrow = CategorieDal.ps_FOR_CreateCategorie(cat.Forum_id, cat.Nom);
             //using (SqlCommand command = new SqlCommand())
             //{
             //    command.Connection = myConnection;
@@ -82,44 +74,25 @@ namespace Forum.DAL
             return true;
         }
 
-        public bool DeleteCategorie(int id)
+        public bool DeleteCategorie(int Sujet_id)
         {
-            var del = CategorieDal.ps_FOR_GetCategorie(id);
+            var del = CategorieDal.ps_FOR_DeleteCategorie(Sujet_id);
             return true;
         }
 
         public List<CategorieD> GetListCategorie()
         {
-            List<CategorieD> ListC = new List<CategorieD>();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Sujet", myConnection))
-            {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        ListC.Add(new CategorieD
-                        {
-                            Forum_id = Convert.ToInt32(reader["Forum_id"]),
-                            Nom = reader["Nom"].ToString(),
-                            Sujet_id = Convert.ToInt32(reader["Sujet_id"])
-                        });
-                    }
-                }
-            }
-            return ListC;
+            myDataSet.ps_FOR_GetCategorieDataTable datatable;
+            datatable = CategorieDal.ps_FOR_GetListCategorie();
+            return CategorieMappeur.ToCategorieD(datatable).ToList();
         }
 
-        public List<CategorieD> GetListCategorieForum(int forum_id)
+        public List<CategorieD> GetListCategorieByForum(int forum_id)
         {
-            myDataSet.ps_FOR_CategorieDataTable datatable;
-            if (forum_id == null)
-            {
-                datatable = CategorieDal.ps_FOR_GetListCategorie();
-            }
-            else
-            {
-                datatable = CategorieDal.ps_FOR_GetListCategorieByForum(forum_id);
-            }
+            myDataSet.ps_FOR_GetCategorieDataTable datatable;
+
+            datatable = CategorieDal.ps_FOR_GetListCategorieByForum(forum_id);
+            
 
             return CategorieMappeur.ToCategorieD(datatable).ToList();
         }
