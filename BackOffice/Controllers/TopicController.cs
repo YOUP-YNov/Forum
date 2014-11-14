@@ -17,7 +17,12 @@ namespace BackOffice.Controllers
             List<TopicModel> list = ConvertModel.ToModel(topicB.GetListTopic());
             return View(list);
         }
-
+        public ActionResult Index(int idCategorie)
+        {
+            TopicBusiness topicB = new TopicBusiness();
+            List<TopicModel> list = ConvertModel.ToModel(topicB.GetTopicByCategory(idCategorie));
+            return View(list);
+        }
         // GET: Topic/Details/5
         public ActionResult Details(int id)
         {
@@ -30,7 +35,7 @@ namespace BackOffice.Controllers
         public ActionResult Create(int id)
         {
             CategorieBusiness categorie = new CategorieBusiness();
-            ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorieForum())
+            ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorieForum(id));
             return View();
         }
 
