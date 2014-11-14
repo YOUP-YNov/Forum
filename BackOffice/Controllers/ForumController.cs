@@ -21,7 +21,9 @@ namespace BackOffice.Controllers
         // GET: Forum/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ForumBusiness forumB = new ForumBusiness();
+            ForumModel forumM = ConvertModel.ToModel(forumB.GetForum(id));
+            return View(forumM);
         }
 
         // GET: Forum/Create
@@ -32,12 +34,13 @@ namespace BackOffice.Controllers
 
         // POST: Forum/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ForumModel forum)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                ForumBusiness forumB = new ForumBusiness();
+                forumB.CreateForum(ConvertModel.ToBusiness(forum));
                 return RedirectToAction("Index");
             }
             catch
@@ -49,17 +52,19 @@ namespace BackOffice.Controllers
         // GET: Forum/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ForumBusiness forumB = new ForumBusiness();
+            return View(forumB.GetForum(id));
         }
 
         // POST: Forum/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, ForumModel forum)
         {
             try
             {
                 // TODO: Add update logic here
-
+                ForumBusiness forumB = new ForumBusiness();
+                forumB.EditForum(ConvertModel.ToBusiness(forum));
                 return RedirectToAction("Index");
             }
             catch
@@ -76,12 +81,12 @@ namespace BackOffice.Controllers
 
         // POST: Forum/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, ForumModel forum)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                ForumBusiness forumB = new ForumBusiness();
+                forumB.DeleteForum(id);
                 return RedirectToAction("Index");
             }
             catch

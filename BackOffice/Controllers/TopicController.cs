@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Forum.Business;
+using BackOffice.Models;
 
 namespace BackOffice.Controllers
 {
@@ -11,13 +13,17 @@ namespace BackOffice.Controllers
         // GET: Topic
         public ActionResult Index()
         {
-            return View();
+            TopicBusiness topicB = new TopicBusiness();
+            List<TopicModel> list = ConvertModel.ToModel(topicB.GetListTopic());
+            return View(list);
         }
 
         // GET: Topic/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            TopicBusiness topicB = new TopicBusiness();
+            TopicModel topic = ConvertModel.ToModel(topicB.GetTopic(id));
+            return View(topic);
         }
 
         // GET: Topic/Create
@@ -28,12 +34,14 @@ namespace BackOffice.Controllers
 
         // POST: Topic/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TopicModel topic)
         {
             try
             {
                 // TODO: Add insert logic here
 
+                TopicBusiness topicB = new TopicBusiness();
+                topicB.CreateTopic(ConvertModel.ToBusiness(topic));
                 return RedirectToAction("Index");
             }
             catch
@@ -45,17 +53,20 @@ namespace BackOffice.Controllers
         // GET: Topic/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            TopicBusiness topicB = new TopicBusiness();
+            return View(topicB.GetTopic(id));
         }
 
         // POST: Topic/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, TopicModel topic)
         {
             try
             {
                 // TODO: Add update logic here
 
+                TopicBusiness topicB = new TopicBusiness();
+                topicB.EditTopic(ConvertModel.ToBusiness(topic));
                 return RedirectToAction("Index");
             }
             catch
@@ -72,12 +83,14 @@ namespace BackOffice.Controllers
 
         // POST: Topic/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, TopicModel topic)
         {
             try
             {
                 // TODO: Add delete logic here
 
+                TopicBusiness topicB = new TopicBusiness();
+                topicB.DeleteTopic(id);
                 return RedirectToAction("Index");
             }
             catch
