@@ -30,7 +30,7 @@ namespace BackOffice.Controllers
         public ActionResult Create(int id)
         {
             CategorieBusiness categorie = new CategorieBusiness();
-            ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorieForum())
+            ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorieForum(id));
             return View();
         }
 

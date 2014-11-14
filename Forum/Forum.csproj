@@ -177,6 +177,7 @@
     <Compile Include="DAL\Data\Mappeur\CategorieMappeur.cs" />
     <Compile Include="DAL\Data\Mappeur\ForumMappeur.cs" />
     <Compile Include="DAL\Data\Mappeur\MessageMappeur.cs" />
+    <Compile Include="DAL\Data\Mappeur\TopicMappeur.cs" />
     <Compile Include="Models\CategorieModel.cs" />
     <Compile Include="Models\ConvertModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
