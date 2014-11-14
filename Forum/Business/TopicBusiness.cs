@@ -10,16 +10,16 @@ namespace Forum.Business
 {
     public class TopicBusiness
     {
-        public TopicB getTopic(int id)
+        public TopicB GetTopic(int id)
         {
 
             TopicDAL topicD = new TopicDAL();
             return ConvertBusiness.ToBusiness(topicD.GetTopic(id));
         }
-        public bool EditTopic(TopicB topic)
+        public bool EditTopic(TopicB Top)
         {
             TopicDAL TopicD = new TopicDAL();
-            return TopicD.EditTopic(ConvertBusiness.ToDAL(topic));          
+            return TopicD.EditTopic(ConvertBusiness.ToDAL(Top));          
         }
         public List<TopicB> GetListTopic()
         {
@@ -34,10 +34,10 @@ namespace Forum.Business
             return ConvertBusiness.ToBusiness(topicdal.GetTopicByEvent());
 
         }*/
-        public bool CreateTopic(TopicB topB)
+        public bool CreateTopic(TopicB Top)
         {
             TopicDAL topicD = new TopicDAL();
-            return topicD.EditTopic(ConvertBusiness.ToDAL(topB));
+            return topicD.EditTopic(ConvertBusiness.ToDAL(Top));
         }
         public bool DeleteTopic(int id)
         {
@@ -46,5 +46,10 @@ namespace Forum.Business
         }
 
 
+
+        internal TopicB GetTopicByEvent(int IDEvent)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

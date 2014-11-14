@@ -36,7 +36,8 @@ namespace Forum.Controllers
         [Route("api/Topic/{id}")]
         public TopicModel GetTopic(int id)
         {
-            return null;
+            TopicBusiness topic = new TopicBusiness();
+            return ConvertModel.ToModel(topic.GetTopic(id));
         }
 
         /// <summary>
@@ -48,7 +49,8 @@ namespace Forum.Controllers
         [Route("api/TopicEvent/{IDEvent}")]
         public TopicModel GetTopicByEvent(int IDEvent)
         {
-            return null;
+            TopicBusiness topic = new TopicBusiness();
+            return ConvertModel.ToModel(topic.GetTopicByEvent(IDEvent));
         }
 
 
@@ -58,8 +60,13 @@ namespace Forum.Controllers
         /// <param name="topic">TopicModel</param>
         [HttpPost]
         [Route("api/Topic")]
-        public bool CreateTopic(TopicModel topic)
+        public bool CreateTopic(TopicModel Top)
         {
+            /*TopicModel NewTopic = new TopicModel();
+            NewTopic.Nom = Name;
+            NewTopic.Url = string.Empty;
+            TopicBusiness Top = new TopicBusiness();
+            Top.CreateForum(ConvertModel.ToBusiness(NewTopic));*/
             return true;
         }
 
@@ -69,9 +76,10 @@ namespace Forum.Controllers
         /// <param name="topic">TopicModel</param>
         [HttpPost]
         [Route("api/Topic/{id}")]
-        public bool EditTopic(TopicModel topic)
+        public bool EditTopic(TopicModel Top)
         {
-            return true;
+            TopicBusiness TopicM = new TopicBusiness();
+            return TopicM.EditTopic(ConvertModel.ToBusiness(Top));          
         }
 
         /// <summary>
@@ -82,7 +90,8 @@ namespace Forum.Controllers
         [Route("api/Topic/{IDTopic}")]
         public bool DeleteTopic(int IDTopic)
         {
-            return true;
+            TopicBusiness topicB = new TopicBusiness();
+            return topicB.DeleteTopic(IDTopic);
         }
     }
 }

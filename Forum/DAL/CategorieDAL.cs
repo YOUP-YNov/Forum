@@ -21,7 +21,10 @@ namespace Forum.DAL
 
         public bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
         {
-            try
+
+
+            return true;
+           /* try
             {
                 myConnection = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework");
                 SqlCommand cmd = new SqlCommand();
@@ -39,7 +42,7 @@ namespace Forum.DAL
             catch(Exception e)
             {
                 return false;
-            }
+            }*/
         }
 
         public CategorieDAL()
@@ -56,6 +59,7 @@ namespace Forum.DAL
             }
         }
 
+        //à faire
         public bool CreateCategorie(CategorieD cat)
         {
             int nbrow = CategorieDal.ps_FOR_UpdateCategorie(cat.Sujet_id, cat.Nom);
@@ -74,38 +78,14 @@ namespace Forum.DAL
         }
         public bool EditCategorie(CategorieD cat)
         {
-            try
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = myConnection;
-                command.CommandText = "UPDATE FOR_Sujet SET Nom = '" + cat.Nom + "' WHERE Topic_id = " + cat.Sujet_id;
-                command.ExecuteNonQuery();
-            }
-                return true;
-            }
-            catch
-            {
-                return false;
-        }
+            var modif = CategorieDal.ps_FOR_UpdateCategorie(cat.Sujet_id, cat.Nom);
+            return true;
         }
 
         public bool DeleteCategorie(int id)
         {
-            try
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = myConnection;
-                command.CommandText = "DELETE FROM FOR_Sujet WHERE Sujet_id = " + id;
-                command.ExecuteNonQuery();
-            }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            var del = CategorieDal.ps_FOR_GetCategorie(id);
+            return true;
         }
 
         public List<CategorieD> GetListCategorie()
@@ -134,11 +114,11 @@ namespace Forum.DAL
             myDataSet.ps_FOR_CategorieDataTable datatable;
             if (forum_id == null)
             {
-                datatable = CategorieDal.GetListCategory();
+                datatable = CategorieDal.ps_FOR_GetListCategorie();
             }
             else
             {
-                datatable = CategorieDal.GetListCategoryByForum(forum_id);
+                datatable = CategorieDal.ps_FOR_GetListCategorieByForum(forum_id);
             }
 
             return CategorieMappeur.ToCategorieD(datatable).ToList();

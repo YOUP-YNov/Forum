@@ -103,5 +103,11 @@ namespace Forum.Models
             Mapper.CreateMap<CategorieModel, CategorieB>();
             return Mapper.Map<CategorieModel, CategorieB>(cat);
         }
+
+        internal static TopicB ToBusiness(TopicModel top)
+        {
+            Mapper.CreateMap<TopicModel, TopicB>();
+            return Mapper.Map<TopicModel, TopicB>(top);
+        }
     }
 }
