@@ -19,7 +19,7 @@ namespace Forum.DAL
         }
         public bool CreateForum(ForumD forum)
         {
-            ForumTable.ps_FOR_CreateForum(forum.Forum_id, forum.Nom, forum.Url);
+            ForumTable.ps_FOR_CreateForum(forum.Nom, forum.Url);
             return true;
         }
 

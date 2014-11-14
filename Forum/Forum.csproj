@@ -196,11 +196,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>myDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="myDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>myDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="TestAutoMapper\Employee.cs" />
     <Compile Include="TestAutoMapper\Personne.cs" />
     <Compile Include="Global.asax.cs">
@@ -242,7 +237,7 @@
     <None Include="myDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>myDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>myDataSet.Designer.cs</LastGenOutput>
     </None>
     <Content Include="myDataSet.xss">
       <DependentUpon>myDataSet.xsd</DependentUpon>
