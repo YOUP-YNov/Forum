@@ -21,7 +21,10 @@ namespace Forum.DAL
 
         public bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
         {
-            try
+
+
+            return true;
+           /* try
             {
                 myConnection = new SqlConnection("data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework");
                 SqlCommand cmd = new SqlCommand();
@@ -39,7 +42,7 @@ namespace Forum.DAL
             catch(Exception e)
             {
                 return false;
-            }
+            }*/
         }
 
         public CategorieDAL()

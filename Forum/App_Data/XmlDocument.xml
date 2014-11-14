@@ -674,19 +674,19 @@
             Represents a strongly typed in-memory cache of data.
             </summary>
         </member>
-        <member name="T:Forum.myDataSet.ps_FOR_GetForumDataTable">
-             <summary>
-            Represents the strongly named DataTable class.
-            </summary>
-        </member>
         <member name="T:Forum.myDataSet.ps_FOR_CategorieDataTable">
              <summary>
             Represents the strongly named DataTable class.
             </summary>
         </member>
-        <member name="T:Forum.myDataSet.ps_FOR_GetForumRow">
+        <member name="T:Forum.myDataSet.ps_FOR_GetMessageDataTable">
              <summary>
-            Represents strongly named DataRow class.
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:Forum.myDataSet.ps_FOR_GetForumDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
             </summary>
         </member>
         <member name="T:Forum.myDataSet.ps_FOR_CategorieRow">
@@ -694,9 +694,14 @@
             Represents strongly named DataRow class.
             </summary>
         </member>
-        <member name="T:Forum.myDataSet.ps_FOR_GetForumRowChangeEvent">
+        <member name="T:Forum.myDataSet.ps_FOR_GetMessageRow">
              <summary>
-            Row event argument class
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:Forum.myDataSet.ps_FOR_GetForumRow">
+             <summary>
+            Represents strongly named DataRow class.
             </summary>
         </member>
         <member name="T:Forum.myDataSet.ps_FOR_CategorieRowChangeEvent">
@@ -704,12 +709,27 @@
             Row event argument class
             </summary>
         </member>
-        <member name="T:Forum.myDataSetTableAdapters.ps_FOR_GetForumTableAdapter">
+        <member name="T:Forum.myDataSet.ps_FOR_GetMessageRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:Forum.myDataSet.ps_FOR_GetForumRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:Forum.myDataSetTableAdapters.ps_FOR_CategorieTableAdapter">
              <summary>
             Represents the connection and commands used to retrieve and save data.
             </summary>
         </member>
-        <member name="T:Forum.myDataSetTableAdapters.ps_FOR_CategorieTableAdapter">
+        <member name="T:Forum.myDataSetTableAdapters.ps_FOR_GetMessageTableAdapter">
+             <summary>
+            Represents the connection and commands used to retrieve and save data.
+            </summary>
+        </member>
+        <member name="T:Forum.myDataSetTableAdapters.ps_FOR_GetForumTableAdapter">
              <summary>
             Represents the connection and commands used to retrieve and save data.
             </summary>
