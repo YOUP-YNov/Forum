@@ -75,7 +75,8 @@ namespace Forum.Controllers
         [Route("api/Category/{IDCategory}")]
         public bool EditCategory(CategorieModel cat)
         {
-            return true;
+            CategorieBusiness CategoryM = new CategorieBusiness();
+            return CategoryM.EditCategorie(ConvertModel.ToBusiness(cat));  
         }
 
         /// <summary>
@@ -86,7 +87,8 @@ namespace Forum.Controllers
         [Route("api/Category/{IDCategory}")]
         public bool DeleteCategory(int IDCategory)
         {
-            return true;
+            CategorieBusiness categorieB = new CategorieBusiness();
+            return categorieB.DeleteCategorie(IDCategory);
         }
     }
 }

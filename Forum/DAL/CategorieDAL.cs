@@ -56,6 +56,7 @@ namespace Forum.DAL
             }
         }
 
+        //à faire
         public bool CreateCategorie(CategorieD cat)
         {
             int nbrow = CategorieDal.ps_FOR_UpdateCategorie(cat.Sujet_id, cat.Nom);
@@ -74,38 +75,14 @@ namespace Forum.DAL
         }
         public bool EditCategorie(CategorieD cat)
         {
-            try
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = myConnection;
-                command.CommandText = "UPDATE FOR_Sujet SET Nom = '" + cat.Nom + "' WHERE Topic_id = " + cat.Sujet_id;
-                command.ExecuteNonQuery();
-            }
-                return true;
-            }
-            catch
-            {
-                return false;
-        }
+            var modif = CategorieDal.ps_FOR_UpdateCategorie(cat.Sujet_id, cat.Nom);
+            return true;
         }
 
         public bool DeleteCategorie(int id)
         {
-            try
-        {
-            using (SqlCommand command = new SqlCommand())
-            {
-                command.Connection = myConnection;
-                command.CommandText = "DELETE FROM FOR_Sujet WHERE Sujet_id = " + id;
-                command.ExecuteNonQuery();
-            }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            var del = CategorieDal.ps_FOR_GetCategorie(id);
+            return true;
         }
 
         public List<CategorieD> GetListCategorie()
