@@ -149,27 +149,7 @@ namespace Forum.DAL
             return null;
         }
 
-        /*public TopicD GetTopicByEvent(int idEvent)//A completer, pas moyen de Récupérer un topic en passant par un evenement avec la bdd actuelle
-        {
-            TopicD top = new TopicD();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Topic WHERE Evenement_id", myConnection)) 
-            {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        top.Topic_id = Convert.ToInt32(reader["Topic_id"]);
-                        top.Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]);
-                        top.Sujet_id = Convert.ToInt32(reader["Sujet_id"]);
-                        top.Nom = reader["Nom"].ToString();
-                        top.DescriptifTopic = reader["DescriptifTopic"].ToString();
-                        top.DateCreation = Convert.ToDateTime(reader["DateCreation"]);
-                        top.Resolu = Convert.ToBoolean(reader["Resolu"]);
-                    }
-                }
-            }
-            return null;
-        }*/
+        
 
         public void Dispose()
         {

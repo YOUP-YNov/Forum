@@ -40,18 +40,7 @@ namespace Forum.Controllers
             return ConvertModel.ToModel(topic.GetTopic(id));
         }
 
-        /// <summary>
-        /// Get a topic information by event id
-        /// </summary>
-        /// <param name="IDEvent">event id</param>
-        /// <returns>Array TopicModel</returns>
-        [HttpGet]
-        [Route("api/TopicEvent/{IDEvent}")]
-        public TopicModel GetTopicByEvent(int IDEvent)
-        {
-            TopicBusiness topic = new TopicBusiness();
-            return ConvertModel.ToModel(topic.GetTopicByEvent(IDEvent));
-        }
+        
 
         /// <summary>
         /// Get a topic information by Category id
@@ -60,7 +49,7 @@ namespace Forum.Controllers
         /// <returns>Array TopicModel</returns>
         [HttpGet]
         [Route("api/TopicCategory/{IDCategory}")]
-        public List<TopicModel> GetTopicByEvent(int IDCategory)
+        public List<TopicModel> GetTopicByCategory(int IDCategory)
         {
             TopicBusiness topic = new TopicBusiness();
             return ConvertModel.ToModel(topic.GetTopicByCategory(IDCategory));
