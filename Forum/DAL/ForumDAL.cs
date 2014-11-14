@@ -9,37 +9,18 @@ namespace Forum.DAL
 {
     public class ForumDAL
     {
-        string connexionstring = "data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework";
         SqlConnection myConnection;
+
+        myDataSetTableAdapters.ps_FOR_GetForumTableAdapter ForumTable;
+
         public ForumDAL()
         {
-            myConnection = new SqlConnection(connexionstring);
-            try
-            {
-                myConnection.Open();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
+            ForumTable = new myDataSetTableAdapters.ps_FOR_GetForumTableAdapter();
         }
         public bool CreateForum(ForumD forum)
         {
-            try
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = myConnection;
-                    command.CommandText = "INSERT INTO FOR_Forum (Forum_id, Nom, Url) "
-                        + "Values (" + forum.Forum_id + ", '" + forum.Nom + "', '" + forum.Url + "')";
-                    command.ExecuteNonQuery();
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            ForumTable.ps_FOR_CreateForum(forum.Forum_id, forum.Nom, forum.Url);
+            return true;
         }
 
         public bool EditForum(ForumD forum)
@@ -114,18 +95,6 @@ namespace Forum.DAL
                 }
             }
             return forum;
-        }
-
-        public void Dispose()
-        {
-            try
-            {
-                myConnection.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
         }
     }
 }

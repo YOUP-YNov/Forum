@@ -27,7 +27,6 @@ namespace Forum.Controllers
         {
             ForumBusiness forum = new ForumBusiness();
             return ConvertModel.ToModel(forum.GetListForum());
-
         }
 
         /// <summary>
@@ -51,11 +50,8 @@ namespace Forum.Controllers
         [Route("api/Forum")]
         public bool CreateForum(ForumModel forum)
         {
-            /*ForumModel NewForum = new ForumModel();
-            NewForum.Nom = Name;
-            NewForum.Url = string.Empty;
-            ForumBusiness forum = new ForumBusiness();
-            forum.CreateForum(ConvertModel.ToBusiness(NewForum));*/
+            ForumBusiness forumB = new ForumBusiness();
+            forumB.CreateForum(ConvertModel.ToBusiness(forum));
             return true;
         }
 
