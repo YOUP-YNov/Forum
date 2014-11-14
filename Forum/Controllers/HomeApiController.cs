@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Forum.Controllers
 {
-    public class HomeController : Controller
+    public class HomeApiController : Controller
     {
         
         public ActionResult Index()
