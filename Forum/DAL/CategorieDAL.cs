@@ -17,8 +17,8 @@ namespace Forum.DAL
         SqlConnection myConnection;
 
         string connexionstring = "data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework";
-        ps_FOR_CategorieTableAdapter CategorieDal;
-
+        ps_FOR_GetCategorieTableAdapter CategorieDal;
+        
         public bool CreateCategorie(SqlInt32 sujet_id, SqlInt32 forum_id, SqlString nom)
         {
 
@@ -47,7 +47,7 @@ namespace Forum.DAL
 
         public CategorieDAL()
         {
-            CategorieDal = new ps_FOR_CategorieTableAdapter();
+            CategorieDal = new Forum.myDataSetTableAdapters.ps_FOR_GetCategorieTableAdapter();
 
         }
 
@@ -82,14 +82,14 @@ namespace Forum.DAL
 
         public List<CategorieD> GetListCategorie()
         {
-            myDataSet.ps_FOR_CategorieDataTable datatable;
+            myDataSet.ps_FOR_GetCategorieDataTable datatable;
             datatable = CategorieDal.ps_FOR_GetListCategorie();
             return CategorieMappeur.ToCategorieD(datatable).ToList();
         }
 
         public List<CategorieD> GetListCategorieByForum(int forum_id)
         {
-            myDataSet.ps_FOR_CategorieDataTable datatable;
+            myDataSet.ps_FOR_GetCategorieDataTable datatable;
 
             datatable = CategorieDal.ps_FOR_GetListCategorieByForum(forum_id);
             
