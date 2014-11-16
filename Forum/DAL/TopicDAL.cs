@@ -1,4 +1,5 @@
 ﻿using Forum.DAL.Data;
+using Forum.myDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -23,22 +24,20 @@ namespace Forum.DAL
                 Console.WriteLine(e.ToString());
             }
         }
-        public bool CreateTopic(TopicD Top)
+
+        public int CreateTopic(TopicD top)
         {
             try
             {
-                using (SqlCommand command = new SqlCommand())
+                using (ps_FOR_GetTopicTableAdapter TopicDal = new ps_FOR_GetTopicTableAdapter())
                 {
-                    command.Connection = myConnection;
-                    command.CommandText = "INSERT INTO FOR_Topic (Topic_id, Sujet_id, Nom, DescriptifTopic, DateCreation, Resolu, Utilisateur_id) "
-                        + "Values (" + Top.Topic_id + ", " + Top.Sujet_id + ", '" + Top.Nom + "', '" + Top.DescriptifTopic + "', '" + Top.DateCreation + "', " + Top.Resolu + ", " + Top.Utilisateur_id + ")";
-                    command.ExecuteNonQuery();
+                    TopicDal.ps_FOR_CreateTopic(top.Sujet_id, top.Nom, top.DescriptifTopic, top.DateCreation, top.Resolu, top.Utilisateur_id);
                 }
-                return true;
+                return 0;
             }
             catch
             {
-                return false;
+                return -1;
             }
         }
 
@@ -100,7 +99,7 @@ namespace Forum.DAL
                     }
                 }
             }
-            return null;
+            return ListT;
         }
 
         public TopicD GetTopic(int id)
@@ -162,12 +161,6 @@ namespace Forum.DAL
                 }
             }
             return null;
-        }
-
-        internal int CreateTopicEvent(TopicD topicD)
-        {
-            //Même chose que pour CreateTopic mais on retournera cette fois-ci l'Id du Topic créé.
-            throw new NotImplementedException();
         }
     }
 }
