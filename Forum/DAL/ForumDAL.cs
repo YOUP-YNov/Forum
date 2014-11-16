@@ -1,4 +1,5 @@
 ﻿using Forum.DAL.Data;
+using Forum.DAL.Data.Mappeur;
 using Forum.myDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
@@ -14,90 +15,49 @@ namespace Forum.DAL
 
         public bool CreateForum(ForumD forum)
         {
-            try
+            using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
             {
-                using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
-                {
-                    ForumTable.ps_FOR_CreateForum(forum.Nom, forum.Url);
-                }
-            return true;
-        }
-            catch
-            {
-                return false;
+                ForumTable.ps_FOR_CreateForum(forum.Nom, forum.Url);
             }
+            return true;
         }
 
         public bool EditForum(ForumD forum)
         {
-            try
+            using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
             {
-                using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
-                {
-                    ForumTable.ps_FOR_UpdateForum(forum.Forum_id, forum.Nom);
-                }
-                return true;
+                ForumTable.ps_FOR_UpdateForum(forum.Forum_id, forum.Nom);
             }
-            catch
-            {
-                return false;
-            }
+            return true;
         }
 
         public bool DeleteForum(int id)
         {
-            try
+            using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
             {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = myConnection;
-                    command.CommandText = "DELETE FROM FOR_Forum WHERE Forum_id = " + id;
-                    command.ExecuteNonQuery();
-                }
-                return true;
+                ForumTable.ps_FOR_DeleteForum(id);
             }
-            catch
-            {
-                return false;
-            }
+            return true;
         }
 
         public List<ForumD> GetListForum()
         {
-            List<ForumD> ListF = new List<ForumD>();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Forum", myConnection))
+            myDataSet.ps_FOR_GetForumDataTable datatable;
+            using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
             {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        ListF.Add(new ForumD
-                        {
-                            Forum_id = Convert.ToInt32(reader["Forum_id"]),
-                            Nom = reader["Nom"].ToString(),
-                            Url = reader["Url"].ToString()
-                        });
-                    }
-                }
+                datatable = ForumTable.ps_FOR_GetListForum();
             }
-            return ListF;
+            return ForumMappeur.ToForumD(datatable).ToList();
         }
 
         public ForumD GetForum(int id)
         {
-            ForumD forum = new ForumD();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Forum WHERE Forum_id = " + id, myConnection))
+            myDataSet.ps_FOR_GetForumDataTable datatable;
+            using (ps_FOR_GetForumTableAdapter ForumTable = new ps_FOR_GetForumTableAdapter())
             {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        forum.Nom = reader["Nom"].ToString();
-                        forum.Url = reader["Url"].ToString();
-                    }
-                }
+                datatable = ForumTable.ps_FOR_GetListForum();
             }
-            return forum;
+            return ForumMappeur.ToForumD(datatable).ElementAt(0);
         }
     }
 }

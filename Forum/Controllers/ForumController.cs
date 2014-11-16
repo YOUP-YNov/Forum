@@ -77,8 +77,14 @@ namespace Forum.Controllers
         [Route("api/Forum/{id}")]
         public bool EditForum(ForumModel forum)
         {
+            ForumBusiness forumB = new ForumBusiness();
+            forumB.EditForum(ConvertModel.ToBusiness(forum));
             return true;
         }
+        
+        ///////////////////////////////////////////////////////////////////
+        //PROBLEME DE CONTRAINTES avec la BDD
+        ////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// Delete a forum by id
@@ -88,6 +94,8 @@ namespace Forum.Controllers
         [Route("api/Forum/{IDForum}")]
         public bool DeleteForum(int IDForum)
         {
+            ForumBusiness forumB = new ForumBusiness();
+            forumB.DeleteForum(IDForum);
             return true;
         }
     }
