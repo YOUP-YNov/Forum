@@ -25,8 +25,15 @@ namespace Forum.Controllers
         [Route("api/Forums")]
         public List<ForumModel> GetListForum()
         {
-            ForumBusiness forum = new ForumBusiness();
-            return ConvertModel.ToModel(forum.GetListForum());
+            try
+            {
+                ForumBusiness forum = new ForumBusiness();
+                return ConvertModel.ToModel(forum.GetListForum());
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -36,10 +43,17 @@ namespace Forum.Controllers
         /// <returns>ForumModel Forum</returns>       
         [HttpGet]
         [Route("api/Forum/{IDForum}")]
-         public ForumModel GetForum(int IDForum)
+        public ForumModel GetForum(int IDForum)
         {
-            ForumBusiness forum = new ForumBusiness();
-            return ConvertModel.ToModel(forum.GetForum(IDForum));
+            try
+            {
+                ForumBusiness forum = new ForumBusiness();
+                return ConvertModel.ToModel(forum.GetForum(IDForum));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>

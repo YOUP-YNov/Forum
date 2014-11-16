@@ -23,16 +23,14 @@ namespace Forum.Business
         }
         public List<TopicB> GetListTopic()
         {
-
             TopicDAL topicD = new TopicDAL();
-            // TODO
             return ConvertBusiness.ToBusiness(topicD.GetListTopic());
         }
        
         public bool CreateTopic(TopicB Top)
         {
             TopicDAL topicD = new TopicDAL();
-            return topicD.EditTopic(ConvertBusiness.ToDAL(Top));
+            return topicD.CreateTopic(ConvertBusiness.ToDAL(Top));
         }
         public bool DeleteTopic(int id)
         {
@@ -40,16 +38,17 @@ namespace Forum.Business
             return topicD.DeleteTopic(id);
         }
 
-        /*internal List<TopicB> GetTopicByCategory(int IDCategory)
-        {
-            TopicDAL topicdal = new TopicDAL();
-            return ConvertBusiness.ToBusiness(topicdal.GetTopicByCategory(IDCategory));
-        }*/
-
+        
         public List<TopicB> GetTopicByCategory(int idCategorie)
         {
             TopicDAL topicdal = new TopicDAL();
             return ConvertBusiness.ToBusiness(topicdal.GetTopicByCategory(idCategorie));
+        }
+
+        internal int CreateTopicEvent(TopicB topicB)
+        {
+            TopicDAL topicD = new TopicDAL();
+            return topicD.CreateTopicEvent(ConvertBusiness.ToDAL(topicB));
         }
     }
 }

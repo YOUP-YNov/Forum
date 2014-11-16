@@ -22,9 +22,15 @@ namespace Forum.Controllers
         [Route("api/Topics")]
         public List<TopicModel> GetListTopic()
         {
-            TopicBusiness topic = new TopicBusiness();
-            List<TopicModel> ob = ConvertModel.ToModel(topic.GetListTopic());
-            return ob;
+            try
+            {
+                TopicBusiness topic = new TopicBusiness();
+                return ConvertModel.ToModel(topic.GetListTopic());
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -36,51 +42,74 @@ namespace Forum.Controllers
         [Route("api/Topic/{id}")]
         public TopicModel GetTopic(int id)
         {
-            TopicBusiness topic = new TopicBusiness();
-            return ConvertModel.ToModel(topic.GetTopic(id));
+            try
+            {
+                TopicBusiness topic = new TopicBusiness();
+                return ConvertModel.ToModel(topic.GetTopic(id));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        
+
 
         /// <summary>
         /// Get a topic information by Category id
         /// </summary>
-        /// <param name="IDEvent">event id</param>
+        /// <param name="IDCategory">event id</param>
         /// <returns>Array TopicModel</returns>
         [HttpGet]
         [Route("api/TopicCategory/{IDCategory}")]
         public List<TopicModel> GetTopicByCategory(int IDCategory)
         {
-            TopicBusiness topic = new TopicBusiness();
-            return ConvertModel.ToModel(topic.GetTopicByCategory(IDCategory));
+            try
+            {
+                TopicBusiness topic = new TopicBusiness();
+                return ConvertModel.ToModel(topic.GetTopicByCategory(IDCategory));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
-        /// Create a topic with category id, a name and the content
+        /// Create a topic 
         /// </summary>
-        /// <param name="topic">TopicModel</param>
+        /// <param name="TopM">TopicModel</param>
         [HttpPost]
         [Route("api/Topic")]
-        public bool CreateTopic(TopicModel Top)
+        public bool CreateTopic(TopicModel TopM)
         {
-            /*TopicModel NewTopic = new TopicModel();
-            NewTopic.Nom = Name;
-            NewTopic.Url = string.Empty;
             TopicBusiness Top = new TopicBusiness();
-            Top.CreateForum(ConvertModel.ToBusiness(NewTopic));*/
-            return true;
+            return Top.CreateTopic(ConvertModel.ToBusiness(TopM));
+        }
+
+        /// <summary>
+        /// Create a topic for an evenement and return his Id
+        /// </summary>
+        /// <param name="TopM">TopicModel</param>
+        /// <returns>int Id_Topic</returns>
+        [HttpPost]
+        [Route("api/TopicEvent")]
+        public int CreateTopicEvent(TopicModel TopM)
+        {
+            TopicBusiness Top = new TopicBusiness();
+            return Top.CreateTopicEvent(ConvertModel.ToBusiness(TopM));
         }
 
         /// <summary>
         /// Edit a topic by id and the changed text
         /// </summary>
-        /// <param name="topic">TopicModel</param>
+        /// <param name="Top">TopicModel</param>
         [HttpPost]
         [Route("api/Topic/{id}")]
         public bool EditTopic(TopicModel Top)
         {
             TopicBusiness TopicM = new TopicBusiness();
-            return TopicM.EditTopic(ConvertModel.ToBusiness(Top));          
+            return TopicM.EditTopic(ConvertModel.ToBusiness(Top));
         }
 
         /// <summary>

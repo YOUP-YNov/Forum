@@ -103,30 +103,6 @@ namespace Forum.DAL
             return null;
         }
 
-        public List<TopicD> GetListTopic(int Idcat)
-        {
-            List<TopicD> ListT = new List<TopicD>();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Topic where Sujet_id =" + Idcat, myConnection))
-            {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        ListT.Add(new TopicD
-                        {
-                            Topic_id = Convert.ToInt32(reader["Topic_id"]),
-                            Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]),
-                            Sujet_id = Convert.ToInt32(reader["Sujet_id"]),
-                            Nom = reader["Nom"].ToString(),
-                            DescriptifTopic = reader["DescriptifTopic"].ToString(),
-                            DateCreation = Convert.ToDateTime(reader["DateCreation"]),
-                            Resolu = Convert.ToBoolean(reader["Resolu"])
-                        });
-                    }
-                }
-            }
-            return null;
-        }
         public TopicD GetTopic(int id)
         {
             TopicD top = new TopicD();
@@ -165,6 +141,32 @@ namespace Forum.DAL
 
         internal List<TopicD> GetTopicByCategory(int IDCategory)
         {
+            List<TopicD> ListT = new List<TopicD>();
+            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Topic where Sujet_id =" + IDCategory, myConnection))
+            {
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        ListT.Add(new TopicD
+                        {
+                            Topic_id = Convert.ToInt32(reader["Topic_id"]),
+                            Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]),
+                            Sujet_id = Convert.ToInt32(reader["Sujet_id"]),
+                            Nom = reader["Nom"].ToString(),
+                            DescriptifTopic = reader["DescriptifTopic"].ToString(),
+                            DateCreation = Convert.ToDateTime(reader["DateCreation"]),
+                            Resolu = Convert.ToBoolean(reader["Resolu"])
+                        });
+                    }
+                }
+            }
+            return null;
+        }
+
+        internal int CreateTopicEvent(TopicD topicD)
+        {
+            //Même chose que pour CreateTopic mais on retournera cette fois-ci l'Id du Topic créé.
             throw new NotImplementedException();
         }
     }

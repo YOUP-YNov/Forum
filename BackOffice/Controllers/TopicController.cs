@@ -13,15 +13,29 @@ namespace BackOffice.Controllers
         // GET: Topic
         public ActionResult Index()
         {
-            TopicBusiness topicB = new TopicBusiness();
-            List<TopicModel> list = ConvertModel.ToModel(topicB.GetListTopic());
-            return View(list);
+            try
+            {
+                TopicBusiness topicB = new TopicBusiness();
+                List<TopicModel> list = ConvertModel.ToModel(topicB.GetListTopic());
+                return View(list);
+            }
+            catch
+            {
+                return View();
+            }
         }
-        public ActionResult Index(int idCategorie)
+        public ActionResult IndexByCategory(int idCategorie)
         {
-            TopicBusiness topicB = new TopicBusiness();
-            List<TopicModel> list = ConvertModel.ToModel(topicB.GetTopicByCategory(idCategorie));
-            return View(list);
+            try
+            {
+                TopicBusiness topicB = new TopicBusiness();
+                List<TopicModel> list = ConvertModel.ToModel(topicB.GetTopicByCategory(idCategorie));
+                return View("Index",list);
+            }
+            catch
+            {
+                return View();
+            }
         }
         // GET: Topic/Details/5
         public ActionResult Details(int id)
