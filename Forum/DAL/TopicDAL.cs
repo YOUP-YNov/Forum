@@ -11,13 +11,13 @@ namespace Forum.DAL
 {
     public class TopicDAL
     {
-        public bool CreateTopic(TopicD top)
+        public int CreateTopic(TopicD top)
         {
             using (ps_FOR_GetTopicTableAdapter TopicDal = new ps_FOR_GetTopicTableAdapter())
             {
                 TopicDal.ps_FOR_CreateTopic(top.Sujet_id, top.Nom, top.DescriptifTopic, top.DateCreation, top.Resolu, top.Utilisateur_id);
             }
-            return true;
+            return -1;
         }
 
         public bool EditTopic(TopicD top)
@@ -38,12 +38,12 @@ namespace Forum.DAL
             return true;
         }
 
-        public List<TopicD> GetListTopic(int Topic_id)
+        public List<TopicD> GetListTopic()
         {
             myDataSet.ps_FOR_GetTopicDataTable datatable;
             using (ps_FOR_GetTopicTableAdapter TopicTable = new ps_FOR_GetTopicTableAdapter())
             {
-                datatable = TopicTable.ps_FOR_GetListTopic(Topic_id);
+                datatable = TopicTable.ps_FOR_GetListTopic();
             }
             return TopicMappeur.ToTopicD(datatable).ToList();
         }
