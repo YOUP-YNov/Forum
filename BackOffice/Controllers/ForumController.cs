@@ -13,17 +13,31 @@ namespace BackOffice.Controllers
         // GET: Forum
         public ActionResult Index()
         {
-            ForumBusiness forumB = new ForumBusiness();
-            forumB.GetListForum();
-            return View();
+            try
+            {
+                ForumBusiness forumB = new ForumBusiness();
+                forumB.GetListForum();
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Forum/Details/5
         public ActionResult Details(int id)
         {
-            ForumBusiness forumB = new ForumBusiness();
-            ForumModel forumM = ConvertModel.ToModel(forumB.GetForum(id));
-            return View(forumM);
+            try
+            {
+                ForumBusiness forumB = new ForumBusiness();
+                ForumModel forumM = ConvertModel.ToModel(forumB.GetForum(id));
+                return View(forumM);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Forum/Create

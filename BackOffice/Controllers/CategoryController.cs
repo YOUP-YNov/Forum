@@ -13,30 +13,58 @@ namespace BackOffice.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            CategorieBusiness cat = new CategorieBusiness();
-            List<CategorieModel> list = ConvertModel.ToModel(cat.GetListCategorie());
-            return View(list);
+            try
+            {
+                CategorieBusiness cat = new CategorieBusiness();
+                List<CategorieModel> list = ConvertModel.ToModel(cat.GetListCategorie());
+                return View(list);
+            }
+            catch
+            {
+                return View();
+            }
         }
-        public ActionResult Index(int idForum)
+        public ActionResult IndexByForum(int idForum)
         {
-            CategorieBusiness cat = new CategorieBusiness();
-            List<CategorieModel> list = ConvertModel.ToModel(cat.GetListCategorieForum(idForum));
-            return View(list);
+            try
+            {
+                CategorieBusiness cat = new CategorieBusiness();
+                List<CategorieModel> list = ConvertModel.ToModel(cat.GetListCategorieForum(idForum));
+                return View("Index", list);
+            }
+            catch
+            {
+                return View();
+            }
         }
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
-            CategorieBusiness cat = new CategorieBusiness();
-            CategorieModel category = ConvertModel.ToModel(cat.getCategorie(id));
-            return View(category);
+            try
+            {
+                CategorieBusiness cat = new CategorieBusiness();
+                CategorieModel category = ConvertModel.ToModel(cat.getCategorie(id));
+                return View(category);
+            }
+            catch
+            {
+                return (null);
+            }
         }
 
         // GET: Category/Create
         public ActionResult Create()
         {
-            ForumBusiness forumB = new ForumBusiness();
-            List<ForumModel> list = ConvertModel.ToModel(forumB.GetListForum());
-            ViewBag.ForumChoice = new SelectList(list, "Forum_id", "Nom");
+            try
+            {
+                ForumBusiness forumB = new ForumBusiness();
+                List<ForumModel> list = ConvertModel.ToModel(forumB.GetListForum());
+                ViewBag.ForumChoice = new SelectList(list, "Forum_id", "Nom");
+            }
+            catch
+            {
+                ViewBag.ForumChoice = new SelectList(null);
+            }
             return View();
         }
 
@@ -60,11 +88,19 @@ namespace BackOffice.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            CategorieBusiness cat = new CategorieBusiness();
-            ForumBusiness forumB = new ForumBusiness();
-            List<ForumModel> list = ConvertModel.ToModel(forumB.GetListForum());
-            ViewBag.ForumChoice = new SelectList(list, "Forum_id", "Nom");
-            return View(cat.getCategorie(id));
+            try
+            {
+                CategorieBusiness cat = new CategorieBusiness();
+                ForumBusiness forumB = new ForumBusiness();
+                List<ForumModel> list = ConvertModel.ToModel(forumB.GetListForum());
+                ViewBag.ForumChoice = new SelectList(list, "Forum_id", "Nom");
+                return View(cat.getCategorie(id));
+            }
+            catch
+            {
+                ViewBag.ForumChoice = new SelectList(null);
+                return View();
+            }
         }
 
         // POST: Category/Edit/5

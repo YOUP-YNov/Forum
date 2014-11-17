@@ -21,6 +21,7 @@ namespace Forum.DAL.Data.Mappeur
         public static ForumD ToForumD(this ForumRow row)
         {
             ForumD d = new ForumD();
+            d.Forum_id = row.Forum_id;
             d.Nom = row.Nom;
             d.Url = row.Url;
 

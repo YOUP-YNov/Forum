@@ -13,17 +13,45 @@ namespace BackOffice.Controllers
         // GET: Message
         public ActionResult Index()
         {
-            MessageBusiness messageB = new MessageBusiness();
-            List<MessageModel> list = ConvertModel.ToModel(messageB.GetListMessage());
-            return View(list);
+            try
+            {
+                MessageBusiness messageB = new MessageBusiness();
+                List<MessageModel> list = ConvertModel.ToModel(messageB.GetListMessage());
+                return View(list);
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult IndexByTopic(int idTopic)
+        {
+            try
+            {
+                MessageBusiness messageB = new MessageBusiness();
+                List<MessageModel> list = ConvertModel.ToModel(messageB.GetListTopicMessage(idTopic));
+                return View("Index", list);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Message/Details/5
         public ActionResult Details(int id)
         {
-            MessageBusiness messageB = new MessageBusiness();
-            MessageModel message = ConvertModel.ToModel(messageB.getMessage(id));
-            return View(message);
+            try
+            {
+                MessageBusiness messageB = new MessageBusiness();
+                MessageModel message = ConvertModel.ToModel(messageB.getMessage(id));
+                return View(message);
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: Message/Create

@@ -25,8 +25,15 @@ namespace Forum.Controllers
         [Route("api/CategoryForum/{IDForum}")]
         public List<CategorieModel> GetListCategoryForum(int IDForum)
         {
-            CategorieBusiness categorie = new CategorieBusiness();
-            return ConvertModel.ToModel(categorie.GetListCategorieForum(IDForum));
+            try
+            {
+                CategorieBusiness categorie = new CategorieBusiness();
+                return ConvertModel.ToModel(categorie.GetListCategorieForum(IDForum));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
 
@@ -38,8 +45,15 @@ namespace Forum.Controllers
         [Route("api/Category/{IDCategory}")]
         public CategorieModel GetCategory(int IDCategory)
         {
-            CategorieBusiness catbusi = new CategorieBusiness();
-            return ConvertModel.ToModel(catbusi.getCategorie(IDCategory)); ;
+            try
+            {
+                CategorieBusiness catbusi = new CategorieBusiness();
+                return ConvertModel.ToModel(catbusi.getCategorie(IDCategory));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
 
@@ -51,8 +65,15 @@ namespace Forum.Controllers
         [Route("api/Category")]
         public List<CategorieModel> GetListCategory()
         {
-            CategorieBusiness categorie = new CategorieBusiness();
-            return ConvertModel.ToModel(categorie.GetListCategorie());
+            try
+            {
+                CategorieBusiness categorie = new CategorieBusiness();
+                return ConvertModel.ToModel(categorie.GetListCategorie());
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -62,9 +83,9 @@ namespace Forum.Controllers
         [HttpPost]
         [Route("api/Category")]
         public bool CreateCategory(CategorieModel cat)
-        { 
+        {
             CategorieBusiness catmodel = new CategorieBusiness();
-            return catmodel.CreateCategorie(ConvertModel.ToBusiness(cat));             
+            return catmodel.CreateCategorie(ConvertModel.ToBusiness(cat));
         }
 
         /// <summary>
@@ -76,7 +97,7 @@ namespace Forum.Controllers
         public bool EditCategory(CategorieModel cat)
         {
             CategorieBusiness CategoryM = new CategorieBusiness();
-            return CategoryM.EditCategorie(ConvertModel.ToBusiness(cat));  
+            return CategoryM.EditCategorie(ConvertModel.ToBusiness(cat));
         }
 
         /// <summary>

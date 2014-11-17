@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Forum.Controllers;
-using AutoMapper;
 using Forum.Business.Data;
 using System;
 using System.Collections.Generic;

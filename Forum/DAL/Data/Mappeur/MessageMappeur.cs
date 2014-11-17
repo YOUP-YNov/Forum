@@ -7,7 +7,26 @@ using System.Web;
 
 namespace Forum.DAL.Data.Mappeur
 {
-    public class MessageMappeur
+    public static class MessageMappeur
     {
+        public static IEnumerable<MessageD> ToMessageD(this MessageTable table)
+        {
+            List<MessageD> list = new List<MessageD>();
+            foreach(MessageRow item in table.Rows)
+            {
+                list.Add(ToMessageD(item));
+            }
+            return list;
+        }
+        public static MessageD ToMessageD(this MessageRow row)
+        {
+            MessageD d = new MessageD();
+            d.Topic_id = row.Topic_id;
+            d.Utilisateur_id = row.Utilisateur_id;
+            d.DatePoste = row.DatePoste;
+            d.ContenuMessage = row.ContenuMessage;
+
+            return d;
+        }
     }
 }
