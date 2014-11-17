@@ -44,5 +44,10 @@ namespace Forum.Business
             TopicDAL topicdal = new TopicDAL();
             return ConvertBusiness.ToBusiness(topicdal.GetTopicByCategory(idCategorie));
         }
+
+        internal TopicB GetTopicByEvent(int IDEvent)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

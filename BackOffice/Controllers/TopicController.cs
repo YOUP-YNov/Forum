@@ -34,7 +34,7 @@ namespace BackOffice.Controllers
             }
             catch
             {
-                return View();
+                return View("Index");
             }
         }
         // GET: Topic/Details/5

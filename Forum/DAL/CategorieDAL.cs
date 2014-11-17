@@ -20,15 +20,15 @@ namespace Forum.DAL
             {
                 CategorieDal.ps_FOR_CreateCategorie(cat.Forum_id, cat.Nom);
             }
-            return true;
-        }
+                return true;
+            }
 
         public bool EditCategorie(CategorieD cat)
         {
             using (ps_FOR_GetCategorieTableAdapter CategorieDal = new ps_FOR_GetCategorieTableAdapter())
-            {
+        {
                 CategorieDal.ps_FOR_UpdateCategorie(cat.Sujet_id, cat.Nom);
-            }
+        }
             return true;
         }
 
@@ -46,7 +46,7 @@ namespace Forum.DAL
             myDataSet.ps_FOR_GetCategorieDataTable datatable;
             using (ps_FOR_GetCategorieTableAdapter CategorieDal = new ps_FOR_GetCategorieTableAdapter())
             {
-                datatable = CategorieDal.ps_FOR_GetListCategorie();
+            datatable = CategorieDal.ps_FOR_GetListCategorie();
             }
             return CategorieMappeur.ToCategorieD(datatable).ToList();
         }
@@ -57,18 +57,18 @@ namespace Forum.DAL
 
             using (ps_FOR_GetCategorieTableAdapter CategorieDal = new ps_FOR_GetCategorieTableAdapter())
             {
-                datatable = CategorieDal.ps_FOR_GetListCategorieByForum(forum_id);
+            datatable = CategorieDal.ps_FOR_GetListCategorieByForum(forum_id);
             }
             return CategorieMappeur.ToCategorieD(datatable).ToList();
         }
 
         internal CategorieD GetCategorie(int id)
-        {
+            {
             myDataSet.ps_FOR_GetCategorieDataTable datatable;
             using (ps_FOR_GetCategorieTableAdapter CategorieDal = new ps_FOR_GetCategorieTableAdapter())
             {
                 datatable = CategorieDal.ps_FOR_GetCategorie(id);
-            }
+        }
             return CategorieMappeur.ToCategorieD(datatable).ElementAt(0);
         }
     }
