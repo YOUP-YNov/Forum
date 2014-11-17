@@ -3025,6 +3025,11 @@ namespace Forum.myDataSetTableAdapters {
             }
             return returnValue;
         }
+
+        internal void ps_FOR_CreateTopic(long p1, string p2)
+        {
+            throw new System.NotImplementedException();
+        }
     }
     
     /// <summary>
