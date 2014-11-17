@@ -75,29 +75,19 @@ namespace Forum.Controllers
             }
         }
 
+        ////////////////////////////////////////////////////////////////////////
+        //probleme contrainte sql
+        //////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Create a topic 
         /// </summary>
         /// <param name="TopM">TopicModel</param>
         [HttpPost]
         [Route("api/Topic")]
-        public bool CreateTopic(TopicModel TopM)
+        public int CreateTopic(TopicModel TopM)
         {
             TopicBusiness Top = new TopicBusiness();
             return Top.CreateTopic(ConvertModel.ToBusiness(TopM));
-        }
-
-        /// <summary>
-        /// Create a topic for an evenement and return his Id
-        /// </summary>
-        /// <param name="TopM">TopicModel</param>
-        /// <returns>int Id_Topic</returns>
-        [HttpPost]
-        [Route("api/TopicEvent")]
-        public int CreateTopicEvent(TopicModel TopM)
-        {
-            TopicBusiness Top = new TopicBusiness();
-            return Top.CreateTopicEvent(ConvertModel.ToBusiness(TopM));
         }
 
         /// <summary>

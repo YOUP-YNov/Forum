@@ -27,7 +27,7 @@ namespace Forum.Business
             return ConvertBusiness.ToBusiness(topicD.GetListTopic());
         }
        
-        public bool CreateTopic(TopicB Top)
+        public int CreateTopic(TopicB Top)
         {
             TopicDAL topicD = new TopicDAL();
             return topicD.CreateTopic(ConvertBusiness.ToDAL(Top));
@@ -45,10 +45,9 @@ namespace Forum.Business
             return ConvertBusiness.ToBusiness(topicdal.GetTopicByCategory(idCategorie));
         }
 
-        internal int CreateTopicEvent(TopicB topicB)
+        internal TopicB GetTopicByEvent(int IDEvent)
         {
-            TopicDAL topicD = new TopicDAL();
-            return topicD.CreateTopicEvent(ConvertBusiness.ToDAL(topicB));
+            throw new NotImplementedException();
         }
     }
 }
