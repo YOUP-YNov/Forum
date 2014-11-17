@@ -54,7 +54,7 @@ namespace Forum.DAL
         //à faire
         public bool CreateCategorie(CategorieD cat)
         {
-            int nbrow = CategorieDal.ps_FOR_CreateCategorie(cat.Forum_id, cat.Nom);
+            int nbrow = CategorieDal.ps_FOR_CreateCategorie(cat.Sujet_id, cat.Nom);
             //using (SqlCommand command = new SqlCommand())
             //{
             //    command.Connection = myConnection;
