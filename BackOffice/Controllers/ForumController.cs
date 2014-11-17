@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BackOffice.Models;
 using Forum.Business;
+using System.Net;
 
 namespace BackOffice.Controllers
 {
@@ -15,9 +16,8 @@ namespace BackOffice.Controllers
         {
             try
             {
-                ForumBusiness forumB = new ForumBusiness();
-                forumB.GetListForum();
-                return View();
+                ForumBusiness forumB = new ForumBusiness();                
+                return View(ConvertModel.ToModel(forumB.GetListForum()));
             }
             catch
             {

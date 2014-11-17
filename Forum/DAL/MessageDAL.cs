@@ -1,4 +1,6 @@
 ﻿using Forum.DAL.Data;
+using Forum.DAL.Data.Mappeur;
+using Forum.myDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -25,38 +27,23 @@ namespace Forum.DAL
         }
         public bool CreateMessage(MessageD mes)
         {
-            try
+             {
+                 using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
             {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = myConnection;
-                    command.CommandText = "INSERT INTO FOR_Message (Topic_id, Utilisateur_id, DatePoste, ContenuMessage) "
-                        + "Values (" + mes.Topic_id + ", '" + mes.Utilisateur_id + "', '" + mes.DatePoste.ToString() + "', '" + mes.ContenuMessage + "')";
-                    command.ExecuteNonQuery();
-                }
+                MessageDal.ps_FOR_CreateMessage(mes.Topic_id, mes.Utilisateur_id,mes.DatePoste,mes.ContenuMessage);
+            }
                 return true;
-            }
-            catch
-            {
-                return false;
-            }
+        }
         }
 
         public bool EditMessage(MessageD mes)
         {
-            try
             {
-                using (SqlCommand command = new SqlCommand())
+                using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
                 {
-                    command.Connection = myConnection;
-                    command.CommandText = "UPDATE FOR_Message SET ContenuMessage = '" + mes.ContenuMessage + "' WHERE Message_id = " + mes.Message_id;
-                    command.ExecuteNonQuery();
+                    MessageDal.ps_FOR_UpdateMessage(mes.Message_id, mes.ContenuMessage);
                 }
                 return true;
-            }
-            catch
-            {
-                return false;
             }
         }
 
@@ -80,26 +67,17 @@ namespace Forum.DAL
 
         public List<MessageD> GetListTopicMessage(int idTopic)
         {
-            List<MessageD> listM = new List<MessageD>();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Message WHERE Topic_id = " + idTopic, myConnection))
+
+            myDataSet.ps_FOR_GetMessageDataTable datatable;
+
+            using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
             {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        listM.Add(new MessageD
-                        {
-                            Message_id = Convert.ToInt32(reader["Message_id"]),
-                            Topic_id = Convert.ToInt32(reader["Topic_id"]),
-                            DatePoste = Convert.ToDateTime(reader["DatePoste"]),
-                            Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]),
-                            ContenuMessage = reader["ContenuMessage"].ToString()
-                        });
-                    }
-                }
+                datatable = MessageDal.ps_FOR_GetListTopicMessage(idTopic);
             }
-            return listM;
+            return MessageMappeur.ToMessageD(datatable).ToList();
         }
+
+
 
         public List<MessageD> GetListUserMessage(int idUser)
         {
