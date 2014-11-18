@@ -53,7 +53,7 @@ namespace Forum.DAL
             myDataSet.ps_FOR_GetTopicDataTable datatable;
             using (ps_FOR_GetTopicTableAdapter TopicDal = new ps_FOR_GetTopicTableAdapter())
             {
-                datatable = TopicDal.ps_FOR_GetListTopic(id);
+                datatable = TopicDal.ps_FOR_GetTopic(id);
             }
             return TopicMappeur.ToTopicD(datatable).ElementAt(0);
         }

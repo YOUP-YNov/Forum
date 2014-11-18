@@ -46,17 +46,18 @@ namespace BackOffice.Controllers
         }
 
         // GET: Topic/Create
-        public ActionResult Create(int id)
+        public ActionResult Create()
         {
             CategorieBusiness categorie = new CategorieBusiness();
-            ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorieForum(id));
+            ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorie(), "Sujet_id", "Nom");
             return View();
         }
 
         // POST: Topic/Create
         [HttpPost]
-        public ActionResult Create(TopicModel topic)
+        public ActionResult Create(TopicModel topic, int CategoryChoice)
         {
+            topic.Sujet_id = CategoryChoice;
             try
             {
                 // TODO: Add insert logic here
@@ -74,14 +75,17 @@ namespace BackOffice.Controllers
         // GET: Topic/Edit/5
         public ActionResult Edit(int id)
         {
+            CategorieBusiness categorie = new CategorieBusiness();
+            ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorie(), "Sujet_id", "Nom");
             TopicBusiness topicB = new TopicBusiness();
             return View(topicB.GetTopic(id));
         }
 
         // POST: Topic/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, TopicModel topic)
+        public ActionResult Edit(int id, TopicModel topic, int CategoryChoice)
         {
+            topic.Sujet_id = CategoryChoice;
             try
             {
                 // TODO: Add update logic here
