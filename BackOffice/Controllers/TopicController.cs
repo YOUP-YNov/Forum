@@ -38,10 +38,10 @@ namespace BackOffice.Controllers
             }
         }
         // GET: Topic/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int idTopic)
         {
             TopicBusiness topicB = new TopicBusiness();
-            TopicModel topic = ConvertModel.ToModel(topicB.GetTopic(id));
+            TopicModel topic = ConvertModel.ToModel(topicB.GetTopic(idTopic));
             return View(topic);
         }
 
@@ -55,9 +55,10 @@ namespace BackOffice.Controllers
 
         // POST: Topic/Create
         [HttpPost]
-        public ActionResult Create(TopicModel topic, int CategoryChoice)
+        public ActionResult Create(TopicModel topic, int CategoryChoice, DateTime DateCrea)
         {
             topic.Sujet_id = CategoryChoice;
+            topic.DateCreation = DateCrea;
             try
             {
                 // TODO: Add insert logic here
@@ -73,19 +74,20 @@ namespace BackOffice.Controllers
         }
 
         // GET: Topic/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int idTopic)
         {
             CategorieBusiness categorie = new CategorieBusiness();
             ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorie(), "Sujet_id", "Nom");
             TopicBusiness topicB = new TopicBusiness();
-            return View(topicB.GetTopic(id));
+            return View(topicB.GetTopic(idTopic));
         }
 
         // POST: Topic/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, TopicModel topic, int CategoryChoice)
+        public ActionResult Edit(int id, TopicModel topic, int CategoryChoice, DateTime DateCrea)
         {
             topic.Sujet_id = CategoryChoice;
+            topic.DateCreation = DateCrea;
             try
             {
                 // TODO: Add update logic here
@@ -100,22 +102,16 @@ namespace BackOffice.Controllers
             }
         }
 
-        // GET: Topic/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
         // POST: Topic/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, TopicModel topic)
+        public ActionResult Delete(int idTopic)
         {
             try
             {
                 // TODO: Add delete logic here
 
                 TopicBusiness topicB = new TopicBusiness();
-                topicB.DeleteTopic(id);
+                topicB.DeleteTopic(idTopic);
                 return RedirectToAction("Index");
             }
             catch

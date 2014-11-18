@@ -103,22 +103,15 @@ namespace BackOffice.Controllers
             }
         }
 
-        // GET: Message/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: Message/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, MessageModel message)
+        public ActionResult Delete(int idMessage)
         {
             try
             {
                 // TODO: Add delete logic here
 
                 MessageBusiness messageB = new MessageBusiness();
-                messageB.DeleteMessage(id);
+                messageB.DeleteMessage(idMessage);
                 return RedirectToAction("Index");
             }
             catch

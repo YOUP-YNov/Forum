@@ -87,20 +87,13 @@ namespace BackOffice.Controllers
             }
         }
 
-        // GET: Forum/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: Forum/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, ForumModel forum)
+        public ActionResult Delete(int idForum)
         {
             try
             {
                 ForumBusiness forumB = new ForumBusiness();
-                forumB.DeleteForum(id);
+                forumB.DeleteForum(idForum);
                 return RedirectToAction("Index");
             }
             catch

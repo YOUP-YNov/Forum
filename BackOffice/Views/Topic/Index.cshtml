@@ -62,9 +62,9 @@
                     @Html.DisplayFor(modelItem => item.Utilisateur_id)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "Edit", new { idTopic = item.Topic_id }) |
+                    @Html.ActionLink("Details", "Details", new { idTopic = item.Topic_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { idTopic = item.Topic_id }) |
                     @Html.ActionLink("Voir les messages", "IndexByTopic", "Message", new { idTopic = item.Topic_id }, null)
                 </td>
             </tr>

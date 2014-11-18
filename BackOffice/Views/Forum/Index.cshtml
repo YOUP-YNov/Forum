@@ -38,9 +38,9 @@
                     @Html.DisplayFor(modelItem => item.Url)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "Edit", new { idForum = item.Forum_id }) |
+                    @Html.ActionLink("Details", "Details", new { idForum = item.Forum_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { idForum = item.Forum_id }) |
                     @Html.ActionLink("Voir les categories", "IndexByForum", "Category", new { idForum = item.Forum_id }, null)
                 </td>
             </tr>
