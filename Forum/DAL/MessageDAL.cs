@@ -27,28 +27,25 @@ namespace Forum.DAL
         }
         public bool CreateMessage(MessageD mes)
         {
-             {
-                 using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
+            using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
             {
                 MessageDal.ps_FOR_CreateMessage(mes.Topic_id, mes.Utilisateur_id,mes.DatePoste,mes.ContenuMessage);
             }
                 return true;
         }
-        }
 
         public bool EditMessage(MessageD mes)
         {
+            using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
             {
-                using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
-                {
-                    MessageDal.ps_FOR_UpdateMessage(mes.Message_id, mes.ContenuMessage);
-                }
-                return true;
+                MessageDal.ps_FOR_UpdateMessage(mes.Message_id, mes.ContenuMessage);
             }
+            return true;
         }
 
         public bool DeleteMessage(int id)
         {
+
             try
             {
                 using (SqlCommand command = new SqlCommand())
