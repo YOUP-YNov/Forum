@@ -13,13 +13,15 @@ namespace Forum.DAL
     {
         public int CreateTopic(TopicD top)
         {
-            using (ps_FOR_GetTopicTableAdapter TopicDal = new ps_FOR_GetTopicTableAdapter())
+            int topic_id;
+            using (ps_FOR_GetTopicTableAdapter TopicTable = new ps_FOR_GetTopicTableAdapter())
             {
-                TopicDal.ps_FOR_CreateTopic(top.Sujet_id, top.Nom, top.DescriptifTopic, top.DateCreation, top.Resolu, top.Utilisateur_id);
+                topic_id = (int)TopicTable.ps_FOR_CreateTopic(top.Sujet_id, top.Nom, top.DescriptifTopic, top.DateCreation, top.Resolu, top.Utilisateur_id);
             }
-            return -1;
+            return topic_id;
         }
 
+        //a modif?
         public bool EditTopic(TopicD top)
         {
             using (ps_FOR_GetTopicTableAdapter TopicTable = new ps_FOR_GetTopicTableAdapter())
