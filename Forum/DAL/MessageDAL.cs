@@ -78,68 +78,36 @@ namespace Forum.DAL
 
         public List<MessageD> GetListUserMessage(int idUser)
         {
-            List<MessageD> listM = new List<MessageD>();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Message WHERE Utilisateur_id = " + idUser, myConnection))
+            myDataSet.ps_FOR_GetMessageDataTable datatable;
+
+            using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
             {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        listM.Add(new MessageD
-                        {
-                            Message_id = Convert.ToInt32(reader["Message_id"]),
-                            Topic_id = Convert.ToInt32(reader["Topic_id"]),
-                            DatePoste = Convert.ToDateTime(reader["DatePoste"]),
-                            Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]),
-                            ContenuMessage = reader["ContenuMessage"].ToString()
-                        });
-                    }
-                }
+                datatable = MessageDal.ps_FOR_GetListUserMessage( idUser);
             }
-            return listM;
+            return MessageMappeur.ToMessageD(datatable).ToList();
         }
 
         public List<MessageD> GetListMessage()
         {
-            List<MessageD> listM = new List<MessageD>();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Message", myConnection))
+
+            myDataSet.ps_FOR_GetMessageDataTable datatable;
+            using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
             {
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        listM.Add(new MessageD
-                        {
-                            Message_id = Convert.ToInt32(reader["Message_id"]),
-                            Topic_id = Convert.ToInt32(reader["Topic_id"]),
-                            DatePoste = Convert.ToDateTime(reader["DatePoste"]),
-                            Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]),
-                            ContenuMessage = reader["ContenuMessage"].ToString()
-                        });
-                    }
-                }
+                datatable = MessageDal.ps_FOR_GetListMessage();
             }
-            return listM;
+            return MessageMappeur.ToMessageD(datatable).ToList();
         }
 
         public MessageD GetMessage(int id)
         {
-            MessageD Mes = new MessageD();
-            using (SqlCommand command = new SqlCommand("SELECT * FROM FOR_Message WHERE Message_id = " + id, myConnection))
             {
-                using (SqlDataReader reader = command.ExecuteReader())
+                myDataSet.ps_FOR_GetMessageDataTable datatable;
+                using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
                 {
-                    while (reader.Read())
-                    {
-                        Mes.Message_id = Convert.ToInt32(reader["Message_id"]);
-                        Mes.Topic_id = Convert.ToInt32(reader["Topic_id"]);
-                        Mes.DatePoste = Convert.ToDateTime(reader["DatePoste"]);
-                        Mes.Utilisateur_id = Convert.ToInt32(reader["Utilisateur_id"]);
-                        Mes.ContenuMessage = reader["ContenuMessage"].ToString();
-                    }
+                    datatable = MessageDal.ps_FOR_GetMessage(id);
                 }
+                return MessageMappeur.ToMessageD(datatable).ElementAt(0);
             }
-            return Mes;
         }
 
         /*public void ReportMessage(int id) //A completer, pas moyen de signaler un messsage avec la bdd actuelle
