@@ -2936,7 +2936,7 @@ namespace Forum.myDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int ps_FOR_CreateTopic(global::System.Nullable<long> Sujet_id, string Nom, string DescriptifTopic, global::System.Nullable<global::System.DateTime> DateCreation, global::System.Nullable<bool> Resolu, global::System.Nullable<long> Utilisateur_id) {
+        public virtual object ps_FOR_CreateTopic(global::System.Nullable<long> Sujet_id, string Nom, string DescriptifTopic, global::System.Nullable<global::System.DateTime> DateCreation, global::System.Nullable<bool> Resolu, global::System.Nullable<long> Utilisateur_id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((Sujet_id.HasValue == true)) {
                 command.Parameters[1].Value = ((long)(Sujet_id.Value));
@@ -2979,16 +2979,22 @@ namespace Forum.myDataSetTableAdapters {
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3017,11 +3023,6 @@ namespace Forum.myDataSetTableAdapters {
                 }
             }
             return returnValue;
-        }
-
-        internal void ps_FOR_CreateTopic(long p1, string p2)
-        {
-            throw new System.NotImplementedException();
         }
     }
     
