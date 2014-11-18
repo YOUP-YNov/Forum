@@ -192,6 +192,10 @@
     <Compile Include="DAL\MessageDAL.cs" />
     <Compile Include="DAL\CategorieDAL.cs" />
     <Compile Include="DAL\TopicDAL.cs" />
+    <Compile Include="myDataSet.cs">
+      <DependentUpon>myDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="myDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

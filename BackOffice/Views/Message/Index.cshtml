@@ -50,9 +50,9 @@
                     @Html.DisplayFor(modelItem => item.ContenuMessage)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Edit", "Edit", new { idMessage = item.Message_id }) |
+                    @Html.ActionLink("Details", "Details", new { idMessage = item.Message_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { idMessage = item.Message_id })
                 </td>
             </tr>
         }

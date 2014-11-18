@@ -121,13 +121,12 @@ namespace BackOffice.Controllers
         }
 
         // POST: Category/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, CategorieModel cat)
+        public ActionResult Delete(int idCategorie)
         {
             try
             {
                 CategorieBusiness catB = new CategorieBusiness();
-                catB.DeleteCategorie(id);
+                catB.DeleteCategorie(idCategorie);
                 return RedirectToAction("Index");
             }
             catch
