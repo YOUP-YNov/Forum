@@ -69,6 +69,8 @@ namespace BackOffice.Controllers
             }
             catch
             {
+                CategorieBusiness categorie = new CategorieBusiness();
+                ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorie(), "Sujet_id", "Nom");
                 return View();
             }
         }
@@ -98,6 +100,8 @@ namespace BackOffice.Controllers
             }
             catch
             {
+                CategorieBusiness categorie = new CategorieBusiness();
+                ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorie(), "Sujet_id", "Nom");
                 return View();
             }
         }
