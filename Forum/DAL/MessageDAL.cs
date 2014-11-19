@@ -11,20 +11,6 @@ namespace Forum.DAL
 {
     public class MessageDAL
     {
-        string connexionstring = "data source=avip9np4yy.database.windows.net,1433;initial catalog=YoupDEV;persist security info=True;user id=youpDEV;password=youpD3VASP*;MultipleActiveResultSets=True;App=EntityFramework";
-        SqlConnection myConnection;
-        public MessageDAL()
-        {
-            myConnection = new SqlConnection(connexionstring);
-            try
-            {
-                myConnection.Open();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
         public bool CreateMessage(MessageD mes)
         {
             using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
@@ -111,17 +97,6 @@ namespace Forum.DAL
             }
         }*/
 
-        public void Dispose()
-        {
-            try
-            {
-                myConnection.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-        }
 
     }
 }
