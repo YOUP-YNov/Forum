@@ -40,12 +40,12 @@ namespace BackOffice.Controllers
         }
 
         // GET: Message/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int idMessage)
         {
             try
             {
                 MessageBusiness messageB = new MessageBusiness();
-                MessageModel message = ConvertModel.ToModel(messageB.getMessage(id));
+                MessageModel message = ConvertModel.ToModel(messageB.getMessage(idMessage));
                 return View(message);
             }
             catch
@@ -62,8 +62,9 @@ namespace BackOffice.Controllers
 
         // POST: Message/Create
         [HttpPost]
-        public ActionResult Create(MessageModel message)
+        public ActionResult Create(MessageModel message, DateTime DateCrea)
         {
+            message.DatePoste = DateCrea;
             try
             {
                 // TODO: Add insert logic here
@@ -79,16 +80,17 @@ namespace BackOffice.Controllers
         }
 
         // GET: Message/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int idMessage)
         {
             MessageBusiness messageB = new MessageBusiness();
-            return View(messageB.getMessage(id));
+            return View(ConvertModel.ToModel(messageB.getMessage(idMessage)));
         }
 
         // POST: Message/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, MessageModel message)
+        public ActionResult Edit(MessageModel message, DateTime DateCrea)
         {
+            message.DatePoste = DateCrea;
             try
             {
                 // TODO: Add update logic here

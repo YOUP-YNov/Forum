@@ -26,12 +26,12 @@ namespace BackOffice.Controllers
         }
 
         // GET: Forum/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int idForum)
         {
             try
             {
                 ForumBusiness forumB = new ForumBusiness();
-                ForumModel forumM = ConvertModel.ToModel(forumB.GetForum(id));
+                ForumModel forumM = ConvertModel.ToModel(forumB.GetForum(idForum));
                 return View(forumM);
             }
             catch
@@ -64,15 +64,15 @@ namespace BackOffice.Controllers
         }
 
         // GET: Forum/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int idForum)
         {
             ForumBusiness forumB = new ForumBusiness();
-            return View(forumB.GetForum(id));
+            return View(forumB.GetForum(idForum));
         }
 
         // POST: Forum/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, ForumModel forum)
+        public ActionResult Edit(ForumModel forum)
         {
             try
             {
