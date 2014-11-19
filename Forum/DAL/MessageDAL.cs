@@ -98,5 +98,15 @@ namespace Forum.DAL
         }*/
 
 
+
+        internal ForumD GetListReportMessage()
+        {
+            myDataSet.ps_FOR_GetMessageDataTable datatable;
+            using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
+            {
+                datatable = MessageDal.ps();
+            }
+            return MessageMappeur.ToMessageD(datatable).ToList();
+        }
     }
 }
