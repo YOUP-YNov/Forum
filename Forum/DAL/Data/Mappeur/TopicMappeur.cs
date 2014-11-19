@@ -21,6 +21,7 @@ namespace Forum.DAL.Data.Mappeur
         public static TopicD ToTopicD(this TopicRow row)
         {
             TopicD d = new TopicD();
+            d.Topic_id = row.Topic_id;
             d.Sujet_id = row.Sujet_id;
             d.Nom = row.Nom;
             d.DescriptifTopic = row.DescriptifTopic;

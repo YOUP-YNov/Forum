@@ -21,6 +21,7 @@ namespace Forum.DAL.Data.Mappeur
         public static MessageD ToMessageD(this MessageRow row)
         {
             MessageD d = new MessageD();
+            d.Message_id = row.Message_id;
             d.Topic_id = row.Topic_id;
             d.Utilisateur_id = row.Utilisateur_id;
             d.DatePoste = row.DatePoste;
