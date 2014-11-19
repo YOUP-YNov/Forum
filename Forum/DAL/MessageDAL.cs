@@ -46,20 +46,11 @@ namespace Forum.DAL
         public bool DeleteMessage(int id)
         {
 
-            try
+            using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
             {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = myConnection;
-                    command.CommandText = "DELETE FROM FOR_Message WHERE Message_id = " + id;
-                    command.ExecuteNonQuery();
-                }
-                return true;
+                MessageDal.ps_FOR_DeleteMessage(id);
             }
-            catch
-            {
-                return false;
-            }
+            return true;
         }
 
         public List<MessageD> GetListTopicMessage(int idTopic)
