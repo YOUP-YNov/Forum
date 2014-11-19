@@ -26,7 +26,7 @@ namespace Forum.DAL
         {
             using (ps_FOR_GetTopicTableAdapter TopicTable = new ps_FOR_GetTopicTableAdapter())
             {
-                TopicTable.ps_FOR_CreateTopic(top.Sujet_id, top.Nom, top.DescriptifTopic, top.DateCreation, top.Resolu, top.Utilisateur_id);
+                TopicTable.ps_FOR_UpdateTopic(top.Nom, top.DescriptifTopic, top.Resolu, top.Utilisateur_id);
             }
             return true;
         }
