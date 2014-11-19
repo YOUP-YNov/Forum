@@ -86,7 +86,7 @@ namespace BackOffice.Controllers
 
         // POST: Topic/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, TopicModel topic, int CategoryChoice, DateTime DateCrea)
+        public ActionResult Edit(TopicModel topic, int CategoryChoice, DateTime DateCrea)
         {
             topic.Sujet_id = CategoryChoice;
             topic.DateCreation = DateCrea;

@@ -38,12 +38,12 @@ namespace BackOffice.Controllers
             }
         }
         // GET: Category/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int idCategorie)
         {
             try
             {
                 CategorieBusiness cat = new CategorieBusiness();
-                CategorieModel category = ConvertModel.ToModel(cat.getCategorie(id));
+                CategorieModel category = ConvertModel.ToModel(cat.getCategorie(idCategorie));
                 return View(category);
             }
             catch
@@ -86,7 +86,7 @@ namespace BackOffice.Controllers
         }
 
         // GET: Category/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int idCategorie)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace BackOffice.Controllers
                 ForumBusiness forumB = new ForumBusiness();
                 List<ForumModel> list = ConvertModel.ToModel(forumB.GetListForum());
                 ViewBag.ForumChoice = new SelectList(list, "Forum_id", "Nom");
-                return View(cat.getCategorie(id));
+                return View(cat.getCategorie(idCategorie));
             }
             catch
             {
@@ -105,7 +105,7 @@ namespace BackOffice.Controllers
 
         // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, CategorieModel cat, int ForumChoice)
+        public ActionResult Edit(CategorieModel cat, int ForumChoice)
         {
             cat.Forum_id = ForumChoice;
             try
