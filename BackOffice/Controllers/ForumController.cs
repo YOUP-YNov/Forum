@@ -98,7 +98,7 @@ namespace BackOffice.Controllers
             }
             catch
             {
-                return View();
+                return View("Index");
             }
         }
     }
