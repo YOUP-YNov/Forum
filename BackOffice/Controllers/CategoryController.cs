@@ -102,9 +102,8 @@ namespace BackOffice.Controllers
 
         // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(CategorieModel cat, int ForumChoice)
+        public ActionResult Edit(CategorieModel cat)
         {
-            cat.Forum_id = ForumChoice;
             try
             {
                 CategorieBusiness catB = new CategorieBusiness();

@@ -17,7 +17,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })        
        
         @Html.HiddenFor(model => model.Topic_id)            
-
+        @Html.HiddenFor(model => model.Message_id)
         @Html.HiddenFor(model => model.Utilisateur_id)  
 
         @Html.Hidden("DateCrea", DateTime.Now.ToUniversalTime())

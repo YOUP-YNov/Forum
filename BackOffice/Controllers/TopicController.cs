@@ -82,14 +82,13 @@ namespace BackOffice.Controllers
             CategorieBusiness categorie = new CategorieBusiness();
             ViewBag.CategoryChoice = new SelectList(categorie.GetListCategorie(), "Sujet_id", "Nom");
             TopicBusiness topicB = new TopicBusiness();
-            return View(topicB.GetTopic(idTopic));
+            return View(ConvertModel.ToModel(topicB.GetTopic(idTopic)));
         }
 
         // POST: Topic/Edit/5
         [HttpPost]
-        public ActionResult Edit(TopicModel topic, int CategoryChoice, DateTime DateCrea)
+        public ActionResult Edit(TopicModel topic, DateTime DateCrea)
         {
-            topic.Sujet_id = CategoryChoice;
             topic.DateCreation = DateCrea;
             try
             {
