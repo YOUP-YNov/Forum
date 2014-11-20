@@ -1,5 +1,6 @@
 ﻿using Forum.Business;
 using Forum.Models;
+using Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Forum.Controllers
     /// </summary>
     public class MessageController : ApiController
     {
+        string urlLogger = "http://loggerasp.azurewebsites.net/";
+
         /// <summary>
         /// Get an array of all messages in a topic
         /// </summary>
@@ -25,11 +28,14 @@ namespace Forum.Controllers
         {
             try
             {
+                string sldplsd = null;
+                sldplsd.IndexOf('r');
                 MessageBusiness messageB = new MessageBusiness();
                 return ConvertModel.ToModel(messageB.GetListMessage());
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetListMessage", 5).Save(urlLogger);
                 return null;
             }
         }
@@ -48,8 +54,9 @@ namespace Forum.Controllers
                 MessageBusiness messageb = new MessageBusiness();
                 return ConvertModel.ToModel(messageb.GetListUserMessage(IDUser));
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetListMessageByUser", 5).Save(urlLogger);
                 return null;
             }
         }
@@ -69,8 +76,9 @@ namespace Forum.Controllers
                 MessageBusiness messageb = new MessageBusiness();
                 return ConvertModel.ToModel(messageb.getMessage(IDMessage));
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetMessage", 5).Save(urlLogger);
                 return null;
             }
         }
@@ -88,37 +96,50 @@ namespace Forum.Controllers
                 MessageBusiness messageb = new MessageBusiness();
                 return messageb.CreateMessage(ConvertModel.ToBusiness(Message));
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "CreateMessage", 5).Save(urlLogger);
                 return false;
             }
         }
 
-        /// <summary>
-        /// Edit message by message and the changed text
-        /// </summary>
-        /// <param name="mes">message content</param>
-        [HttpPost]
-        [Route("api/Message/{id}")]
-        public bool EditMessage(MessageModel mes)
-        {
+        ///// <summary>
+        ///// Edit message by message and the changed text
+        ///// </summary>
+        ///// <param name="mes">message content</param>
+        //[HttpPost]
+        //[Route("api/Message/{id}")]
+        //public bool EditMessage(MessageModel mes)
+        //{
+        //    try
+        //    {
+        //        MessageBusiness messageb = new MessageBusiness();
+        //        return messageb.EditMessage(ConvertModel.ToBusiness(mes));
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
-            MessageBusiness messageb = new MessageBusiness();
-            return messageb.EditMessage(ConvertModel.ToBusiness(mes));
-        }
-
-        /// <summary>
-        /// Delete a message by id
-        /// </summary>
-        /// <param name="IDMessage">message id</param>
-        [HttpDelete]
-        [Route("api/Message/{IDMessage}")]
-        public bool DeleteMessage(int IDMessage)
-        {
-            MessageBusiness messageb = new MessageBusiness();
-            return messageb.DeleteMessage(IDMessage);
-
-        }
+        ///// <summary>
+        ///// Delete a message by id
+        ///// </summary>
+        ///// <param name="IDMessage">message id</param>
+        //[HttpDelete]
+        //[Route("api/Message/{IDMessage}")]
+        //public bool DeleteMessage(int IDMessage)
+        //{
+        //    try
+        //    {
+        //        MessageBusiness messageb = new MessageBusiness();
+        //        return messageb.DeleteMessage(IDMessage);
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
         /// <summary>
         /// Get an array of all Topic's messages
@@ -128,8 +149,15 @@ namespace Forum.Controllers
         [Route("api/MessageTopic/{IDTopic}")]
         public List<MessageModel> GetListTopicMessage(int IDTopic)
         {
-            MessageBusiness messageb = new MessageBusiness();
-            return ConvertModel.ToModel(messageb.GetListTopicMessage(IDTopic));
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return ConvertModel.ToModel(messageb.GetListTopicMessage(IDTopic));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -140,7 +168,15 @@ namespace Forum.Controllers
         [Route("api/ReportMessage/{IDMessage}")]
         public bool ReportMessage(int IDMessage)
         {
-            return true;
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return messageb.ReportMessage(IDMessage);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -148,10 +184,18 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDMessage">message id</param>
         [HttpGet]
-        [Route("api/ReportMessage/{IDMessage}")]
-        public bool UnreportMessage(int IDMessage)
+        [Route("api/UnReportMessage/{IDMessage}")]
+        public bool UnReportMessage(int IDMessage)
         {
-            return true;
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return messageb.UnReportMessage(IDMessage);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -161,8 +205,15 @@ namespace Forum.Controllers
         [Route("api/ReportMessages")]
         public List<MessageModel> GetListReportMessage()
         {
-            MessageBusiness messageb = new MessageBusiness();
-            return ConvertModel.ToModel(messageb.GetListReportMessage());
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return ConvertModel.ToModel(messageb.GetListReportMessage());
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
