@@ -97,14 +97,12 @@ namespace Forum.DAL
             }
         }*/
 
-
-
-        internal ForumD GetListReportMessage()
+        internal List<MessageD> GetListReportMessage()
         {
             myDataSet.ps_FOR_GetMessageDataTable datatable;
             using (ps_FOR_GetMessageTableAdapter MessageDal = new ps_FOR_GetMessageTableAdapter())
             {
-                datatable = MessageDal.ps();
+                datatable = MessageDal.ps_FOR_GetListReportMessage();
             }
             return MessageMappeur.ToMessageD(datatable).ToList();
         }

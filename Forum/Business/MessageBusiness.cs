@@ -55,7 +55,7 @@ namespace Forum.Business
             return message.DeleteMessage(id);
         }
 
-        internal TopicB GetListReportMessage()
+        internal List<MessageB> GetListReportMessage()
         {
             MessageDAL message = new MessageDAL();
             return ConvertBusiness.ToBusiness(message.GetListReportMessage());
