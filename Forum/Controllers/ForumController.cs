@@ -56,47 +56,43 @@ namespace Forum.Controllers
             }
         }
 
-        /// <summary>
-        /// Create a forum with his name
-        /// </summary>
-        /// <param name="forum">forum Model</param>
-        [HttpPost]
-        [Route("api/Forum")]
-        public bool CreateForum(ForumModel forum)
-        {
-            ForumBusiness forumB = new ForumBusiness();
-            forumB.CreateForum(ConvertModel.ToBusiness(forum));
-            return true;
-        }
+        ///// <summary>
+        ///// Create a forum with his name
+        ///// </summary>
+        ///// <param name="forum">forum Model</param>
+        //[HttpPost]
+        //[Route("api/Forum")]
+        //public bool CreateForum(ForumModel forum)
+        //{
+        //    ForumBusiness forumB = new ForumBusiness();
+        //    forumB.CreateForum(ConvertModel.ToBusiness(forum));
+        //    return true;
+        //}
 
-        /// <summary>
-        /// Edit a forum by id
-        /// </summary>
-        /// <param name="forum">forumModel</param>
-        [HttpPost]
-        [Route("api/Forum/{id}")]
-        public bool EditForum(ForumModel forum)
-        {
-            ForumBusiness forumB = new ForumBusiness();
-            forumB.EditForum(ConvertModel.ToBusiness(forum));
-            return true;
-        }
-        
-        ///////////////////////////////////////////////////////////////////
-        //PROBLEME DE CONTRAINTES avec la BDD
-        ////////////////////////////////////////////////////////////////////
+        ///// <summary>
+        ///// Edit a forum by id
+        ///// </summary>
+        ///// <param name="forum">forumModel</param>
+        //[HttpPost]
+        //[Route("api/Forum/{id}")]
+        //public bool EditForum(ForumModel forum)
+        //{
+        //    ForumBusiness forumB = new ForumBusiness();
+        //    forumB.EditForum(ConvertModel.ToBusiness(forum));
+        //    return true;
+        //}
 
-        /// <summary>
-        /// Delete a forum by id
-        /// </summary>
-        /// <param name="IDForum">forum id</param>
-        [HttpDelete]
-        [Route("api/Forum/{IDForum}")]
-        public bool DeleteForum(int IDForum)
-        {
-            ForumBusiness forumB = new ForumBusiness();
-            forumB.DeleteForum(IDForum);
-            return true;
-        }
+        ///// <summary>
+        ///// Delete a forum by id
+        ///// </summary>
+        ///// <param name="IDForum">forum id</param>
+        //[HttpDelete]
+        //[Route("api/Forum/{IDForum}")]
+        //public bool DeleteForum(int IDForum)
+        //{
+        //    ForumBusiness forumB = new ForumBusiness();
+        //    forumB.DeleteForum(IDForum);
+        //    return true;
+        //}
     }
 }

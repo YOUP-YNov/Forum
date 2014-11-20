@@ -75,9 +75,6 @@ namespace Forum.Controllers
             }
         }
 
-        ////////////////////////////////////////////////////////////////////////
-        //probleme contrainte sql
-        //////////////////////////////////////////////////////////////////////////
         /// <summary>
         /// Create a topic 
         /// </summary>
@@ -90,28 +87,28 @@ namespace Forum.Controllers
             return Top.CreateTopic(ConvertModel.ToBusiness(TopM));
         }
 
-        /// <summary>
-        /// Edit a topic by id and the changed text
-        /// </summary>
-        /// <param name="Top">TopicModel</param>
-        [HttpPost]
-        [Route("api/Topic/{id}")]
-        public bool EditTopic(TopicModel Top)
-        {
-            TopicBusiness TopicM = new TopicBusiness();
-            return TopicM.EditTopic(ConvertModel.ToBusiness(Top));
-        }
+        ///// <summary>
+        ///// Edit a topic by id and the changed text
+        ///// </summary>
+        ///// <param name="Top">TopicModel</param>
+        //[HttpPost]
+        //[Route("api/Topic/{id}")]
+        //public bool EditTopic(TopicModel Top)
+        //{
+        //    TopicBusiness TopicM = new TopicBusiness();
+        //    return TopicM.EditTopic(ConvertModel.ToBusiness(Top));
+        //}
 
-        /// <summary>
-        /// Delete topic by id
-        /// </summary>
-        /// <param name="IDTopic">topic id</param>
-        [HttpDelete]
-        [Route("api/Topic/{IDTopic}")]
-        public bool DeleteTopic(int IDTopic)
-        {
-            TopicBusiness topicB = new TopicBusiness();
-            return topicB.DeleteTopic(IDTopic);
-        }
+        ///// <summary>
+        ///// Delete topic by id
+        ///// </summary>
+        ///// <param name="IDTopic">topic id</param>
+        //[HttpDelete]
+        //[Route("api/Topic/{IDTopic}")]
+        //public bool DeleteTopic(int IDTopic)
+        //{
+        //    TopicBusiness topicB = new TopicBusiness();
+        //    return topicB.DeleteTopic(IDTopic);
+        //}
     }
 }

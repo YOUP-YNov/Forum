@@ -94,43 +94,43 @@ namespace Forum.Controllers
             }
         }
 
-        /// <summary>
-        /// Edit message by message and the changed text
-        /// </summary>
-        /// <param name="mes">message content</param>
-        [HttpPost]
-        [Route("api/Message/{id}")]
-        public bool EditMessage(MessageModel mes)
-        {
-            try
-            {
-                MessageBusiness messageb = new MessageBusiness();
-                return messageb.EditMessage(ConvertModel.ToBusiness(mes));
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        ///// <summary>
+        ///// Edit message by message and the changed text
+        ///// </summary>
+        ///// <param name="mes">message content</param>
+        //[HttpPost]
+        //[Route("api/Message/{id}")]
+        //public bool EditMessage(MessageModel mes)
+        //{
+        //    try
+        //    {
+        //        MessageBusiness messageb = new MessageBusiness();
+        //        return messageb.EditMessage(ConvertModel.ToBusiness(mes));
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        /// <summary>
-        /// Delete a message by id
-        /// </summary>
-        /// <param name="IDMessage">message id</param>
-        [HttpDelete]
-        [Route("api/Message/{IDMessage}")]
-        public bool DeleteMessage(int IDMessage)
-        {
-            try
-            {
-                MessageBusiness messageb = new MessageBusiness();
-                return messageb.DeleteMessage(IDMessage);
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        ///// <summary>
+        ///// Delete a message by id
+        ///// </summary>
+        ///// <param name="IDMessage">message id</param>
+        //[HttpDelete]
+        //[Route("api/Message/{IDMessage}")]
+        //public bool DeleteMessage(int IDMessage)
+        //{
+        //    try
+        //    {
+        //        MessageBusiness messageb = new MessageBusiness();
+        //        return messageb.DeleteMessage(IDMessage);
+        //    }
+        //    catch
+        //    {
+        //        return false;
+        //    }
+        //}
 
         /// <summary>
         /// Get an array of all Topic's messages
