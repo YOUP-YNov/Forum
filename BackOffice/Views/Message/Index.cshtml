@@ -14,19 +14,19 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Message_id)
+                Topic
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Topic_id)
+                Utilisateur
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Utilisateur_id)
+                Date de Poste
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DatePoste)
+                ContenuMessage
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ContenuMessage)
+                Report
             </th>
             <th></th>
         </tr>
@@ -34,10 +34,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Message_id)
-                </td>
-                <td>
+               <td>
                     @Html.DisplayFor(modelItem => item.Topic_id)
                 </td>
                 <td>
@@ -48,6 +45,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ContenuMessage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Report)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { idMessage = item.Message_id }) |

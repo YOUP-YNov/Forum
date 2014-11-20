@@ -1,4 +1,9 @@
-﻿@model IEnumerable<BackOffice.Models.TopicModel>
+﻿@using Forum.Business
+@{
+    CategorieBusiness cat = new CategorieBusiness();
+}
+
+@model IEnumerable<BackOffice.Models.TopicModel>
 
 @{
     ViewBag.Title = "Index";
@@ -13,26 +18,20 @@
 {
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Topic_id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sujet_id)
+           <th>
+                Catégorie
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DescriptifTopic)
+                Description du Topic
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateCreation)
+                Date de Creation
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Resolu)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Utilisateur_id)
             </th>
             <th></th>
         </tr>
@@ -41,10 +40,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Topic_id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Sujet_id)
+                    @{
+                        Forum.Business.Data.CategorieB categorie = cat.getCategorie(Convert.ToInt32(item.Sujet_id));
+                    }
+                    @Html.DisplayName(categorie.Nom)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nom)
@@ -57,9 +56,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Resolu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Utilisateur_id)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { idTopic = item.Topic_id }) |

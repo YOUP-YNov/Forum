@@ -1,4 +1,9 @@
-﻿@model IEnumerable<BackOffice.Models.CategorieModel>
+﻿@using Forum.Business
+@{
+    ForumBusiness fo = new ForumBusiness();
+}
+
+@model IEnumerable<BackOffice.Models.CategorieModel>
 
 @{
     ViewBag.Title = "Index";
@@ -14,10 +19,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Sujet_id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Forum_id)
+                Forum
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Nom)
@@ -29,10 +31,11 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Sujet_id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Forum_id)
+                   @{
+            Forum.Business.Data.ForumB forum = new Forum.Business.Data.ForumB();
+            forum = fo.GetForum(Convert.ToInt32(item.Forum_id));
+                }
+                @Html.DisplayName(forum.Nom)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nom)

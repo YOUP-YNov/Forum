@@ -91,10 +91,7 @@ namespace BackOffice.Controllers
             try
             {
                 CategorieBusiness cat = new CategorieBusiness();
-                ForumBusiness forumB = new ForumBusiness();
-                List<ForumModel> list = ConvertModel.ToModel(forumB.GetListForum());
-                ViewBag.ForumChoice = new SelectList(list, "Forum_id", "Nom");
-                return View(cat.getCategorie(idCategorie));
+                return View(ConvertModel.ToModel(cat.getCategorie(idCategorie)));
             }
             catch
             {

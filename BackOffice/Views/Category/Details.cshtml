@@ -1,4 +1,8 @@
-﻿@model BackOffice.Models.CategorieModel
+﻿@using Forum.Business
+@{
+    ForumBusiness fo = new ForumBusiness();
+}
+@model BackOffice.Models.CategorieModel
 
 @{
     ViewBag.Title = "Details";
@@ -10,20 +14,16 @@
     <h4>CategorieModel</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.Sujet_id)
+            Forum_id
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Sujet_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Forum_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Forum_id)
+            @{
+                Forum.Business.Data.ForumB forum = new Forum.Business.Data.ForumB();
+                forum = fo.GetForum(Convert.ToInt32(Model.Forum_id));
+            }
         </dd>
 
         <dt>
@@ -37,6 +37,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

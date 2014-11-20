@@ -55,8 +55,9 @@ namespace BackOffice.Controllers
 
         // POST: Topic/Create
         [HttpPost]
-        public ActionResult Create(TopicModel topic, int CategoryChoice, DateTime DateCrea)
+        public ActionResult Create(TopicModel topic, int CategoryChoice, DateTime DateCrea, int UserId)
         {
+            topic.Utilisateur_id = UserId;
             topic.Sujet_id = CategoryChoice;
             topic.DateCreation = DateCrea;
             try

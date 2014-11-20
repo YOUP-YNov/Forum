@@ -1,4 +1,9 @@
-﻿@model BackOffice.Models.MessageModel
+﻿@using Forum.Business
+@{
+    TopicBusiness top = new TopicBusiness(); 
+}
+
+@model BackOffice.Models.MessageModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,31 +16,17 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Message_id)
+            Topic
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.Message_id)
+            @{
+                Forum.Business.Data.TopicB topic = top.GetTopic(Convert.ToInt32(Model.Topic_id));
+            }
+            @Html.DisplayName(topic.Nom)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Topic_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Topic_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Utilisateur_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DatePoste)
+            Date de Poste
         </dt>
 
         <dd>
@@ -43,7 +34,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ContenuMessage)
+            Contenu
         </dt>
 
         <dd>
@@ -53,6 +44,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -1,4 +1,9 @@
-﻿@model BackOffice.Models.TopicModel
+﻿@using Forum.Business
+@{
+    CategorieBusiness cat = new CategorieBusiness();
+}
+
+@model BackOffice.Models.TopicModel
 
 @{
     ViewBag.Title = "Details";
@@ -10,20 +15,16 @@
     <h4>TopicModel</h4>
     <hr />
     <dl class="dl-horizontal">
+        
         <dt>
-            @Html.DisplayNameFor(model => model.Topic_id)
+            Sujet_id
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Topic_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Sujet_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Sujet_id)
+           @{
+               Forum.Business.Data.CategorieB categorie = cat.getCategorie(Convert.ToInt32(Model.Sujet_id));
+        }
+        @Html.DisplayName(categorie.Nom)
         </dd>
 
         <dt>
@@ -35,7 +36,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DescriptifTopic)
+            Description du Topic
         </dt>
 
         <dd>
@@ -43,7 +44,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateCreation)
+            Date de Creation
         </dt>
 
         <dd>
@@ -57,15 +58,6 @@
         <dd>
             @Html.DisplayFor(model => model.Resolu)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Utilisateur_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Utilisateur_id)
-        </dd>
-
     </dl>
 </div>
 <p>

@@ -67,7 +67,7 @@ namespace BackOffice.Controllers
         public ActionResult Edit(int idForum)
         {
             ForumBusiness forumB = new ForumBusiness();
-            return View(forumB.GetForum(idForum));
+            return View(ConvertModel.ToModel(forumB.GetForum(idForum)));
         }
 
         // POST: Forum/Edit/5

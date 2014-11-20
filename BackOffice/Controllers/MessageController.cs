@@ -57,6 +57,9 @@ namespace BackOffice.Controllers
         // GET: Message/Create
         public ActionResult Create()
         {
+            TopicBusiness topicB = new TopicBusiness();
+            List<TopicModel> list = ConvertModel.ToModel(topicB.GetListTopic());
+            ViewBag.TopicChoice = new SelectList(list, "Topic_id", "Nom");
             return View();
         }
 
