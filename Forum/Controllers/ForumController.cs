@@ -1,5 +1,6 @@
 ﻿using Forum.Business;
 using Forum.Models;
+using Logger;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,6 +17,7 @@ namespace Forum.Controllers
     /// </summary>
     public class ForumController : ApiController
     {
+        string urlLogger = "http://loggerasp.azurewebsites.net/";
 
         /// <summary>
         /// Get an array of all forum informations
@@ -30,8 +32,9 @@ namespace Forum.Controllers
                 ForumBusiness forum = new ForumBusiness();
                 return ConvertModel.ToModel(forum.GetListForum());
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetTopicByCategory", 5).Save(urlLogger);
                 return null;
             }
         }
@@ -50,8 +53,9 @@ namespace Forum.Controllers
                 ForumBusiness forum = new ForumBusiness();
                 return ConvertModel.ToModel(forum.GetForum(IDForum));
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetTopicByCategory", 5).Save(urlLogger);
                 return null;
             }
         }

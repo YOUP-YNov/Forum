@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Logger;
 
 namespace Forum.Controllers
 {
@@ -15,6 +16,8 @@ namespace Forum.Controllers
     /// </summary>
     public class CategoryController : ApiController
     {
+
+        string urlLogger = "http://loggerasp.azurewebsites.net/";
 
         /// <summary>
         /// Get an array of all category informations of a forum
@@ -30,8 +33,9 @@ namespace Forum.Controllers
                 CategorieBusiness categorie = new CategorieBusiness();
                 return ConvertModel.ToModel(categorie.GetListCategorieForum(IDForum));
             }
-            catch
+            catch(Exception e)
             {
+                new LErreur(e, "Forum", "GetListCategoryForum", 5).Save(urlLogger);
                 return null;
             }
         }
@@ -50,8 +54,9 @@ namespace Forum.Controllers
                 CategorieBusiness catbusi = new CategorieBusiness();
                 return ConvertModel.ToModel(catbusi.getCategorie(IDCategory));
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetCategory", 5).Save(urlLogger);
                 return null;
             }
         }
@@ -70,8 +75,9 @@ namespace Forum.Controllers
                 CategorieBusiness categorie = new CategorieBusiness();
                 return ConvertModel.ToModel(categorie.GetListCategorie());
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetListCategory", 5).Save(urlLogger);
                 return null;
             }
         }

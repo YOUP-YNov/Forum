@@ -1,5 +1,6 @@
 ﻿using Forum.Business;
 using Forum.Models;
+using Logger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace Forum.Controllers
     /// </summary>
     public class MessageController : ApiController
     {
+        string urlLogger = "http://loggerasp.azurewebsites.net/";
+
         /// <summary>
         /// Get an array of all messages in a topic
         /// </summary>
@@ -25,11 +28,14 @@ namespace Forum.Controllers
         {
             try
             {
+                string sldplsd = null;
+                sldplsd.IndexOf('r');
                 MessageBusiness messageB = new MessageBusiness();
                 return ConvertModel.ToModel(messageB.GetListMessage());
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetListMessage", 5).Save(urlLogger);
                 return null;
             }
         }
@@ -48,8 +54,9 @@ namespace Forum.Controllers
                 MessageBusiness messageb = new MessageBusiness();
                 return ConvertModel.ToModel(messageb.GetListUserMessage(IDUser));
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetListMessageByUser", 5).Save(urlLogger);
                 return null;
             }
         }
@@ -69,8 +76,9 @@ namespace Forum.Controllers
                 MessageBusiness messageb = new MessageBusiness();
                 return ConvertModel.ToModel(messageb.getMessage(IDMessage));
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "GetMessage", 5).Save(urlLogger);
                 return null;
             }
         }
@@ -88,8 +96,9 @@ namespace Forum.Controllers
                 MessageBusiness messageb = new MessageBusiness();
                 return messageb.CreateMessage(ConvertModel.ToBusiness(Message));
             }
-            catch
+            catch (Exception e)
             {
+                new LErreur(e, "Forum", "CreateMessage", 5).Save(urlLogger);
                 return false;
             }
         }
