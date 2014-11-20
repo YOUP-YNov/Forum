@@ -102,9 +102,15 @@ namespace Forum.Controllers
         [Route("api/Message/{id}")]
         public bool EditMessage(MessageModel mes)
         {
-
-            MessageBusiness messageb = new MessageBusiness();
-            return messageb.EditMessage(ConvertModel.ToBusiness(mes));
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return messageb.EditMessage(ConvertModel.ToBusiness(mes));
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -115,9 +121,15 @@ namespace Forum.Controllers
         [Route("api/Message/{IDMessage}")]
         public bool DeleteMessage(int IDMessage)
         {
-            MessageBusiness messageb = new MessageBusiness();
-            return messageb.DeleteMessage(IDMessage);
-
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return messageb.DeleteMessage(IDMessage);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -128,8 +140,15 @@ namespace Forum.Controllers
         [Route("api/MessageTopic/{IDTopic}")]
         public List<MessageModel> GetListTopicMessage(int IDTopic)
         {
-            MessageBusiness messageb = new MessageBusiness();
-            return ConvertModel.ToModel(messageb.GetListTopicMessage(IDTopic));
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return ConvertModel.ToModel(messageb.GetListTopicMessage(IDTopic));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -140,7 +159,15 @@ namespace Forum.Controllers
         [Route("api/ReportMessage/{IDMessage}")]
         public bool ReportMessage(int IDMessage)
         {
-            return true;
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return messageb.ReportMessage(IDMessage);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -148,10 +175,18 @@ namespace Forum.Controllers
         /// </summary>
         /// <param name="IDMessage">message id</param>
         [HttpGet]
-        [Route("api/ReportMessage/{IDMessage}")]
-        public bool UnreportMessage(int IDMessage)
+        [Route("api/UnReportMessage/{IDMessage}")]
+        public bool UnReportMessage(int IDMessage)
         {
-            return true;
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return messageb.UnReportMessage(IDMessage);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -161,8 +196,15 @@ namespace Forum.Controllers
         [Route("api/ReportMessages")]
         public List<MessageModel> GetListReportMessage()
         {
-            MessageBusiness messageb = new MessageBusiness();
-            return ConvertModel.ToModel(messageb.GetListReportMessage());
+            try
+            {
+                MessageBusiness messageb = new MessageBusiness();
+                return ConvertModel.ToModel(messageb.GetListReportMessage());
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

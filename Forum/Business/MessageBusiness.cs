@@ -60,5 +60,17 @@ namespace Forum.Business
             MessageDAL message = new MessageDAL();
             return ConvertBusiness.ToBusiness(message.GetListReportMessage());
         }
+
+        internal bool ReportMessage(int IDMessage)
+        {
+            MessageDAL message = new MessageDAL();
+            return message.ReportMessage(IDMessage);
+        }
+
+        internal bool UnReportMessage(int IDMessage)
+        {
+            MessageDAL message = new MessageDAL();
+            return message.UnReportMessage(IDMessage);
+        }
     }
 }
