@@ -1,5 +1,18 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+
+@{
+    bool connect;
+    if(ViewBag.Connect == null)
+    {
+        connect = false;
+    }
+    else
+    {
+        connect = ViewBag.Connect;
+    }    
+}
+
+@if (/*Request.IsAuthenticated*/connect == true)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
@@ -7,7 +20,7 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.Label("Bonjour " + User.Identity.GetUserName() + "!", htmlAttributes: new { title = "Manage" })
+            @Html.Label("Bonjour admin" + User.Identity.GetUserName() + "!", htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a></li>
     </ul>

@@ -28,8 +28,6 @@ namespace Forum.Controllers
         {
             try
             {
-                string sldplsd = null;
-                sldplsd.IndexOf('r');
                 MessageBusiness messageB = new MessageBusiness();
                 return ConvertModel.ToModel(messageB.GetListMessage());
             }
