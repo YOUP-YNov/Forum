@@ -1,30 +1,24 @@
 ﻿@using Microsoft.AspNet.Identity
 
 @{
-    bool connect;
-    if(ViewBag.Connect == null)
+    string connect = string.Empty;
+    if (Session["Connect"] == null)
     {
-        connect = false;
+        connect = "Disconnect";
     }
     else
     {
-        connect = ViewBag.Connect;
-    }    
-}
 
-@if (/*Request.IsAuthenticated*/connect == true)
-{
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
+        connect = Session["Connect"].ToString();
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.Label("Bonjour admin" + User.Identity.GetUserName() + "!", htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Se déconnecter</a></li>
-    </ul>
     }
+}
+@if (/*Request.IsAuthenticated*/connect.Equals("Connect"))
+{
+    
+   @Html.Label("Bonjour admin " + User.Identity.GetUserName() + "!", htmlAttributes: new { title = "Manage" })
+   @Html.ActionLink("Se Déconnecter", "LogOff", "Account")        
+    
 }
 else
 {

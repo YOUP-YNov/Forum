@@ -3,11 +3,25 @@
 @{
     ViewBag.Title = "Create";
 }
+@{
+    string connect = string.Empty;
+    if (Session["Connect"] == null)
+    {
+        connect = "Disconnect";
+    }
+    else
+    {
 
+        connect = Session["Connect"].ToString();
+
+    }
+}
+@if (/*Request.IsAuthenticated*/connect.Equals("Connect"))
+{
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
@@ -44,6 +58,11 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+}
+else
+{
+    Response.Redirect("/Account/Login");
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

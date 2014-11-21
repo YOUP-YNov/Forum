@@ -4,17 +4,19 @@
     ViewBag.Title = "Connexion";
 }
 @{
-    bool connect;
-    if (ViewBag.Connect == null)
+    string connect = string.Empty;
+    if (Session["Connect"] == null)
     {
-        connect = false;
+        connect = "Disconnect";
     }
     else
     {
-        connect = ViewBag.Connect;
+
+        connect = Session["Connect"].ToString();
+
     }
 }
-@if (/*Request.IsAuthenticated*/connect == false)
+@if (/*Request.IsAuthenticated*/connect.Equals("Disconnect"))
 {
 
 <h2>@ViewBag.Title.</h2>

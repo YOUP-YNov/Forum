@@ -3,7 +3,21 @@
 @{
     ViewBag.Title = "Details";
 }
+@{
+    string connect = string.Empty;
+    if (Session["Connect"] == null)
+    {
+        connect = "Disconnect";
+    }
+    else
+    {
 
+        connect = Session["Connect"].ToString();
+
+    }
+}
+@if (/*Request.IsAuthenticated*/connect.Equals("Connect"))
+{
 <h2>Details</h2>
 
 <div>
@@ -23,3 +37,8 @@
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
+}
+else
+{
+    Response.Redirect("/Account/Login");
+}

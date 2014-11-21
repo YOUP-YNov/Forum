@@ -8,13 +8,27 @@
 @{
     ViewBag.Title = "Index";
 }
+@{
+    string connect = string.Empty;
+    if (Session["Connect"] == null)
+    {
+        connect = "Disconnect";
+    }
+    else
+    {
 
+        connect = Session["Connect"].ToString();
+
+    }
+}
+@if (/*Request.IsAuthenticated*/connect.Equals("Connect"))
+{
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@if (Model != null)
+if (Model != null)
 {
     <table class="table">
         <tr>
@@ -50,4 +64,9 @@
         }
 
     </table>
+}
+}
+else
+{
+    Response.Redirect("/Account/Login");
 }

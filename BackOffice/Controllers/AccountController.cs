@@ -77,7 +77,7 @@ namespace BackOffice.Controllers
             var result = SignInStatus.Failure;
             if(model.Email.Equals("admin@gmail.com") && model.Password.Equals("admin"))
             {
-                ViewBag.Connect = true;
+                Session["Connect"] = "Connect";
                 result = SignInStatus.Success;
             }
             
@@ -91,15 +91,14 @@ namespace BackOffice.Controllers
                     ModelState.AddModelError("", "Tentative de connexion non valide.");
                     return View(model);
             }
-        }        
+        }
 
         //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        // Get: /Account/LogOff
+        [AllowAnonymous]
         public ActionResult LogOff()
         {
-            ViewBag.Connect = false;
+            Session["Connect"] = "Disconnect";
             return RedirectToAction("Login", "Account");
         }
     }

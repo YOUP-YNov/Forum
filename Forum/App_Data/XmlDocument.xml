@@ -528,6 +528,21 @@
             Available method for messages
             </summary>
         </member>
+        <member name="M:Forum.Controllers.MessageController.GetUserById(System.Int32)">
+            <summary>
+            get a small user by id
+            </summary>
+            <param name="id"> user id</param>
+            <returns>UserSmallModel</returns>
+        </member>
+        <member name="M:Forum.Controllers.MessageController.PostMess(Forum.Models.MessageModel,System.String)">
+            <summary>
+            Post a message to research api
+            </summary>
+            <param name="Message">MessageModel</param>
+            <param name="pseudo">Pseudo of the user who post the message</param>
+            <returns>boolean</returns>
+        </member>
         <member name="M:Forum.Controllers.MessageController.GetListMessage">
             <summary>
             Get an array of all messages in a topic
