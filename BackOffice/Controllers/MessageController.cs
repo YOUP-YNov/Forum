@@ -5,11 +5,35 @@ using System.Web;
 using System.Web.Mvc;
 using Forum.Business;
 using BackOffice.Models;
+using RestSharp;
 
 namespace BackOffice.Controllers
 {
     public class MessageController : Controller
     {
+        public T Execute<T>(RestRequest request) where T : new()
+        {
+            var client = new RestClient("http://aspmoduleprofil.azurewebsites.net/");
+            var response = client.Execute<T>(request);
+            return response.Data;
+        }
+
+        public UserSmallModel GetUserById(int id)
+        {
+            var request = new RestRequest("api/UserSmall/" + id, Method.GET);
+            var result = Execute<UserSmallModel>(request);
+
+            return result;
+        }
+
+        public bool PostMess(MessageModel Message, string pseudo)
+        {
+            var client = new RestClient("http://youp-recherche.azurewebsites.net/");
+            RestRequest request = new RestRequest("update/get_postforum?id=" + Message.Message_id + "&date=" + Message.DatePoste + "&author=" + pseudo, Method.GET);
+            var result = client.Execute<bool>(request);
+            return result.Data;
+        }
+
         // GET: Message
         public ActionResult Index()
         {
@@ -75,6 +99,11 @@ namespace BackOffice.Controllers
 
                 MessageBusiness messageB = new MessageBusiness();
                 messageB.CreateMessage(ConvertModel.ToBusiness(message));
+
+                UserSmallModel user = this.GetUserById(Convert.ToInt32(message.Utilisateur_id));
+                MessageModel mes = ConvertModel.ToModel(messageB.GetListMessage().OrderBy(o => o.Message_id).LastOrDefault());
+                bool postmes = this.PostMess(mes, user.Pseudo);
+
                 return RedirectToAction("Index");
             }
             catch
@@ -101,6 +130,10 @@ namespace BackOffice.Controllers
 
                 MessageBusiness messageB = new MessageBusiness();
                 messageB.EditMessage(ConvertModel.ToBusiness(message));
+
+                UserSmallModel user = this.GetUserById(Convert.ToInt32(message.Utilisateur_id));                
+                bool postmes = this.PostMess(message, user.Pseudo);
+
                 return RedirectToAction("Index");
             }
             catch
@@ -117,7 +150,12 @@ namespace BackOffice.Controllers
                 // TODO: Add delete logic here
 
                 MessageBusiness messageB = new MessageBusiness();
+                MessageModel mesSup = ConvertModel.ToModel(messageB.getMessage(idMessage));
                 messageB.DeleteMessage(idMessage);
+
+                UserSmallModel user = this.GetUserById(Convert.ToInt32(mesSup.Utilisateur_id));
+                bool postmes = this.PostMess(mesSup, user.Pseudo);
+
                 return RedirectToAction("Index");
             }
             catch
