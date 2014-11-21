@@ -16,9 +16,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Nom)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Url)
-            </th>
             <th></th>
         </tr>
 
@@ -27,9 +24,6 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Url)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { idForum = item.Forum_id }) |
