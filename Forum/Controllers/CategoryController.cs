@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Logger;
+using System.Configuration;
 
 namespace Forum.Controllers
 {
@@ -17,7 +18,7 @@ namespace Forum.Controllers
     public class CategoryController : ApiController
     {
 
-        string urlLogger = "http://loggerasp.azurewebsites.net/";
+        string urlLogger = ConfigurationManager.AppSettings["AdresseLogger"];
 
         /// <summary>
         /// Get an array of all category informations of a forum

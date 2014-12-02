@@ -5,11 +5,32 @@ using System.Web;
 using System.Web.Mvc;
 using Forum.Business;
 using BackOffice.Models;
+using RestSharp;
+using System.Configuration;
 
 namespace BackOffice.Controllers
 {
     public class TopicController : Controller
     {
+        public List<UserSmallModel> ListUser;
+        public TopicController()
+        {
+            ListUser = GetUsers();
+        }
+        public T Execute<T>(RestRequest request) where T : new()
+        {
+            var client = new RestClient(ConfigurationManager.AppSettings["AdresseModuleProfile"]);
+            var response = client.Execute<T>(request);
+            return response.Data;
+        }
+
+        public List<UserSmallModel> GetUsers()
+        {
+            var request = new RestRequest("api/UserSmall", Method.GET);
+            var result = Execute<List<UserSmallModel>>(request);
+
+            return result;
+        }
         // GET: Topic
         public ActionResult Index()
         {
@@ -55,9 +76,9 @@ namespace BackOffice.Controllers
 
         // POST: Topic/Create
         [HttpPost]
-        public ActionResult Create(TopicModel topic, int CategoryChoice, DateTime DateCrea, int UserId)
+        public ActionResult Create(TopicModel topic, int CategoryChoice, DateTime DateCrea)
         {
-            topic.Utilisateur_id = UserId;
+            topic.Utilisateur_id = ListUser.Where(p => p.Pseudo == "ForumAdmin").FirstOrDefault().Utilisateur_Id;
             topic.Sujet_id = CategoryChoice;
             topic.DateCreation = DateCrea;
             try

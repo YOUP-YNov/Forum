@@ -6,14 +6,28 @@ using System.Web.Mvc;
 using Forum.Business;
 using BackOffice.Models;
 using RestSharp;
+using System.Configuration;
 
 namespace BackOffice.Controllers
 {
     public class MessageController : Controller
     {
+        public List<UserSmallModel> ListUser;
+        public MessageController()
+        {
+            ListUser = GetUsers();
+        }
+
+        public List<UserSmallModel> GetUsers()
+        {
+            var request = new RestRequest("api/UserSmall", Method.GET);
+            var result = Execute<List<UserSmallModel>>(request);
+
+            return result;
+        }
         public T Execute<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://aspmoduleprofil.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["AdresseModuleProfile"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }
@@ -28,7 +42,7 @@ namespace BackOffice.Controllers
 
         public bool PostMess(MessageModel Message, string pseudo)
         {
-            var client = new RestClient("http://youp-recherche.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["AdresseModuleRecherche"]);
             RestRequest request = new RestRequest("update/get_postforum?id=" + Message.Message_id + "&date=" + Message.DatePoste + "&author=" + pseudo, Method.GET);
             var result = client.Execute<bool>(request);
             return result.Data;
@@ -89,9 +103,9 @@ namespace BackOffice.Controllers
 
         // POST: Message/Create
         [HttpPost]
-        public ActionResult Create(MessageModel message, DateTime DateCrea, int TopicChoice, int UserId)
+        public ActionResult Create(MessageModel message, DateTime DateCrea, int TopicChoice)
         {
-            message.Utilisateur_id = UserId;
+            message.Utilisateur_id = ListUser.Where(p => p.Pseudo == "ForumAdmin").FirstOrDefault().Utilisateur_Id;
             message.Topic_id = TopicChoice;
             message.DatePoste = DateCrea;
             try

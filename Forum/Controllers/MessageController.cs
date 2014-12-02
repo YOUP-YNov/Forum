@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using RestSharp;
+using System.Configuration;
 
 namespace Forum.Controllers
 {
@@ -19,7 +20,7 @@ namespace Forum.Controllers
 
         public T Execute<T>(RestRequest request) where T : new()
         {
-            var client = new RestClient("http://aspmoduleprofil.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["AdresseModuleProfile"]);
             var response = client.Execute<T>(request);
             return response.Data;
         }
@@ -51,14 +52,14 @@ namespace Forum.Controllers
         [Route("api/PostMesstoResearch")]
         public bool PostMess(MessageModel Message, string pseudo)
         {
-            var client = new RestClient("http://youp-recherche.azurewebsites.net/");
+            var client = new RestClient(ConfigurationManager.AppSettings["AdresseModuleRecherche"]);
             RestRequest request = new RestRequest("add/get_postforum?id=" + Message.Message_id + "&date=" + Message.DatePoste + "&author=" + pseudo, Method.GET);
             var result = client.Execute<bool>(request);
             return result.Data;
         }
 
 
-        string urlLogger = "http://loggerasp.azurewebsites.net/";
+        string urlLogger = ConfigurationManager.AppSettings["AdresseLogger"];
 
         /// <summary>
         /// Get an array of all messages in a topic

@@ -37,8 +37,6 @@ using (Html.BeginForm())
                 @Html.ValidationMessageFor(model => model.Topic_id, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        @Html.Hidden("UserId", 10261)
         
         @Html.Hidden("DateCrea", DateTime.Now.ToUniversalTime())          
 

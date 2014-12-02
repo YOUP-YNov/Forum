@@ -3,6 +3,7 @@ using Forum.Models;
 using Logger;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -15,7 +16,7 @@ namespace Forum.Controllers
     /// </summary>
     public class TopicController : ApiController
     {
-        string urlLogger = "http://loggerasp.azurewebsites.net/";
+        string urlLogger = ConfigurationManager.AppSettings["AdresseLogger"];
 
         /// <summary>
         /// Get an array of all topic informations
